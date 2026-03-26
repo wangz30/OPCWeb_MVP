@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { ArrowRight, ChevronLeft, ChevronRight, Cpu, Database, Cloud, Zap, Play, Star, Shield, Clock, Check } from 'lucide-react'
+import { ArrowRight, ChevronLeft, ChevronRight, Cpu, Database, Cloud, Zap, Play, Star, Shield, Clock, Check, FileText, Image, Mic, Video, Layers, Code } from 'lucide-react'
 import { Footer } from '@/components/Footer'
 
 // Banner数据
@@ -33,66 +33,163 @@ const banners = [
   }
 ]
 
-// AI模型按应用场景分类
-const modelScenarios = [
+// AI模型按能力分类 - 新结构
+const modelCapabilities = [
   {
-    id: 'smart-office',
-    title: '智能办公',
-    icon: '💼',
-    description: '提升办公效率，自动化处理文档、会议、沟通',
-    models: [
-      { id: '1', name: 'GPT-4 Turbo', provider: 'OpenAI', price: '¥0.01/1K tokens', icon: '🤖', feature: '文档撰写、邮件生成、会议纪要' },
-      { id: '2', name: 'Claude 3 Opus', provider: 'Anthropic', price: '¥0.015/1K tokens', icon: '🧠', feature: '长文档分析、代码审查、报告生成' },
-      { id: '3', name: 'DeepSeek-V2', provider: 'DeepSeek', price: '¥0.001/1K tokens', icon: '🔮', feature: '中文办公、表格处理、数据分析' },
-      { id: '4', name: 'TTS-1-HD', provider: 'OpenAI', price: '¥0.015/1K字符', icon: '🔊', feature: '语音播报、有声文档、会议录音' },
+    id: 'text',
+    title: '文本能力',
+    icon: FileText,
+    color: '#3B82F6',
+    description: '强大的文本理解和生成能力',
+    subCategories: [
+      { 
+        id: 'writing', 
+        label: '写作', 
+        icon: '✍️',
+        models: [
+          { id: '1', name: 'GPT-4 Turbo', provider: 'OpenAI', price: '¥0.01/1K tokens', feature: '文章创作、营销文案、创意写作', icon: '🤖' },
+          { id: '2', name: 'Claude 3 Opus', provider: 'Anthropic', price: '¥0.015/1K tokens', feature: '长文撰写、报告生成、内容优化', icon: '🧠' },
+        ]
+      },
+      { 
+        id: 'chat', 
+        label: '对话', 
+        icon: '💬',
+        models: [
+          { id: '3', name: 'GPT-4 Turbo', provider: 'OpenAI', price: '¥0.01/1K tokens', feature: '多轮对话、智能问答、上下文理解', icon: '💬' },
+          { id: '4', name: 'DeepSeek-V2', provider: 'DeepSeek', price: '¥0.001/1K tokens', feature: '中文对话、知识问答、情感交流', icon: '🔮' },
+        ]
+      },
+      { 
+        id: 'summary', 
+        label: '总结', 
+        icon: '📝',
+        models: [
+          { id: '5', name: 'Claude 3 Opus', provider: 'Anthropic', price: '¥0.015/1K tokens', feature: '文档摘要、会议总结、信息提炼', icon: '📋' },
+          { id: '6', name: 'GPT-4 Turbo', provider: 'OpenAI', price: '¥0.01/1K tokens', feature: '长文本总结、关键点提取、内容归纳', icon: '📄' },
+        ]
+      },
     ]
   },
   {
-    id: 'content-creation',
-    title: '内容创作',
-    icon: '🎨',
-    description: '赋能创意生产，图文音视频一站式生成',
-    models: [
-      { id: '5', name: 'Stable Diffusion XL', provider: 'Stability AI', price: '¥0.02/图', icon: '🎨', feature: '海报设计、产品图、创意插画' },
-      { id: '6', name: 'DALL-E 3', provider: 'OpenAI', price: '¥0.04/图', icon: '🖼️', feature: '营销配图、社交媒体、概念设计' },
-      { id: '7', name: 'GPT-4 Turbo', provider: 'OpenAI', price: '¥0.01/1K tokens', icon: '✍️', feature: '文案创作、脚本编写、小说生成' },
-      { id: '8', name: 'Midjourney v6', provider: 'Midjourney', price: '¥0.03/图', icon: '🌟', feature: '艺术风格、品牌视觉、封面设计' },
+    id: 'image',
+    title: '图片能力',
+    icon: Image,
+    color: '#8B5CF6',
+    description: '图像生成、编辑与识别',
+    subCategories: [
+      { 
+        id: 'generate', 
+        label: '生成', 
+        icon: '🎨',
+        models: [
+          { id: '7', name: 'Stable Diffusion XL', provider: 'Stability AI', price: '¥0.02/图', feature: '高质量图像生成、艺术风格创作', icon: '🎨' },
+          { id: '8', name: 'DALL-E 3', provider: 'OpenAI', price: '¥0.04/图', feature: '精准文生图、创意视觉设计', icon: '🖼️' },
+        ]
+      },
+      { 
+        id: 'edit', 
+        label: '编辑', 
+        icon: '✏️',
+        models: [
+          { id: '9', name: 'Stable Diffusion XL', provider: 'Stability AI', price: '¥0.02/图', feature: '图像修复、风格迁移、局部重绘', icon: '✨' },
+        ]
+      },
+      { 
+        id: 'recognize', 
+        label: '识别', 
+        icon: '👁️',
+        models: [
+          { id: '10', name: 'Claude 3 Opus', provider: 'Anthropic', price: '¥0.015/1K tokens', feature: '图像理解、内容描述、视觉问答', icon: '👁️' },
+        ]
+      },
     ]
   },
   {
-    id: 'customer-service',
-    title: '智能客服',
-    icon: '🎧',
-    description: '7×24小时智能服务，提升客户满意度',
-    models: [
-      { id: '9', name: 'GPT-4 Turbo', provider: 'OpenAI', price: '¥0.01/1K tokens', icon: '💬', feature: '多轮对话、意图识别、情感分析' },
-      { id: '10', name: 'Claude 3 Opus', provider: 'Anthropic', price: '¥0.015/1K tokens', icon: '🎯', feature: '复杂咨询、专业问答、知识库检索' },
-      { id: '11', name: 'Whisper Large v3', provider: 'OpenAI', price: '¥0.006/分钟', icon: '🎤', feature: '语音客服、电话质检、语音转写' },
-      { id: '12', name: 'TTS-1-HD', provider: 'OpenAI', price: '¥0.015/1K字符', icon: '🗣️', feature: '语音播报、智能外呼、语音导航' },
+    id: 'audio',
+    title: '语音能力',
+    icon: Mic,
+    color: '#10B981',
+    description: '语音识别与合成',
+    subCategories: [
+      { 
+        id: 'recognize', 
+        label: '识别', 
+        icon: '🎤',
+        models: [
+          { id: '11', name: 'Whisper Large v3', provider: 'OpenAI', price: '¥0.006/分钟', feature: '高精度语音转文字、多语言支持', icon: '🎤' },
+        ]
+      },
+      { 
+        id: 'synthesize', 
+        label: '合成', 
+        icon: '🔊',
+        models: [
+          { id: '12', name: 'TTS-1-HD', provider: 'OpenAI', price: '¥0.015/1K字符', feature: '自然语音合成、多音色选择', icon: '🔊' },
+        ]
+      },
     ]
   },
   {
-    id: 'code-dev',
-    title: '代码开发',
-    icon: '💻',
-    description: 'AI辅助编程，提升开发效率与代码质量',
-    models: [
-      { id: '13', name: 'GPT-4 Turbo', provider: 'OpenAI', price: '¥0.01/1K tokens', icon: '⚡', feature: '代码生成、Bug修复、代码解释' },
-      { id: '14', name: 'Claude 3 Opus', provider: 'Anthropic', price: '¥0.015/1K tokens', icon: '🔧', feature: '代码审查、重构建议、架构设计' },
-      { id: '15', name: 'GitHub Copilot', provider: 'GitHub', price: '¥10/月', icon: '🚀', feature: '实时代码补全、函数生成、测试用例' },
-      { id: '16', name: 'DeepSeek-Coder', provider: 'DeepSeek', price: '¥0.001/1K tokens', icon: '📟', feature: '中文编程、代码翻译、算法优化' },
+    id: 'video',
+    title: '视频能力',
+    icon: Video,
+    color: '#F59E0B',
+    description: '视频生成与处理',
+    subCategories: [
+      { 
+        id: 'generate', 
+        label: '生成', 
+        icon: '🎬',
+        models: [
+          { id: '13', name: 'Sora', provider: 'OpenAI', price: '即将上线', feature: '文本生成视频、高质量视频创作', icon: '🎬' },
+        ]
+      },
     ]
   },
   {
-    id: 'data-analysis',
-    title: '数据分析',
-    icon: '📊',
-    description: '智能数据洞察，快速发现业务价值',
-    models: [
-      { id: '17', name: 'GPT-4 Turbo', provider: 'OpenAI', price: '¥0.01/1K tokens', icon: '📈', feature: '数据解读、报表生成、趋势预测' },
-      { id: '18', name: 'Claude 3 Opus', provider: 'Anthropic', price: '¥0.015/1K tokens', icon: '📉', feature: '财务分析、风险评估、商业洞察' },
-      { id: '19', name: 'DeepSeek-V2', provider: 'DeepSeek', price: '¥0.001/1K tokens', icon: '🔍', feature: '数据清洗、特征工程、模型训练' },
-      { id: '20', name: 'Tableau GPT', provider: 'Tableau', price: '¥50/月', icon: '📋', feature: '可视化生成、智能问答、仪表板' },
+    id: 'multimodal',
+    title: '多模态能力',
+    icon: Layers,
+    color: '#EC4899',
+    description: '跨模态理解与生成',
+    subCategories: [
+      { 
+        id: 'text-image', 
+        label: '图文', 
+        icon: '📄🖼️',
+        models: [
+          { id: '14', name: 'GPT-4V', provider: 'OpenAI', price: '¥0.015/1K tokens', feature: '图像理解、图文对话、视觉推理', icon: '🔮' },
+          { id: '15', name: 'Claude 3 Opus', provider: 'Anthropic', price: '¥0.015/1K tokens', feature: '多模态理解、图文分析、视觉问答', icon: '🎯' },
+        ]
+      },
+    ]
+  },
+  {
+    id: 'code',
+    title: '代码能力',
+    icon: Code,
+    color: '#6366F1',
+    description: 'AI辅助编程开发',
+    subCategories: [
+      { 
+        id: 'programming', 
+        label: '编程', 
+        icon: '💻',
+        models: [
+          { id: '16', name: 'GPT-4 Turbo', provider: 'OpenAI', price: '¥0.01/1K tokens', feature: '代码生成、Bug修复、代码解释', icon: '⚡' },
+          { id: '17', name: 'DeepSeek-Coder', provider: 'DeepSeek', price: '¥0.001/1K tokens', feature: '中文编程、代码翻译、算法优化', icon: '📟' },
+        ]
+      },
+      { 
+        id: 'develop', 
+        label: '开发', 
+        icon: '🚀',
+        models: [
+          { id: '18', name: 'Claude 3 Opus', provider: 'Anthropic', price: '¥0.015/1K tokens', feature: '代码审查、重构建议、架构设计', icon: '🔧' },
+          { id: '19', name: 'GitHub Copilot', provider: 'GitHub', price: '¥10/月', feature: '实时代码补全、函数生成', icon: '🚀' },
+        ]
+      },
     ]
   },
 ]
@@ -269,70 +366,113 @@ export function ProductsPage() {
         </button>
       </section>
 
-        {/* AI模型应用场景 - 紧凑布局 */}
+      {/* AI 模型能力分类 - 新结构 */}
       <section style={{ position: 'relative', padding: '48px 0', zIndex: 10, background: 'transparent' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 20px' }}>
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h2 className="text-2xl font-bold text-white mb-1">热门AI模型</h2>
-              <p className="text-slate-400 text-sm">按应用场景精选，快速找到适合你的AI能力</p>
-            </div>
-            <a href="/models" className="text-purple-400 hover:text-purple-300 flex items-center gap-1 text-sm">
-              查看更多 <ArrowRight className="w-3 h-3" />
-            </a>
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold text-white mb-1">热门 AI 模型</h2>
+            <p className="text-slate-400 text-sm">按模型能力分类，快速找到适合你的 AI 能力</p>
           </div>
 
-          {/* 5个应用场景 - 紧凑间距 */}
-          <div className="space-y-8">
-            {modelScenarios.map((scenario) => (
-              <div key={scenario.id} className="bg-slate-800/30 border border-slate-700 rounded-2xl p-5">
-                {/* 场景标题 */}
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-2xl">{scenario.icon}</span>
-                  <div>
-                    <h3 className="text-lg font-bold text-white">{scenario.title}</h3>
-                    <p className="text-slate-400 text-xs">{scenario.description}</p>
+          {/* 6 大能力分类 - 水平布局，每个能力只显示 1 个代表模型 */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '20px' }}>
+            {modelCapabilities.map((capability) => {
+              // 获取第一个子分类的第一个模型作为整个能力的代表
+              const firstModel = capability.subCategories[0]?.models[0]
+              
+              return (
+                <div key={capability.id} style={{ 
+                  background: 'rgba(30, 41, 59, 0.4)', 
+                  border: '1px solid rgba(71, 85, 105, 0.5)', 
+                  borderRadius: '16px', 
+                  padding: '20px'
+                }}>
+                  {/* 能力分类标题 */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
+                    <div style={{ 
+                      width: '40px', 
+                      height: '40px', 
+                      borderRadius: '10px', 
+                      background: `${capability.color}20`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}>
+                      <capability.icon style={{ width: '22px', height: '22px', color: capability.color }} />
+                    </div>
+                    <div>
+                      <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'white', marginBottom: '2px' }}>{capability.title}</h3>
+                      <p style={{ fontSize: '0.75rem', color: '#94A3B8' }}>{capability.description}</p>
+                    </div>
                   </div>
-                </div>
-                
-                {/* 场景下的模型 */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
-                  {scenario.models.map((model) => (
-                    <div key={model.id} className="bg-slate-800/50 border border-slate-700 rounded-xl p-3 hover:border-purple-500 transition-all">
-                      <div className="flex items-start gap-2 mb-2">
-                        <span className="text-xl">{model.icon}</span>
-                        <div className="flex-1">
-                          <h4 className="text-white font-semibold text-sm">{model.name}</h4>
-                          <p className="text-slate-500 text-xs">{model.provider}</p>
+                  
+                  {/* 代表模型卡片 */}
+                  {firstModel && (
+                    <div style={{ 
+                      background: 'rgba(15, 23, 42, 0.5)', 
+                      border: '1px solid rgba(71, 85, 105, 0.5)', 
+                      borderRadius: '10px', 
+                      padding: '14px',
+                      transition: 'all 0.3s ease',
+                      cursor: 'pointer'
+                    }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.borderColor = capability.color
+                      e.currentTarget.style.transform = 'translateY(-3px)'
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.borderColor = 'rgba(71, 85, 105, 0.5)'
+                      e.currentTarget.style.transform = 'translateY(0)'
+                    }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '10px' }}>
+                        <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                          <span style={{ fontSize: '1.8rem' }}>{firstModel.icon}</span>
+                          <div>
+                            <h4 style={{ fontSize: '1rem', fontWeight: 700, color: 'white', marginBottom: '3px' }}>{firstModel.name}</h4>
+                            <p style={{ fontSize: '0.8rem', color: '#64748B' }}>{firstModel.provider}</p>
+                          </div>
                         </div>
                       </div>
-                      <p className="text-slate-400 text-xs mb-2 line-clamp-2">{model.feature}</p>
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-purple-400 text-xs font-semibold">{model.price}</span>
+                      <p style={{ fontSize: '0.8rem', color: '#94A3B8', marginBottom: '10px', lineHeight: 1.5 }}>{firstModel.feature}</p>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontSize: '0.8rem', color: capability.color, fontWeight: 600 }}>{firstModel.price}</span>
+                        <button style={{ 
+                          background: `linear-gradient(135deg, ${capability.color}, ${capability.color}dd)`,
+                          border: 'none',
+                          color: 'white',
+                          padding: '6px 14px',
+                          borderRadius: '6px',
+                          fontSize: '0.8rem',
+                          fontWeight: 600,
+                          cursor: 'pointer',
+                          transition: 'all 0.2s ease'
+                        }}
+                        onMouseOver={(e) => {
+                          e.currentTarget.style.opacity = '0.9'
+                          e.currentTarget.style.transform = 'scale(1.05)'
+                        }}
+                        onMouseOut={(e) => {
+                          e.currentTarget.style.opacity = '1'
+                          e.currentTarget.style.transform = 'scale(1)'
+                        }}>
+                          立即试用
+                        </button>
                       </div>
-                      <button className="w-full py-1.5 rounded-lg text-white text-xs font-medium transition-all" style={{ background: 'linear-gradient(135deg, #6C63FF, #8A84FF)', border: 'none' }}>
-                        立即试用
-                      </button>
                     </div>
-                  ))}
+                  )}
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>
 
-      {/* 热门数据API - 紧凑布局 */}
+      {/* 热门数据 API - 紧凑布局 */}
       <section style={{ padding: '48px 0', background: 'rgba(30, 41, 59, 0.3)' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 20px' }}>
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h2 className="text-2xl font-bold text-white mb-1">热门数据API</h2>
-              <p className="text-slate-400 text-sm">覆盖8大垂直领域，海量数据接口助力业务创新</p>
-            </div>
-            <a href="/data-apis" className="text-emerald-400 hover:text-emerald-300 flex items-center gap-1 text-sm">
-              查看更多 <ArrowRight className="w-3 h-3" />
-            </a>
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold text-white mb-1">热门数据 API</h2>
+            <p className="text-slate-400 text-sm">覆盖 8 大垂直领域，海量数据接口助力业务创新</p>
           </div>
 
           {/* 卡片式展示 - 4*2 网格，紧凑间距 */}
@@ -398,43 +538,44 @@ export function ProductsPage() {
         </div>
       </section>
 
-      {/* 云资源配置推荐 - 紧凑布局 */}
+      {/* 云资源配置 - 纵向布局 */}
       <section style={{ padding: '60px 0' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 20px' }}>
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-white mb-2">云资源配置推荐</h2>
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold text-white mb-2">云资源配置</h2>
             <p className="text-slate-400">根据不同场景推荐最优云资源配置，即刻部署</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-4">
+          {/* 横向展示 - 三个卡片排成一行，每个卡片内部纵向布局 */}
+          <div className="grid md:grid-cols-3 gap-6">
             {cloudServices.map((service) => (
-              <div key={service.id} className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/30 hover:border-slate-500">
+              <div key={service.id} className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/30 hover:border-slate-500">
                 {/* 头部 - 图标和分类 */}
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="text-2xl">{service.icon}</div>
+                <div className="flex items-center gap-4 mb-5">
+                  <div className="text-3xl">{service.icon}</div>
                   <div>
-                    <span className="px-2 py-1 rounded-full text-xs font-medium" style={{ background: `${service.color}20`, color: service.color }}>
+                    <span className="px-3 py-1.5 rounded-full text-sm font-medium" style={{ background: `${service.color}20`, color: service.color }}>
                       {service.category}
                     </span>
                   </div>
                 </div>
                 
                 {/* 主要内容 */}
-                <h3 className="text-lg font-bold text-white mb-2">{service.title}</h3>
-                <p className="text-slate-300 text-sm mb-3">{service.description}</p>
+                <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
+                <p className="text-slate-300 text-base mb-5">{service.description}</p>
                 
-                {/* 功能特性 - 紧凑列表 */}
-                <div className="mb-4">
+                {/* 功能特性 - 横向排列 */}
+                <div className="flex flex-wrap gap-3 mb-6">
                   {service.features.map((feature, i) => (
-                    <div key={i} className="flex items-center gap-2 text-xs text-slate-400 mb-1">
-                      <div className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: service.color }}></div>
-                      <span>{feature}</span>
+                    <div key={i} className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm" style={{ background: `${service.color}10` }}>
+                      <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: service.color }}></div>
+                      <span className="text-slate-300">{feature}</span>
                     </div>
                   ))}
                 </div>
                 
                 {/* 按钮 */}
-                <button className="w-full py-2.5 rounded-lg font-medium text-sm transition-colors hover:opacity-90 active:scale-[0.98]" style={{ background: service.color, color: 'white' }}>
+                <button className="w-full py-3 rounded-lg font-medium text-base transition-all hover:opacity-90 active:scale-[0.98]" style={{ background: service.color, color: 'white' }}>
                   {service.category === '云计算' ? '立即咨询' : '了解更多'}
                 </button>
               </div>
@@ -442,7 +583,7 @@ export function ProductsPage() {
           </div>
 
           {/* 补充说明 */}
-          <div className="mt-6 text-center">
+          <div className="mt-8 text-center">
             <p className="text-slate-500 text-sm">
               需要定制化配置？<a href="/contact" className="text-purple-400 hover:text-purple-300 ml-1">联系我们的云专家</a>
             </p>

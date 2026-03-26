@@ -2,9 +2,7 @@ import { useState, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Input } from '@/components/ui/input'
 import { 
-  Search, 
   FileText, 
   Users, 
   Lightbulb, 
@@ -21,14 +19,25 @@ import {
   Rocket,
   ChevronRight,
   MapPin,
-  ChevronLeft
+  ChevronLeft,
+  Shield,
+  GraduationCap
 } from 'lucide-react'
+import { Footer } from '@/components/Footer'
 
 export function PoliciesPage() {
-  const [activeTab, setActiveTab] = useState('policy')
-  const [searchKeyword, setSearchKeyword] = useState('')
-  const [activeCity, setActiveCity] = useState('all')
+  const [activeCity, setActiveCity] = useState('深圳')
+  const [isRefreshing, setIsRefreshing] = useState(false)
   const [carouselIndex, setCarouselIndex] = useState(0)
+  
+  const cities = ['深圳', '香港', '澳门', '广州', '珠海', '佛山', '惠州', '东莞', '中山', '江门', '肇庆']
+  
+  // 处理城市切换，触发刷新效果
+  const handleCityChange = (city: string) => {
+    setActiveCity(city)
+    setIsRefreshing(true)
+    setTimeout(() => setIsRefreshing(false), 300)
+  }
 
   // 轮播数据
   const carouselItems = [
@@ -70,43 +79,33 @@ export function PoliciesPage() {
     return () => clearInterval(timer)
   }, [])
 
-  const searchTypes = [
-    { id: 'policy', label: '找政策', icon: FileText, color: '#6C63FF' },
-    { id: 'talent', label: '找人才', icon: Users, color: '#10B981' },
-    { id: 'patent', label: '找专利', icon: Lightbulb, color: '#F59E0B' },
-    { id: 'fund', label: '找资金', icon: Wallet, color: '#EC4899' },
-  ]
-
-  // 城市数据
-  const cities = [
-    { id: 'all', label: '全部城市' },
-    { id: 'sz', label: '深圳' },
-    { id: 'gz', label: '广州' },
-    { id: 'zh', label: '珠海' },
-    { id: 'dg', label: '东莞' },
-    { id: 'fs', label: '佛山' },
-    { id: 'hz', label: '惠州' },
-  ]
-
   // 城市快捷入口
   const cityEntrances: Record<string, Array<{id: number; title: string; icon: any; desc: string}>> = {
-    all: [
-      { id: 1, title: '企业注册', icon: Building, desc: '快速注册公司' },
-      { id: 2, title: '商标申请', icon: Award, desc: '保护品牌资产' },
-      { id: 3, title: '项目申报', icon: TrendingUp, desc: '政府项目对接' },
-      { id: 4, title: '法律咨询', icon: BookOpen, desc: '专业法律服务' },
-      { id: 5, title: '融资对接', icon: Rocket, desc: '对接投资机构' },
-      { id: 6, title: '培训报名', icon: Calendar, desc: '创业能力提升' },
-    ],
-    sz: [
-      { id: 1, title: '深圳公司注册', icon: Building, desc: '0元注册公司' },
+    '深圳': [
+      { id: 1, title: '深圳公司注册', icon: Building, desc: '0 元注册公司' },
       { id: 2, title: '深圳创业补贴', icon: Rocket, desc: '初创企业补贴' },
       { id: 3, title: '科创委项目', icon: TrendingUp, desc: '科技项目申报' },
       { id: 4, title: '人才引进', icon: Users, desc: '深圳人才认定' },
       { id: 5, title: '知识产权', icon: Award, desc: '专利申请' },
       { id: 6, title: '法律服务', icon: BookOpen, desc: '专业法务咨询' },
     ],
-    gz: [
+    '香港': [
+      { id: 1, title: '香港公司注册', icon: Building, desc: '快速注册香港公司' },
+      { id: 2, title: '香港创业签证', icon: Rocket, desc: '创业签证申请' },
+      { id: 3, title: '科技研发资助', icon: TrendingUp, desc: '创新科技基金' },
+      { id: 4, title: '人才计划', icon: Users, desc: '香港人才入境' },
+      { id: 5, title: '知识产权', icon: Award, desc: '专利申请' },
+      { id: 6, title: '法律咨询', icon: BookOpen, desc: '专业法务咨询' },
+    ],
+    '澳门': [
+      { id: 1, title: '澳门公司注册', icon: Building, desc: '快速注册' },
+      { id: 2, title: '青年创业资助', icon: Rocket, desc: '青年创业援助' },
+      { id: 3, title: '会展业支持', icon: TrendingUp, desc: '会展业扶持政策' },
+      { id: 4, title: '人才引进', icon: Users, desc: '澳门人才计划' },
+      { id: 5, title: '知识产权', icon: Award, desc: '专利申请' },
+      { id: 6, title: '法律咨询', icon: BookOpen, desc: '专业法务咨询' },
+    ],
+    '广州': [
       { id: 1, title: '广州公司注册', icon: Building, desc: '快速获取执照' },
       { id: 2, title: '广州高新认定', icon: TrendingUp, desc: '高新技术企业' },
       { id: 3, title: '人才绿卡', icon: Users, desc: '广州人才政策' },
@@ -114,23 +113,15 @@ export function PoliciesPage() {
       { id: 5, title: '融资对接', icon: Rocket, desc: '对接投资机构' },
       { id: 6, title: '法律咨询', icon: BookOpen, desc: '专业法务咨询' },
     ],
-    zh: [
-      { id: 1, title: '横琴公司注册', icon: Building, desc: '横琴优惠政策' },
+    '珠海': [
+      { id: 1, title: '珠海公司注册', icon: Building, desc: '横琴优惠政策' },
       { id: 2, title: '跨境电商', icon: Rocket, desc: '跨境电商扶持' },
-      { id: 3, title: '人才认定', icon: Users, desc: '横琴人才计划' },
+      { id: 3, title: '人才认定', icon: Users, desc: '珠海人才计划' },
       { id: 4, title: '科技研发', icon: Lightbulb, desc: '研发费用补贴' },
       { id: 5, title: '知识产权', icon: Award, desc: '专利申请' },
       { id: 6, title: '法律服务', icon: BookOpen, desc: '专业法务咨询' },
     ],
-    dg: [
-      { id: 1, title: '东莞公司注册', icon: Building, desc: '快速注册' },
-      { id: 2, title: '制造业补贴', icon: Rocket, desc: '技改项目申报' },
-      { id: 3, title: '高新企业', icon: TrendingUp, desc: '高新技术企业认定' },
-      { id: 4, title: '人才政策', icon: Users, desc: '技能人才引进' },
-      { id: 5, title: '融资对接', icon: Wallet, desc: '贷款贴息' },
-      { id: 6, title: '法律咨询', icon: BookOpen, desc: '专业法务咨询' },
-    ],
-    fs: [
+    '佛山': [
       { id: 1, title: '佛山公司注册', icon: Building, desc: '快速注册' },
       { id: 2, title: '制造业转型', icon: TrendingUp, desc: '数字化转型补贴' },
       { id: 3, title: '人才引进', icon: Users, desc: '佛山人才政策' },
@@ -138,10 +129,42 @@ export function PoliciesPage() {
       { id: 5, title: '知识产权', icon: Award, desc: '专利申请' },
       { id: 6, title: '法律服务', icon: BookOpen, desc: '专业法务咨询' },
     ],
-    hz: [
+    '惠州': [
       { id: 1, title: '惠州公司注册', icon: Building, desc: '快速注册' },
       { id: 2, title: '仲恺项目', icon: Rocket, desc: '仲恺高新区' },
       { id: 3, title: '人才政策', icon: Users, desc: '惠州人才引进' },
+      { id: 4, title: '科技计划', icon: Lightbulb, desc: '科技项目申报' },
+      { id: 5, title: '融资对接', icon: Wallet, desc: '融资服务' },
+      { id: 6, title: '法律咨询', icon: BookOpen, desc: '专业法务咨询' },
+    ],
+    '东莞': [
+      { id: 1, title: '东莞公司注册', icon: Building, desc: '快速注册' },
+      { id: 2, title: '制造业补贴', icon: Rocket, desc: '技改项目申报' },
+      { id: 3, title: '高新企业', icon: TrendingUp, desc: '高新技术企业认定' },
+      { id: 4, title: '人才政策', icon: Users, desc: '技能人才引进' },
+      { id: 5, title: '融资对接', icon: Wallet, desc: '贷款贴息' },
+      { id: 6, title: '法律咨询', icon: BookOpen, desc: '专业法务咨询' },
+    ],
+    '中山': [
+      { id: 1, title: '中山公司注册', icon: Building, desc: '快速注册' },
+      { id: 2, title: '灯饰产业扶持', icon: Rocket, desc: '特色产业支持' },
+      { id: 3, title: '人才引进', icon: Users, desc: '中山人才政策' },
+      { id: 4, title: '科技创新', icon: Lightbulb, desc: '科技项目申报' },
+      { id: 5, title: '知识产权', icon: Award, desc: '专利申请' },
+      { id: 6, title: '法律服务', icon: BookOpen, desc: '专业法务咨询' },
+    ],
+    '江门': [
+      { id: 1, title: '江门公司注册', icon: Building, desc: '快速注册' },
+      { id: 2, title: '华侨创业支持', icon: Rocket, desc: '华侨创新创业' },
+      { id: 3, title: '人才政策', icon: Users, desc: '江门人才引进' },
+      { id: 4, title: '科技计划', icon: Lightbulb, desc: '科技项目申报' },
+      { id: 5, title: '融资对接', icon: Wallet, desc: '融资服务' },
+      { id: 6, title: '法律咨询', icon: BookOpen, desc: '专业法务咨询' },
+    ],
+    '肇庆': [
+      { id: 1, title: '肇庆公司注册', icon: Building, desc: '快速注册' },
+      { id: 2, title: '绿色产业扶持', icon: Rocket, desc: '生态环保产业' },
+      { id: 3, title: '人才政策', icon: Users, desc: '肇庆人才引进' },
       { id: 4, title: '科技计划', icon: Lightbulb, desc: '科技项目申报' },
       { id: 5, title: '融资对接', icon: Wallet, desc: '融资服务' },
       { id: 6, title: '法律咨询', icon: BookOpen, desc: '专业法务咨询' },
@@ -253,7 +276,7 @@ export function PoliciesPage() {
     },
   ]
 
-  const currentEntrances = cityEntrances[activeCity] || cityEntrances.all
+  const currentEntrances = cityEntrances[activeCity] || cityEntrances['深圳']
 
   return (
     <div style={{ background: 'linear-gradient(135deg, #0F1729 0%, #1E293B 100%)', minHeight: '100vh' }}>
@@ -266,74 +289,6 @@ export function PoliciesPage() {
           <p style={{ color: '#94A3B8', textAlign: 'center', marginBottom: '2rem' }}>
             汇聚政策、人才、专利、资金，助力创业者一站式获取资源
           </p>
-
-          {/* 搜索类型切换 */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', marginBottom: '24px', flexWrap: 'wrap' }}>
-            {searchTypes.map((type) => {
-              const Icon = type.icon
-              return (
-                <button
-                  key={type.id}
-                  onClick={() => setActiveTab(type.id)}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    padding: '12px 24px',
-                    borderRadius: '12px',
-                    border: `2px solid ${activeTab === type.id ? type.color : '#475569'}`,
-                    background: activeTab === type.id ? `${type.color}20` : 'transparent',
-                    color: activeTab === type.id ? type.color : '#94A3B8',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s',
-                    fontSize: '1rem',
-                    fontWeight: 500
-                  }}
-                >
-                  <Icon style={{ width: '20px', height: '20px' }} />
-                  {type.label}
-                </button>
-              )
-            })}
-          </div>
-
-          {/* 搜索框 */}
-          <div style={{ position: 'relative', maxWidth: '700px', margin: '0 auto' }}>
-            <Search style={{ position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)', color: '#64748B', width: '24px', height: '24px' }} />
-            <input
-              type="text"
-              placeholder={`搜索${searchTypes.find(t => t.id === activeTab)?.label}...`}
-              value={searchKeyword}
-              onChange={(e) => setSearchKeyword(e.target.value)}
-              style={{
-                width: '100%',
-                padding: '18px 20px 18px 60px',
-                borderRadius: '16px',
-                border: '2px solid #475569',
-                background: '#1E293B',
-                color: '#F1F5F9',
-                fontSize: '1.1rem',
-                outline: 'none',
-                boxShadow: '0 4px 20px rgba(0,0,0,0.3)'
-              }}
-            />
-            <button style={{
-              position: 'absolute',
-              right: '8px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              padding: '12px 32px',
-              borderRadius: '12px',
-              border: 'none',
-              background: 'linear-gradient(135deg, #6C63FF, #8A84FF)',
-              color: 'white',
-              fontSize: '1rem',
-              fontWeight: 600,
-              cursor: 'pointer'
-            }}>
-              搜索
-            </button>
-          </div>
         </div>
       </div>
 
@@ -546,71 +501,237 @@ export function PoliciesPage() {
           </div>
         </div>
 
-        {/* 创业快捷入口 - 按城市分类 */}
+        {/* 基础服务快捷入口 */}
         <div>
-          <h2 style={{ color: '#F1F5F9', fontSize: '1.5rem', fontWeight: 700, marginBottom: '20px' }}>创业快捷入口</h2>
+          <h2 style={{ color: '#F1F5F9', fontSize: '1.5rem', fontWeight: 700, marginBottom: '16px' }}>基础服务快捷入口</h2>
           
-          {/* 城市切换 */}
-          <div style={{ display: 'flex', gap: '8px', marginBottom: '24px', flexWrap: 'wrap' }}>
+          {/* 城市选择 */}
+          <div style={{ display: 'flex', gap: '6px', marginBottom: '20px', flexWrap: 'nowrap', overflowX: 'auto', paddingBottom: '4px' }}>
             {cities.map((city) => (
               <button
-                key={city.id}
-                onClick={() => setActiveCity(city.id)}
+                key={city}
+                onClick={() => handleCityChange(city)}
                 style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  padding: '8px 16px',
-                  borderRadius: '8px',
-                  border: 'none',
-                  background: activeCity === city.id ? 'linear-gradient(135deg, #6C63FF, #8A84FF)' : '#334155',
-                  color: 'white',
+                  padding: '6px 14px',
+                  background: activeCity === city ? 'linear-gradient(135deg, #6C63FF, #8A84FF)' : 'rgba(108, 99, 255, 0.1)',
+                  border: `1px solid ${activeCity === city ? '#6C63FF' : 'rgba(108, 99, 255, 0.3)'}`,
+                  borderRadius: '16px',
+                  color: activeCity === city ? 'white' : '#A5B4FC',
+                  fontSize: '0.75rem',
+                  fontWeight: activeCity === city ? 600 : 500,
                   cursor: 'pointer',
-                  fontSize: '0.9rem',
-                  fontWeight: 500,
-                  transition: 'all 0.2s'
+                  whiteSpace: 'nowrap',
+                  transition: 'all 0.2s',
+                  boxShadow: activeCity === city ? '0 2px 8px rgba(108, 99, 255, 0.3)' : 'none'
+                }}
+                onMouseOver={(e) => {
+                  if (activeCity !== city) {
+                    e.currentTarget.style.background = 'rgba(108, 99, 255, 0.15)'
+                    e.currentTarget.style.borderColor = 'rgba(108, 99, 255, 0.5)'
+                  }
+                }}
+                onMouseOut={(e) => {
+                  if (activeCity !== city) {
+                    e.currentTarget.style.background = 'rgba(108, 99, 255, 0.1)'
+                    e.currentTarget.style.borderColor = 'rgba(108, 99, 255, 0.3)'
+                  }
                 }}
               >
-                <MapPin style={{ width: '14px', height: '14px' }} />
-                {city.label}
+                {city}
               </button>
             ))}
           </div>
-
-          {/* 快捷入口卡片 */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '16px' }}>
-            {currentEntrances.map((entrance) => {
-              const Icon = entrance.icon
-              return (
-                <div key={entrance.id} style={{
-                  background: '#1E293B',
-                  border: '1px solid #334155',
-                  borderRadius: '16px',
-                  padding: '24px 16px',
-                  textAlign: 'center',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s'
-                }}>
-                  <div style={{
-                    width: '56px',
-                    height: '56px',
-                    borderRadius: '16px',
-                    background: 'linear-gradient(135deg, #6C63FF20, #8A84FF20)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    margin: '0 auto 12px'
-                  }}>
-                    <Icon style={{ width: '28px', height: '28px', color: '#A5B4FC' }} />
-                  </div>
-                  <h3 style={{ color: '#F1F5F9', fontSize: '0.95rem', fontWeight: 600, marginBottom: '4px' }}>{entrance.title}</h3>
-                  <p style={{ color: '#64748B', fontSize: '0.8rem' }}>{entrance.desc}</p>
-                </div>
-              )
-            })}
+          
+          {/* 快捷入口卡片 - 全部排成一排 */}
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(7, 1fr)', 
+            gap: '16px',
+            transition: 'all 0.3s ease-in-out',
+            opacity: isRefreshing ? 0.5 : 1,
+            transform: isRefreshing ? 'scale(0.98)' : 'scale(1)'
+          }}>
+            {/* 快速办理板块 */}
+            <div style={{
+              background: '#1E293B',
+              border: '1px solid #334155',
+              borderRadius: '16px',
+              padding: '24px 16px',
+              textAlign: 'center',
+              cursor: 'pointer',
+              transition: 'all 0.2s'
+            }}>
+              <div style={{
+                width: '56px',
+                height: '56px',
+                borderRadius: '16px',
+                background: 'linear-gradient(135deg, #6C63FF20, #8A84FF20)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                margin: '0 auto 12px'
+              }}>
+                <Building style={{ width: '28px', height: '28px', color: '#A5B4FC' }} />
+              </div>
+              <h3 style={{ color: '#F1F5F9', fontSize: '0.95rem', fontWeight: 600, marginBottom: '4px' }}>企业注册</h3>
+              <p style={{ color: '#64748B', fontSize: '0.8rem' }}>快速注册公司主体</p>
+            </div>
+            
+            <div style={{
+              background: '#1E293B',
+              border: '1px solid #334155',
+              borderRadius: '16px',
+              padding: '24px 16px',
+              textAlign: 'center',
+              cursor: 'pointer',
+              transition: 'all 0.2s'
+            }}>
+              <div style={{
+                width: '56px',
+                height: '56px',
+                borderRadius: '16px',
+                background: 'linear-gradient(135deg, #6C63FF20, #8A84FF20)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                margin: '0 auto 12px'
+              }}>
+                <Award style={{ width: '28px', height: '28px', color: '#A5B4FC' }} />
+              </div>
+              <h3 style={{ color: '#F1F5F9', fontSize: '0.95rem', fontWeight: 600, marginBottom: '4px' }}>商标注册</h3>
+              <p style={{ color: '#64748B', fontSize: '0.8rem' }}>保护品牌防止侵权</p>
+            </div>
+            
+            {/* 资源支持板块 */}
+            <div style={{
+              background: '#1E293B',
+              border: '1px solid #334155',
+              borderRadius: '16px',
+              padding: '24px 16px',
+              textAlign: 'center',
+              cursor: 'pointer',
+              transition: 'all 0.2s'
+            }}>
+              <div style={{
+                width: '56px',
+                height: '56px',
+                borderRadius: '16px',
+                background: 'linear-gradient(135deg, #10B98120, #34D39920)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                margin: '0 auto 12px'
+              }}>
+                <Rocket style={{ width: '28px', height: '28px', color: '#6EE7B7' }} />
+              </div>
+              <h3 style={{ color: '#F1F5F9', fontSize: '0.95rem', fontWeight: 600, marginBottom: '4px' }}>创业补贴</h3>
+              <p style={{ color: '#64748B', fontSize: '0.8rem' }}>申领政策资金支持</p>
+            </div>
+            
+            <div style={{
+              background: '#1E293B',
+              border: '1px solid #334155',
+              borderRadius: '16px',
+              padding: '24px 16px',
+              textAlign: 'center',
+              cursor: 'pointer',
+              transition: 'all 0.2s'
+            }}>
+              <div style={{
+                width: '56px',
+                height: '56px',
+                borderRadius: '16px',
+                background: 'linear-gradient(135deg, #10B98120, #34D39920)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                margin: '0 auto 12px'
+              }}>
+                <Wallet style={{ width: '28px', height: '28px', color: '#6EE7B7' }} />
+              </div>
+              <h3 style={{ color: '#F1F5F9', fontSize: '0.95rem', fontWeight: 600, marginBottom: '4px' }}>融资渠道</h3>
+              <p style={{ color: '#64748B', fontSize: '0.8rem' }}>对接资金与投资人</p>
+            </div>
+            
+            <div style={{
+              background: '#1E293B',
+              border: '1px solid #334155',
+              borderRadius: '16px',
+              padding: '24px 16px',
+              textAlign: 'center',
+              cursor: 'pointer',
+              transition: 'all 0.2s'
+            }}>
+              <div style={{
+                width: '56px',
+                height: '56px',
+                borderRadius: '16px',
+                background: 'linear-gradient(135deg, #10B98120, #34D39920)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                margin: '0 auto 12px'
+              }}>
+                <BookOpen style={{ width: '28px', height: '28px', color: '#6EE7B7' }} />
+              </div>
+              <h3 style={{ color: '#F1F5F9', fontSize: '0.95rem', fontWeight: 600, marginBottom: '4px' }}>法律资讯</h3>
+              <p style={{ color: '#64748B', fontSize: '0.8rem' }}>合规经营规避风险</p>
+            </div>
+            
+            {/* 避坑与成长板块 */}
+            <div style={{
+              background: '#1E293B',
+              border: '1px solid #334155',
+              borderRadius: '16px',
+              padding: '24px 16px',
+              textAlign: 'center',
+              cursor: 'pointer',
+              transition: 'all 0.2s'
+            }}>
+              <div style={{
+                width: '56px',
+                height: '56px',
+                borderRadius: '16px',
+                background: 'linear-gradient(135deg, #F59E0B20, #FBBF2420)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                margin: '0 auto 12px'
+              }}>
+                <Shield style={{ width: '28px', height: '28px', color: '#FBBF24' }} />
+              </div>
+              <h3 style={{ color: '#F1F5F9', fontSize: '0.95rem', fontWeight: 600, marginBottom: '4px' }}>避坑指南</h3>
+              <p style={{ color: '#64748B', fontSize: '0.8rem' }}>少走弯路快速起步</p>
+            </div>
+            
+            <div style={{
+              background: '#1E293B',
+              border: '1px solid #334155',
+              borderRadius: '16px',
+              padding: '24px 16px',
+              textAlign: 'center',
+              cursor: 'pointer',
+              transition: 'all 0.2s'
+            }}>
+              <div style={{
+                width: '56px',
+                height: '56px',
+                borderRadius: '16px',
+                background: 'linear-gradient(135deg, #F59E0B20, #FBBF2420)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                margin: '0 auto 12px'
+              }}>
+                <GraduationCap style={{ width: '28px', height: '28px', color: '#FBBF24' }} />
+              </div>
+              <h3 style={{ color: '#F1F5F9', fontSize: '0.95rem', fontWeight: 600, marginBottom: '4px' }}>学习资源</h3>
+              <p style={{ color: '#64748B', fontSize: '0.8rem' }}>系统提升创业能力</p>
+            </div>
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

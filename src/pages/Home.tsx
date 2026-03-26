@@ -330,7 +330,10 @@ export function HomePage() {
                 padding: '1.5rem',
                 border: '1px solid rgba(108, 99, 255, 0.2)',
                 transition: 'all 0.3s ease',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column'
               }}
               onMouseOver={(e) => {
                 e.currentTarget.style.transform = 'translateY(-5px)'
@@ -344,9 +347,9 @@ export function HomePage() {
               }}>
                 <h3 style={{ color: '#F1F5F9', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
                   <Cpu style={{ color: '#6C63FF' }} />
-                  AI模型
+                  AI 模型
                 </h3>
-                <p style={{ color: '#CBD5E1', fontSize: '0.95rem' }}>集成主流AI模型，快速构建智能应用</p>
+                <p style={{ color: '#CBD5E1', fontSize: '0.95rem', margin: 0 }}>集成主流 AI 模型，快速构建智能应用</p>
               </div>
             </Link>
             
@@ -357,7 +360,10 @@ export function HomePage() {
                 padding: '1.5rem',
                 border: '1px solid rgba(108, 99, 255, 0.2)',
                 transition: 'all 0.3s ease',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column'
               }}
               onMouseOver={(e) => {
                 e.currentTarget.style.transform = 'translateY(-5px)'
@@ -371,9 +377,9 @@ export function HomePage() {
               }}>
                 <h3 style={{ color: '#F1F5F9', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
                   <Database style={{ color: '#6C63FF' }} />
-                  数据API
+                  数据 API
                 </h3>
-                <p style={{ color: '#CBD5E1', fontSize: '0.95rem' }}>丰富的数据接口，为应用提供数据支撑</p>
+                <p style={{ color: '#CBD5E1', fontSize: '0.95rem', margin: 0 }}>丰富的数据接口，为应用提供数据支撑</p>
               </div>
             </Link>
             
@@ -384,7 +390,10 @@ export function HomePage() {
                 padding: '1.5rem',
                 border: '1px solid rgba(108, 99, 255, 0.2)',
                 transition: 'all 0.3s ease',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column'
               }}
               onMouseOver={(e) => {
                 e.currentTarget.style.transform = 'translateY(-5px)'
@@ -400,7 +409,7 @@ export function HomePage() {
                   <Cloud style={{ color: '#6C63FF' }} />
                   云资源
                 </h3>
-                <p style={{ color: '#CBD5E1', fontSize: '0.95rem' }}>云服务器、存储、数据库，一键申请</p>
+                <p style={{ color: '#CBD5E1', fontSize: '0.95rem', margin: 0 }}>云服务器、存储、数据库，一键申请</p>
               </div>
             </Link>
             
@@ -411,7 +420,10 @@ export function HomePage() {
                 padding: '1.5rem',
                 border: '1px solid rgba(108, 99, 255, 0.2)',
                 transition: 'all 0.3s ease',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column'
               }}
               onMouseOver={(e) => {
                 e.currentTarget.style.transform = 'translateY(-5px)'
@@ -427,7 +439,7 @@ export function HomePage() {
                   <FileText style={{ color: '#6C63FF' }} />
                   政策查询
                 </h3>
-                <p style={{ color: '#CBD5E1', fontSize: '0.95rem' }}>融资政策、人才政策、行业资讯</p>
+                <p style={{ color: '#CBD5E1', fontSize: '0.95rem', margin: 0 }}>融资政策、人才政策、行业资讯</p>
               </div>
             </Link>
           </div>

@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { mockCourses } from '@/data/mockData'
 import { BookOpen, Clock, Users, Star } from 'lucide-react'
+import { Footer } from '@/components/Footer'
 
 export function CoursesPage() {
   const [selectedLevel, setSelectedLevel] = useState<string>('all')
@@ -92,6 +93,7 @@ export function CoursesPage() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

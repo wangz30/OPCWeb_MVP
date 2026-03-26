@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge'
 import { mockDataAPIs } from '@/data/mockData'
 import { Search, Link as LinkIcon } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { Footer } from '@/components/Footer'
 
 export function DataAPIsPage() {
   const [searchQuery, setSearchQuery] = useState('')
@@ -185,6 +186,7 @@ export function DataAPIsPage() {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

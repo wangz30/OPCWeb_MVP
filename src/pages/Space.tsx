@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { mockSpaces } from '@/data/mockData'
 import { MapPin, Users, Check, Building } from 'lucide-react'
+import { Footer } from '@/components/Footer'
 
 export function SpacePage() {
   return (
@@ -58,6 +59,7 @@ export function SpacePage() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

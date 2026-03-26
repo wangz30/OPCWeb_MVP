@@ -28,25 +28,18 @@ import {
   Check,
   ExternalLink
 } from 'lucide-react'
+import { Footer } from '@/components/Footer'
 
 export function MarketplacePage() {
   const [searchKeyword, setSearchKeyword] = useState('')
   const [activeCategory, setActiveCategory] = useState('all')
-  const [activeType, setActiveType] = useState('all')
 
   const categories = [
     { id: 'all', label: '全部', icon: Sparkles },
-    { id: 'ai-app', label: 'AI应用', icon: Sparkles },
-    { id: 'agent', label: 'AI智能体', icon: Bot },
+    { id: 'ai-app', label: 'AI 应用', icon: Sparkles },
+    { id: 'agent', label: 'AI 智能体', icon: Bot },
     { id: 'dev-tool', label: '开发工具', icon: Code },
     { id: 'content', label: '内容创作', icon: Image },
-  ]
-
-  const types = [
-    { id: 'all', label: '全部类型' },
-    { id: 'official', label: '官方应用' },
-    { id: 'third-party', label: '第三方应用' },
-    { id: 'opc', label: 'OPC自制' },
   ]
 
   const aiApps = [
@@ -240,19 +233,18 @@ export function MarketplacePage() {
   ]
 
   const filteredApps = aiApps.filter(app => {
-    const matchCategory = activeCategory === 'all' || app.category === activeCategory
-    const matchType = activeType === 'all' || app.type === activeType
+    const matchCategory = activeCategory === 'all' || activeCategory === 'ai-app' || app.category === activeCategory
     const matchSearch = app.name.toLowerCase().includes(searchKeyword.toLowerCase()) || 
                        app.description.toLowerCase().includes(searchKeyword.toLowerCase())
-    return matchCategory && matchType && matchSearch
+    return matchCategory && matchSearch
   })
 
+  // AI 智能体也根据分类筛选
   const filteredAgents = agents.filter(agent => {
-    const matchCategory = activeCategory === 'all' || agent.category === activeCategory
-    const matchType = activeType === 'all' || agent.type === activeType
+    const matchCategory = activeCategory === 'all' || activeCategory === 'agent' || agent.category === activeCategory
     const matchSearch = agent.name.toLowerCase().includes(searchKeyword.toLowerCase()) || 
                        agent.description.toLowerCase().includes(searchKeyword.toLowerCase())
-    return matchCategory && matchType && matchSearch
+    return matchCategory && matchSearch
   })
 
   const featuredApps = aiApps.filter(app => app.featured)
@@ -266,17 +258,17 @@ export function MarketplacePage() {
       }}>
         <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
           <h1 style={{ fontSize: '2.5rem', fontWeight: 700, color: '#F1F5F9', marginBottom: '1rem', textAlign: 'center' }}>
-            应用集市
+            探索应用集市，用 AI 打造你的 One Person Company
           </h1>
           <p style={{ color: '#CBD5E1', textAlign: 'center', marginBottom: '2rem', fontSize: '1.1rem' }}>
-            为OPC创业提供优质AI应用、AI智能体，开启高效创业之旅
+            精选 AI 应用 & 智能体，开启高效创业之旅
           </p>
           
           {/* 搜索框 */}
           <div style={{ maxWidth: '600px', margin: '0 auto', position: 'relative' }}>
             <input
               type="text"
-              placeholder="搜索AI应用、智能体..."
+              placeholder="你想用 AI 做什么？"
               value={searchKeyword}
               onChange={(e) => setSearchKeyword(e.target.value)}
               style={{
@@ -353,28 +345,6 @@ export function MarketplacePage() {
       {/* 分类筛选 */}
       <section style={{ padding: '2rem 0' }}>
         <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
-          {/* 类型筛选 */}
-          <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
-            {types.map((type) => (
-              <button
-                key={type.id}
-                onClick={() => setActiveType(type.id)}
-                style={{
-                  padding: '8px 18px',
-                  background: activeType === type.id ? 'linear-gradient(135deg, #6C63FF, #8A84FF)' : 'rgba(30, 41, 59, 0.8)',
-                  border: `1px solid ${activeType === type.id ? '#6C63FF' : '#475569'}`,
-                  color: 'white',
-                  borderRadius: '20px',
-                  cursor: 'pointer',
-                  fontSize: '0.85rem',
-                  transition: 'all 0.3s ease'
-                }}
-              >
-                {type.label}
-              </button>
-            ))}
-          </div>
-          
           {/* 分类标签 */}
           <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             {categories.map((cat) => {
@@ -407,7 +377,7 @@ export function MarketplacePage() {
       </section>
 
       {/* 精选推荐 */}
-      {activeCategory === 'all' && activeType === 'all' && !searchKeyword && (
+      {activeCategory === 'all' && !searchKeyword && (
         <section style={{ padding: '0 0 4rem' }}>
           <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
             <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#F1F5F9', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -505,12 +475,140 @@ export function MarketplacePage() {
         </section>
       )}
 
-      {/* AI应用列表 */}
+      {/* AI 智能体列表 */}
+      {(activeCategory === 'all' || activeCategory === 'agent') && (
+      <section style={{ padding: '0 0 4rem', background: 'rgba(15, 23, 41, 0.5)' }}>
+        <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
+          <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#F1F5F9', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <Bot style={{ color: '#4ECDC4', width: '24px', height: '24px' }} />
+            AI 智能体 {filteredAgents.length > 0 && `(${filteredAgents.length})`}
+          </h2>
+          
+          {filteredAgents.length > 0 ? (
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '1.5rem' }}>
+              {filteredAgents.map((agent) => {
+                const Icon = agent.icon
+                return (
+                  <div
+                    key={agent.id}
+                    style={{ 
+                      background: '#1E293B', 
+                      borderRadius: '16px', 
+                      overflow: 'hidden', 
+                      border: '1px solid #475569',
+                      transition: 'all 0.3s ease'
+                    }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-3px)'
+                      e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.3)'
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)'
+                      e.currentTarget.style.boxShadow = 'none'
+                    }}
+                  >
+                    <div style={{ padding: '1.5rem' }}>
+                      <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', marginBottom: '1rem' }}>
+                        <div style={{ 
+                          width: '50px', 
+                          height: '50px', 
+                          background: `linear-gradient(135deg, ${agent.iconColor}, ${agent.iconColor}80)`, 
+                          borderRadius: '12px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0
+                        }}>
+                          <Icon style={{ color: 'white', width: '24px', height: '24px' }} />
+                        </div>
+                        <div style={{ flex: 1 }}>
+                          <h3 style={{ color: '#F1F5F9', fontSize: '1.05rem', fontWeight: 600, marginBottom: '0.25rem' }}>
+                            {agent.name}
+                          </h3>
+                          {/* 来源标签 */}
+                          <div style={{ marginBottom: '0.5rem' }}>
+                            <span style={{
+                              padding: '2px 8px',
+                              borderRadius: '4px',
+                              fontSize: '0.7rem',
+                              fontWeight: 500,
+                              background: agent.type === 'opc' 
+                                ? 'rgba(16, 185, 129, 0.15)' 
+                                : agent.type === 'official'
+                                ? 'rgba(108, 99, 255, 0.15)'
+                                : 'rgba(245, 158, 11, 0.15)',
+                              color: agent.type === 'opc' 
+                                ? '#10B981' 
+                                : agent.type === 'official'
+                                ? '#6C63FF'
+                                : '#F59E0B'
+                            }}>
+                              {agent.type === 'opc' ? 'OPC 自制' : agent.type === 'official' ? '官方应用' : '第三方应用'}
+                            </span>
+                          </div>
+                          <p style={{ color: '#94A3B8', fontSize: '0.8rem', lineHeight: 1.4 }}>
+                            {agent.description}
+                          </p>
+                        </div>
+                      </div>
+                      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+                        {agent.tags.map((tag, i) => (
+                          <span key={i} style={{ 
+                            background: 'rgba(78, 205, 196, 0.1)', 
+                            color: '#4ECDC4', 
+                            padding: '2px 8px', 
+                            borderRadius: '4px', 
+                            fontSize: '0.7rem' 
+                          }}>
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                          <span style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#FBBF24', fontSize: '0.85rem' }}>
+                            <Star style={{ width: '14px', height: '14px', fill: '#FBBF24' }} />
+                            {agent.rating}
+                          </span>
+                          <span style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#64748B', fontSize: '0.85rem' }}>
+                            <MessageSquare style={{ width: '14px', height: '14px' }} />
+                            {agent.conversations.toLocaleString()}对话
+                          </span>
+                        </div>
+                        <button style={{
+                          padding: '6px 14px',
+                          background: agent.type === 'opc' ? 'linear-gradient(135deg, #10B981, #4ECDC4)' : 'linear-gradient(135deg, #4ECDC4, #10B981)',
+                          border: 'none',
+                          borderRadius: '6px',
+                          color: 'white',
+                          cursor: 'pointer',
+                          fontSize: '0.8rem'
+                        }}>
+                          开始对话
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          ) : (
+            <div style={{ textAlign: 'center', padding: '4rem 0', color: '#64748B' }}>
+              <Bot style={{ width: '48px', height: '48px', margin: '0 auto 1rem', opacity: 0.5 }} />
+              <p>暂无匹配的智能体</p>
+            </div>
+          )}
+        </div>
+      </section>
+      )}
+
+      {/* AI 应用列表 */}
+      {(activeCategory === 'all' || activeCategory === 'ai-app') && (
       <section style={{ padding: '0 0 4rem' }}>
         <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
           <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#F1F5F9', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
             <Sparkles style={{ color: '#FF6584', width: '24px', height: '24px' }} />
-            AI应用 {filteredApps.length > 0 && `(${filteredApps.length})`}
+            AI 应用 {filteredApps.length > 0 && `(${filteredApps.length})`}
           </h2>
           
           {filteredApps.length > 0 ? (
@@ -608,112 +706,9 @@ export function MarketplacePage() {
           )}
         </div>
       </section>
+      )}
 
-      {/* AI智能体列表 */}
-      <section style={{ padding: '0 0 4rem', background: 'rgba(15, 23, 41, 0.5)' }}>
-        <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
-          <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#F1F5F9', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <Bot style={{ color: '#4ECDC4', width: '24px', height: '24px' }} />
-            AI智能体 {filteredAgents.length > 0 && `(${filteredAgents.length})`}
-          </h2>
-          
-          {filteredAgents.length > 0 ? (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '1.5rem' }}>
-              {filteredAgents.map((agent) => {
-                const Icon = agent.icon
-                return (
-                  <div
-                    key={agent.id}
-                    style={{ 
-                      background: '#1E293B', 
-                      borderRadius: '16px', 
-                      overflow: 'hidden', 
-                      border: '1px solid #475569',
-                      transition: 'all 0.3s ease'
-                    }}
-                    onMouseOver={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-3px)'
-                      e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.3)'
-                    }}
-                    onMouseOut={(e) => {
-                      e.currentTarget.style.transform = 'translateY(0)'
-                      e.currentTarget.style.boxShadow = 'none'
-                    }}
-                  >
-                    <div style={{ padding: '1.5rem' }}>
-                      <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', marginBottom: '1rem' }}>
-                        <div style={{ 
-                          width: '50px', 
-                          height: '50px', 
-                          background: `linear-gradient(135deg, ${agent.iconColor}, ${agent.iconColor}80)`, 
-                          borderRadius: '12px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          flexShrink: 0
-                        }}>
-                          <Icon style={{ color: 'white', width: '24px', height: '24px' }} />
-                        </div>
-                        <div style={{ flex: 1 }}>
-                          <h3 style={{ color: '#F1F5F9', fontSize: '1.05rem', fontWeight: 600, marginBottom: '0.25rem' }}>
-                            {agent.name}
-                          </h3>
-                          <p style={{ color: '#94A3B8', fontSize: '0.8rem', lineHeight: 1.4 }}>
-                            {agent.description}
-                          </p>
-                        </div>
-                      </div>
-                      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
-                        {agent.tags.map((tag, i) => (
-                          <span key={i} style={{ 
-                            background: 'rgba(78, 205, 196, 0.1)', 
-                            color: '#4ECDC4', 
-                            padding: '2px 8px', 
-                            borderRadius: '4px', 
-                            fontSize: '0.7rem' 
-                          }}>
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                          <span style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#FBBF24', fontSize: '0.85rem' }}>
-                            <Star style={{ width: '14px', height: '14px', fill: '#FBBF24' }} />
-                            {agent.rating}
-                          </span>
-                          <span style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#64748B', fontSize: '0.85rem' }}>
-                            <MessageSquare style={{ width: '14px', height: '14px' }} />
-                            {agent.conversations.toLocaleString()}对话
-                          </span>
-                        </div>
-                        <button style={{
-                          padding: '6px 14px',
-                          background: agent.type === 'opc' ? 'linear-gradient(135deg, #10B981, #4ECDC4)' : 'linear-gradient(135deg, #4ECDC4, #10B981)',
-                          border: 'none',
-                          borderRadius: '6px',
-                          color: 'white',
-                          cursor: 'pointer',
-                          fontSize: '0.8rem'
-                        }}>
-                          开始对话
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          ) : (
-            <div style={{ textAlign: 'center', padding: '4rem 0', color: '#64748B' }}>
-              <Bot style={{ width: '48px', height: '48px', margin: '0 auto 1rem', opacity: 0.5 }} />
-              <p>暂无匹配的智能体</p>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* OPC自制说明 */}
+      {/* OPC 自制说明 */}
       <section style={{ padding: '4rem 0' }}>
         <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
           <div style={{ 
@@ -765,6 +760,7 @@ export function MarketplacePage() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   )
 }

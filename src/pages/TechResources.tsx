@@ -14,6 +14,7 @@ import {
   Zap as Lightning
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { Footer } from '@/components/Footer'
 
 export function TechResourcesPage() {
   const [activeTab, setActiveTab] = useState('ai-models')
@@ -575,6 +576,7 @@ export function TechResourcesPage() {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   )
 }
