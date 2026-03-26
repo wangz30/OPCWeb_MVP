@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { mockEvents } from '@/data/mockData'
 import { Calendar, MapPin, Users, Ticket } from 'lucide-react'
+import { Footer } from '@/components/Footer'
 
 export function EventsPage() {
   const typeConfig = {
@@ -85,6 +86,7 @@ export function EventsPage() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

@@ -692,6 +692,568 @@ h6 { font-size: 14px; }
   animation: fadeIn 0.3s ease-in-out;
 }
 
+/* ========== 登录注册页面优化动画 ========== */
+
+/* 浮动渐变球体动画 */
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(10px, -20px) scale(1.05); }
+  50% { transform: translate(-5px, -10px) scale(0.95); }
+  75% { transform: translate(-15px, -25px) scale(1.02); }
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-20px, -30px) rotate(5deg); }
+}
+
+@keyframes floatReverse {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(15px, 20px) scale(1.1); }
+}
+
+/* 渐变流动动画 */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ========== 登录/注册页面美化样式 ========== */
+
+/* 毛玻璃卡片效果 */
+.glass-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.dark .glass-card {
+  background: rgba(30, 41, 59, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* 毛玻璃输入框 */
+.glass-input {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: #6C63FF;
+  box-shadow: 
+    0 0 0 3px rgba(108, 99, 255, 0.15),
+    0 4px 12px rgba(108, 99, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.dark .glass-input {
+  background: rgba(51, 65, 85, 0.6);
+  border-color: rgba(71, 85, 105, 0.8);
+}
+
+.dark .glass-input:focus {
+  background: rgba(51, 65, 85, 0.8);
+}
+
+/* 渐变按钮 */
+.btn-gradient-modern {
+  background: linear-gradient(135deg, #6C63FF 0%, #8A84FF 50%, #4ECDC4 100%);
+  background-size: 200% 200%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gradient-modern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-gradient-modern:hover {
+  background-position: 100% 0;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(108, 99, 255, 0.4);
+}
+
+.btn-gradient-modern:hover::before {
+  left: 100%;
+}
+
+.btn-gradient-modern:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* 特性卡片 */
+.feature-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.feature-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.dark .feature-card {
+  background: rgba(30, 41, 59, 0.5);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark .feature-card:hover {
+  background: rgba(30, 41, 59, 0.7);
+}
+
+/* 渐变球体装饰 */
+.gradient-blob {
+  border-radius: 50%;
+  filter: blur(60px);
+}
+
+.gradient-blob-primary {
+  background: linear-gradient(135deg, rgba(108, 99, 255, 0.4), rgba(138, 132, 255, 0.2));
+}
+
+.gradient-blob-accent {
+  background: linear-gradient(135deg, rgba(78, 205, 196, 0.3), rgba(108, 99, 255, 0.2));
+}
+
+.gradient-blob-pink {
+  background: linear-gradient(135deg, rgba(255, 101, 132, 0.3), rgba(138, 132, 255, 0.2));
+}
+
+/* 网格背景 */
+.grid-bg {
+  background-image: radial-gradient(circle at 1px 1px, rgba(108, 99, 255, 0.12) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+.dark .grid-bg {
+  background-image: radial-gradient(circle at 1px 1px, rgba(108, 99, 255, 0.08) 1px, transparent 0);
+}
+
+/* 动态渐变条 */
+.gradient-top-bar {
+  height: 4px;
+  background: linear-gradient(90deg, #6C63FF, #8A84FF, #4ECDC4, #FF6584, #6C63FF);
+  background-size: 300% 100%;
+  animation: gradientShift 4s ease infinite;
+}
+
+/* 链接动画 */
+.link-animated {
+  position: relative;
+}
+
+.link-animated::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #6C63FF, #4ECDC4);
+  transition: width 0.3s ease;
+}
+
+.link-animated:hover::after {
+  width: 100%;
+}
+
+/* 表单字段进入动画 */
+.form-field-enter {
+  animation: slideUpFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 身份选择卡片 */
+.role-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.role-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(108, 99, 255, 0.15);
+}
+
+.role-card.selected {
+  transform: scale(1.02);
+  box-shadow: 0 12px 24px rgba(108, 99, 255, 0.25);
+}
+
+/* 统计数字动画 */
+.stat-number {
+  background: linear-gradient(135deg, #6C63FF, #4ECDC4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 评价卡片 */
+.testimonial-card {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dark .testimonial-card {
+  background: rgba(30, 41, 59, 0.4);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 浮动动画 */
+.animate-float-slow {
+  animation: floatSlow 8s ease-in-out infinite;
+}
+
+.animate-float-slower {
+  animation: floatSlow 12s ease-in-out infinite;
+}
+
+/* 光晕效果 */
+.glow-purple {
+  box-shadow: 0 0 40px rgba(108, 99, 255, 0.3);
+}
+
+/* 输入框图标容器 */
+.input-icon-wrapper {
+  background: linear-gradient(135deg, rgba(108, 99, 255, 0.1), rgba(78, 205, 196, 0.1));
+  border-radius: 8px;
+}
+
+/* 卡片进入动画 */
+@keyframes slideUpFade {
+  from { 
+    opacity: 0; 
+    transform: translateY(30px) scale(0.95); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); 
+  }
+}
+
+/* 脉冲光晕动画 */
+@keyframes pulseGlow {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(108, 99, 255, 0.3), 0 0 40px rgba(108, 99, 255, 0.1);
+  }
+  50% { 
+    box-shadow: 0 0 30px rgba(108, 99, 255, 0.5), 0 0 60px rgba(108, 99, 255, 0.2);
+  }
+}
+
+/* 闪烁动画 */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* 波纹扩散动画 */
+@keyframes ripple {
+  0% { transform: scale(0); opacity: 0.5; }
+  100% { transform: scale(4); opacity: 0; }
+}
+
+/* 摇晃动画（错误提示） */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* 呼吸动画 */
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+
+/* 旋转渐变动画 */
+@keyframes rotateGradient {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 工具类 */
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: floatSlow 12s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: floatReverse 10s ease-in-out infinite;
+}
+
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+}
+
+.animate-slide-up {
+  animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+.animate-breathe {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+/* 延迟类 */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+/* ========== 毛玻璃效果增强 ========== */
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.dark .glass-card {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.glass-input {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(203, 213, 225, 0.5);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .glass-input {
+  background: rgba(15, 23, 41, 0.5);
+  border: 1px solid rgba(71, 85, 105, 0.5);
+}
+
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(108, 99, 255, 0.5);
+  box-shadow: 
+    0 0 0 3px rgba(108, 99, 255, 0.15),
+    0 4px 12px rgba(108, 99, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.dark .glass-input:focus {
+  background: rgba(15, 23, 41, 0.7);
+  box-shadow: 
+    0 0 0 3px rgba(108, 99, 255, 0.2),
+    0 4px 12px rgba(108, 99, 255, 0.15);
+}
+
+/* 渐变按钮 */
+.btn-gradient-modern {
+  background: linear-gradient(135deg, #6C63FF 0%, #8A84FF 50%, #4ECDC4 100%);
+  background-size: 200% 200%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gradient-modern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s;
+}
+
+.btn-gradient-modern:hover {
+  background-position: 100% 0;
+  transform: translateY(-2px);
+  box-shadow: 
+    0 10px 25px rgba(108, 99, 255, 0.4),
+    0 4px 10px rgba(108, 99, 255, 0.2);
+}
+
+.btn-gradient-modern:hover::before {
+  left: 100%;
+}
+
+.btn-gradient-modern:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* 装饰性渐变球体 */
+.gradient-blob {
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.gradient-blob-primary {
+  background: linear-gradient(135deg, #6C63FF, #8A84FF);
+}
+
+.gradient-blob-secondary {
+  background: linear-gradient(135deg, #FF6584, #FF9A8B);
+}
+
+.gradient-blob-accent {
+  background: linear-gradient(135deg, #4ECDC4, #6FE7DE);
+}
+
+/* 网格背景 */
+.grid-bg {
+  background-image: 
+    radial-gradient(circle at 1px 1px, rgba(108, 99, 255, 0.15) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+.dark .grid-bg {
+  background-image: 
+    radial-gradient(circle at 1px 1px, rgba(108, 99, 255, 0.1) 1px, transparent 0);
+}
+
+/* 点阵背景 */
+.dots-bg {
+  background-image: radial-gradient(rgba(108, 99, 255, 0.2) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* 特性卡片悬停效果 */
+.feature-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 
+    0 12px 24px rgba(0, 0, 0, 0.1),
+    0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* 表单字段 stagger 动画 */
+.form-field-enter {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUpFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 选中状态动画 */
+.select-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.select-card.selected {
+  transform: scale(1.02);
+  box-shadow: 0 0 0 2px #6C63FF, 0 8px 24px rgba(108, 99, 255, 0.2);
+}
+
+/* 顶部渐变条 */
+.gradient-top-bar {
+  height: 4px;
+  background: linear-gradient(90deg, #6C63FF, #8A84FF, #4ECDC4, #FF6584);
+  background-size: 300% 100%;
+  animation: gradientShift 4s ease infinite;
+}
+
+/* 输入框图标动画 */
+.input-icon {
+  transition: all 0.3s ease;
+}
+
+.input-wrapper:focus-within .input-icon {
+  color: #6C63FF;
+  transform: scale(1.1);
+}
+
+/* 链接下划线动画 */
+.link-animated {
+  position: relative;
+  text-decoration: none;
+}
+
+.link-animated::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #6C63FF, #4ECDC4);
+  transition: width 0.3s ease;
+}
+
+.link-animated:hover::after {
+  width: 100%;
+}
+
+/* 统计数字动画 */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.stat-number {
+  animation: countUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 /* 响应式 */
 @media (max-width: 768px) {
   h1 { font-size: 28px; }
@@ -705,4 +1267,304 @@ h6 { font-size: 14px; }
 
 @media (min-width: 768px) {
   .md\:hidden { display: none; }
+}
+
+/* ========== 登录注册页面视觉优化 ========== */
+
+/* 深色主题背景 - 更沉浸的渐变 */
+.login-page-bg {
+  background: 
+    radial-gradient(ellipse at 0% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 100% 100%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(6, 182, 212, 0.05) 0%, transparent 70%),
+    linear-gradient(180deg, #0B0F1A 0%, #111827 50%, #0B0F1A 100%);
+  min-height: 100vh;
+}
+
+/* 左侧品牌区域 - 高对比度文字 */
+.brand-section {
+  color: #F9FAFB;
+}
+
+.brand-section .brand-title {
+  color: #F9FAFB;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.brand-section .brand-subtitle {
+  color: #E5E7EB;
+}
+
+.brand-section .feature-text {
+  color: #E5E7EB;
+  font-weight: 500;
+}
+
+/* 特性卡片 - 半透明毛玻璃 */
+.feature-card-enhanced {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 16px 20px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-card-enhanced:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(99, 102, 241, 0.3);
+  transform: translateX(8px);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.15);
+}
+
+.feature-card-enhanced .icon-wrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+/* 登录表单卡片 - 深色毛玻璃 */
+.login-card {
+  background: rgba(17, 24, 39, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  box-shadow: 
+    0 24px 48px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  overflow: hidden;
+}
+
+/* 顶部渐变条 - 动态流动 */
+.gradient-bar {
+  height: 3px;
+  background: linear-gradient(90deg, #6366F1, #8B5CF6, #06B6D4, #6366F1);
+  background-size: 300% 100%;
+  animation: gradientFlow 3s ease infinite;
+}
+
+@keyframes gradientFlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* 现代输入框样式 */
+.modern-input {
+  background: rgba(31, 41, 55, 0.6);
+  border: 1px solid rgba(75, 85, 99, 0.5);
+  border-radius: 12px;
+  color: #F9FAFB;
+  transition: all 0.2s ease;
+}
+
+.modern-input:hover {
+  border-color: rgba(99, 102, 241, 0.4);
+  background: rgba(31, 41, 55, 0.8);
+}
+
+.modern-input:focus {
+  outline: none;
+  border-color: #6366F1;
+  background: rgba(31, 41, 55, 0.9);
+  box-shadow: 
+    0 0 0 3px rgba(99, 102, 241, 0.15),
+    0 4px 12px rgba(99, 102, 241, 0.1);
+}
+
+.modern-input::placeholder {
+  color: #6B7280;
+}
+
+.modern-input-label {
+  color: #D1D5DB;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+/* 现代按钮样式 */
+.modern-button {
+  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  height: 48px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.modern-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.modern-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+}
+
+.modern-button:hover::before {
+  left: 100%;
+}
+
+.modern-button:active {
+  transform: translateY(0);
+}
+
+.modern-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* 链接样式 */
+.modern-link {
+  color: #A78BFA;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.modern-link:hover {
+  color: #C4B5FD;
+}
+
+.modern-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #6366F1, #A78BFA);
+  transition: width 0.3s ease;
+}
+
+.modern-link:hover::after {
+  width: 100%;
+}
+
+/* 统计数字样式 */
+.stat-number-enhanced {
+  background: linear-gradient(135deg, #6366F1, #06B6D4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  font-size: 28px;
+}
+
+.stat-label {
+  color: #9CA3AF;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+/* 装饰性光晕 */
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.glow-orb-primary {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.4), transparent 70%);
+  top: -100px;
+  right: -100px;
+}
+
+.glow-orb-secondary {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.3), transparent 70%);
+  bottom: 10%;
+  left: -50px;
+}
+
+/* 网格背景 - 更细腻 */
+.subtle-grid {
+  background-image: 
+    radial-gradient(circle at 1px 1px, rgba(99, 102, 241, 0.15) 1px, transparent 0);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+}
+
+/* 新用户提示卡片 */
+.welcome-card {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(6, 182, 212, 0.1));
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.welcome-card .icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #6366F1, #8B5CF6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+/* 复选框样式 */
+.modern-checkbox {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(75, 85, 99, 0.6);
+  border-radius: 5px;
+  background: rgba(31, 41, 55, 0.5);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.modern-checkbox:checked {
+  background: linear-gradient(135deg, #6366F1, #8B5CF6);
+  border-color: transparent;
+}
+
+.modern-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 5px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* 响应式调整 */
+@media (max-width: 1024px) {
+  .login-card {
+    margin: 0 16px;
+  }
+  
+  .feature-card-enhanced:hover {
+    transform: translateX(4px);
+  }
 }

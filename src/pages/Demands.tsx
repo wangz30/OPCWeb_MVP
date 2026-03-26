@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { mockDemands } from '@/data/mockData'
 import { Building2, DollarSign, Calendar, Tag } from 'lucide-react'
+import { Footer } from '@/components/Footer'
 
 export function DemandsPage() {
   const statusConfig = {
@@ -70,6 +71,7 @@ export function DemandsPage() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

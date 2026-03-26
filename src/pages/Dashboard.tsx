@@ -38,6 +38,7 @@ import {
   History,
   GiftIcon
 } from 'lucide-react'
+import { Footer } from '@/components/Footer'
 
 export function DashboardPage() {
   const [activeNav, setActiveNav] = useState('profile')

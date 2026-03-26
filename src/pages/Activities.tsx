@@ -28,6 +28,7 @@ import {
   Star,
   TrendingUp
 } from 'lucide-react'
+import { Footer } from '@/components/Footer'
 
 export function ActivitiesPage() {
   const [currentBanner, setCurrentBanner] = useState(0)
@@ -932,6 +933,7 @@ export function ActivitiesPage() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   )
 }
