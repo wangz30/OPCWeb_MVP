@@ -681,7 +681,8 @@ export function ProductsPage() {
               需要定制化配置？<a href="/contact" className="text-purple-400 hover:text-purple-300 ml-1">联系我们的云专家</a>
             </p>
           </div>
-        </
+        </div>
+      </section>
 
       {/* CTA - 紧凑布局 */}
       <section style={{ padding: '48px 0', background: 'linear-gradient(to bottom, #0f172a, #1e1b4b, #0f172a)' }}>
