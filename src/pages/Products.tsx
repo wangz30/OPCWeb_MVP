@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { ArrowRight, ChevronLeft, ChevronRight, Cpu, Database, Cloud, Zap, Play, Star, Shield, Clock, Check, FileText, Image, Mic, Video, Layers, Code } from 'lucide-react'
+import { ArrowRight, ChevronLeft, ChevronRight, Cpu, Database, Cloud, Zap, Play, Star, Shield, Clock, Check, FileText, Image, Mic, Video, Layers, Code, Server } from 'lucide-react'
 import { Footer } from '@/components/Footer'
 
 // Banner数据
@@ -259,29 +259,42 @@ const cloudServices = [
   {
     id: 1,
     category: '云计算',
-    icon: '☁️',
-    title: '弹性云服务器ECS',
-    description: '支持2核 | 4G及4核 | 16G选择，立即咨询',
-    color: '#6C63FF',
-    features: ['弹性伸缩', '按需付费', '高性能计算', '安全可靠']
+    name: '弹性云服务器 ECS',
+    description: '灵活可调配的云端计算资源，助力业务快速上线',
+    icon: 'Server',
+    specs: ['2 核 | 4G', '4 核 | 16G', '弹性伸缩'],
+    price: '按需选择',
+    color: '#6C63FF'
   },
   {
     id: 2,
     category: '云存储',
-    icon: '💾',
-    title: '对象存储服务OBS',
-    description: '对象存储服务OBS、云备份CBR、弹性文件服务SFS',
-    color: '#10B981',
-    features: ['海量存储', '数据备份', '文件共享', '高可用']
+    name: '对象存储服务 OBS',
+    description: '海量安全的云端存储，支持图片视频等非结构化数据',
+    icon: 'Cloud',
+    specs: ['无限容量', '99.99% 可靠性', 'CDN 加速'],
+    price: '按量计费',
+    color: '#3B82F6'
   },
   {
     id: 3,
+    category: '云存储',
+    name: '弹性文件服务 SFS',
+    description: '高性能共享文件存储，满足企业级应用需求',
+    icon: 'Zap',
+    specs: ['高 IOPS', '低延迟', '多机共享'],
+    price: '经济实惠',
+    color: '#10B981'
+  },
+  {
+    id: 4,
     category: '云数据库',
-    icon: '🗄️',
-    title: 'Flexus云数据库RDS',
-    description: '高性能、高可靠、弹性扩展的云数据库服务',
-    color: '#F59E0B',
-    features: ['自动备份', '读写分离', '监控告警', '弹性扩容']
+    name: 'RDS for MySQL',
+    description: '稳定可靠的关系型数据库，开箱即用免运维',
+    icon: 'Database',
+    specs: ['自动备份', '主从架构', '读写分离'],
+    price: '58 元起/月',
+    color: '#F59E0B'
   },
 ]
 
@@ -538,48 +551,128 @@ export function ProductsPage() {
         </div>
       </section>
 
-      {/* 云资源配置 - 纵向布局 */}
+      {/* 云资源配置 - 与云资源页面保持一致 */}
       <section style={{ padding: '60px 0' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 20px' }}>
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-white mb-2">云资源配置</h2>
-            <p className="text-slate-400">根据不同场景推荐最优云资源配置，即刻部署</p>
+            <h2 className="text-3xl font-bold text-white mb-2">云资源</h2>
+            <p className="text-slate-400">汇聚顶尖硬件，一键云部署，助力您的 AI 创业之路</p>
           </div>
 
-          {/* 横向展示 - 三个卡片排成一行，每个卡片内部纵向布局 */}
-          <div className="grid md:grid-cols-3 gap-6">
-            {cloudServices.map((service) => (
-              <div key={service.id} className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/30 hover:border-slate-500">
-                {/* 头部 - 图标和分类 */}
-                <div className="flex items-center gap-4 mb-5">
-                  <div className="text-3xl">{service.icon}</div>
-                  <div>
-                    <span className="px-3 py-1.5 rounded-full text-sm font-medium" style={{ background: `${service.color}20`, color: service.color }}>
-                      {service.category}
-                    </span>
-                  </div>
-                </div>
-                
-                {/* 主要内容 */}
-                <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
-                <p className="text-slate-300 text-base mb-5">{service.description}</p>
-                
-                {/* 功能特性 - 横向排列 */}
-                <div className="flex flex-wrap gap-3 mb-6">
-                  {service.features.map((feature, i) => (
-                    <div key={i} className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm" style={{ background: `${service.color}10` }}>
-                      <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: service.color }}></div>
-                      <span className="text-slate-300">{feature}</span>
+          {/* 2x2 网格布局 - 与云资源页面保持一致 */}
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(2, 1fr)', 
+            gap: '2rem' 
+          }}>
+            {cloudServices.map((service) => {
+              const IconComponent = service.icon === 'Server' ? Server : 
+                                   service.icon === 'Cloud' ? Cloud : 
+                                   service.icon === 'Zap' ? Zap : Database
+              return (
+                <div
+                  key={service.id}
+                  style={{
+                    background: 'rgba(30, 41, 59, 0.8)',
+                    border: '1px solid rgba(71, 85, 105, 0.5)',
+                    borderRadius: '16px',
+                    padding: '1.5rem',
+                    transition: 'all 0.3s ease'
+                  }}
+                  className="hover:-translate-y-1"
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.borderColor = service.color
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.borderColor = 'rgba(71, 85, 105, 0.5)'
+                  }}
+                >
+                  <div style={{ 
+                    display: 'flex', 
+                    alignItems: 'center',
+                    gap: '1rem',
+                    marginBottom: '1rem'
+                  }}>
+                    <div style={{
+                      width: '56px',
+                      height: '56px',
+                      borderRadius: '14px',
+                      background: `${service.color}20`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}>
+                      <IconComponent style={{ width: '28px', height: '28px', color: service.color }} />
                     </div>
-                  ))}
+                    <div>
+                      <span style={{
+                        display: 'inline-block',
+                        padding: '2px 8px',
+                        borderRadius: '4px',
+                        fontSize: '0.75rem',
+                        background: `${service.color}15`,
+                        color: service.color,
+                        fontWeight: 500,
+                        marginBottom: '4px'
+                      }}>
+                        {service.category}
+                      </span>
+                      <h3 style={{ 
+                        color: '#F1F5F9', 
+                        fontSize: '1.2rem', 
+                        fontWeight: 600
+                      }}>
+                        {service.name}
+                      </h3>
+                      <p style={{ 
+                        color: service.color, 
+                        fontSize: '0.9rem',
+                        fontWeight: 500
+                      }}>
+                        {service.price}
+                      </p>
+                    </div>
+                  </div>
+                  <p style={{ 
+                    color: '#94A3B8', 
+                    fontSize: '0.9rem',
+                    lineHeight: 1.6,
+                    marginBottom: '1rem'
+                  }}>
+                    {service.description}
+                  </p>
+                  <div style={{ 
+                    display: 'flex', 
+                    flexWrap: 'wrap', 
+                    gap: '8px' 
+                  }}>
+                    {service.specs.map((spec, i) => (
+                      <span key={i} style={{
+                        padding: '6px 12px',
+                        borderRadius: '8px',
+                        fontSize: '0.8rem',
+                        background: 'rgba(15, 23, 42, 0.8)',
+                        color: '#94A3B8',
+                        border: '1px solid rgba(71, 85, 105, 0.3)'
+                      }}>
+                        {spec}
+                      </span>
+                    ))}
+                  </div>
+                  <a href="/cloud-resources" style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    gap: '6px',
+                    marginTop: '1.5rem',
+                    color: '#6C63FF',
+                    textDecoration: 'none',
+                    fontSize: '0.9rem'
+                  }}>
+                    立即选购 <ArrowRight style={{ width: '14px', height: '14px' }} />
+                  </a>
                 </div>
-                
-                {/* 按钮 */}
-                <button className="w-full py-3 rounded-lg font-medium text-base transition-all hover:opacity-90 active:scale-[0.98]" style={{ background: service.color, color: 'white' }}>
-                  {service.category === '云计算' ? '立即咨询' : '了解更多'}
-                </button>
-              </div>
-            ))}
+              )
+            })}
           </div>
 
           {/* 补充说明 */}
@@ -588,8 +681,7 @@ export function ProductsPage() {
               需要定制化配置？<a href="/contact" className="text-purple-400 hover:text-purple-300 ml-1">联系我们的云专家</a>
             </p>
           </div>
-        </div>
-      </section>
+        </
 
       {/* CTA - 紧凑布局 */}
       <section style={{ padding: '48px 0', background: 'linear-gradient(to bottom, #0f172a, #1e1b4b, #0f172a)' }}>
