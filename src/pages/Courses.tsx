@@ -33,7 +33,7 @@ export function CoursesPage() {
             {(Object.keys(levelConfig) as Array<keyof typeof levelConfig>).map((level) => (
               <Button
                 key={level}
-                variant={selectedLevel === level ? 'default' : 'outline'}
+                variant={selectedLevel === level ? 'primary' : 'outline'}
                 onClick={() => setSelectedLevel(level)}
                 size="sm"
                 style={{ 

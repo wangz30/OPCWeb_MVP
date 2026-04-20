@@ -1,5 +1,5 @@
 interface LogoProps {
-  size?: 'sm' | 'md' | 'lg'
+  size?: 'sm' | 'md' | 'lg' | 'xl'
   showText?: boolean
   variant?: 'light' | 'dark'
 }
@@ -9,13 +9,14 @@ export function Logo({ size = 'md', showText = true, variant = 'dark' }: LogoPro
     sm: { text: 'text-sm', container: 'h-8' },
     md: { text: 'text-base', container: 'h-9' },
     lg: { text: 'text-lg', container: 'h-12' },
+    xl: { text: 'text-2xl', container: 'h-16' },
   }
 
   const currentSize = sizeClasses[size]
 
   return (
     <div className="flex items-center gap-2" style={{ minWidth: 'fit-content' }}>
-      {/* Logo图片 */}
+      {/* Logo 图片 */}
       <div className="flex items-center">
         <img
           src="/logo.png"
@@ -27,18 +28,16 @@ export function Logo({ size = 'md', showText = true, variant = 'dark' }: LogoPro
 
       {/* 平台名称 */}
       {showText && (
-        <div className="flex flex-col" style={{ whiteSpace: 'nowrap' }}>
+        <div className="flex items-center gap-2" style={{ whiteSpace: 'nowrap' }}>
           <span
             className={`${currentSize.text} font-bold tracking-tight ${variant === 'light' ? 'text-white' : 'text-gray-900'}`}
             style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}
           >
-            云上OPC社区
+            云上 OPC 社区
           </span>
-          {size === 'lg' && (
-            <span className={`text-xs ${variant === 'light' ? 'text-gray-300' : 'text-gray-500'} tracking-wide`}>
-              ONE PERSON COMPANY
-            </span>
-          )}
+          <span className={`text-sm ${variant === 'light' ? 'text-gray-300' : 'text-gray-500'} tracking-wide`}>
+            ONE PERSON COMPANY
+          </span>
         </div>
       )}
     </div>

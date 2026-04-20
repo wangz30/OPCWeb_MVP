@@ -10,7 +10,10 @@ import {
   Award,
   Sparkles,
   ChevronRight,
-  ArrowRight
+  ArrowRight,
+  GraduationCap,
+  FileText,
+  Rocket
 } from 'lucide-react'
 import { Footer } from '@/components/Footer'
 
@@ -22,10 +25,10 @@ export function AboutPage() {
   }, [])
 
   const stats = [
-    { number: '1000+', label: '社区成员', icon: Users },
-    { number: '50+', label: '合作伙伴', icon: Globe },
-    { number: '100+', label: '活动举办', icon: Sparkles },
-    { number: '200+', label: '孵化项目', icon: Target },
+    { number: '1000+', label: '目标服务创业者', icon: Users },
+    { number: '50+', label: '目标合作伙伴', icon: Globe },
+    { number: '100+', label: '目标举办活动', icon: Sparkles },
+    { number: '200+', label: '目标孵化项目', icon: Target },
   ]
 
   const partners = [
@@ -43,83 +46,53 @@ export function AboutPage() {
     }}>
       {/* Hero Banner */}
       <div style={{
-        background: 'linear-gradient(135deg, rgba(108, 99, 255, 0.15) 0%, rgba(138, 132, 255, 0.05) 100%)',
-        borderBottom: '1px solid rgba(108, 99, 255, 0.2)',
-        padding: '6rem 2rem',
-        textAlign: 'center',
         position: 'relative',
-        overflow: 'hidden'
+        background: 'url(/Pic4AboutUs/3.jpeg) center/cover no-repeat',
+        borderBottom: '1px solid rgba(108, 99, 255, 0.2)',
+        padding: '5rem 2rem',
+        textAlign: 'center',
+        overflow: 'hidden',
+        minHeight: '400px'
       }}>
-        {/* 装饰性背景元素 */}
+        {/* 紫色渐变遮罩层 */}
         <div style={{
           position: 'absolute',
-          top: '-50%',
-          left: '-20%',
-          width: '600px',
-          height: '600px',
-          background: 'radial-gradient(circle, rgba(108, 99, 255, 0.1) 0%, transparent 70%)',
-          borderRadius: '50%',
-          filter: 'blur(60px)'
-        }} />
-        <div style={{
-          position: 'absolute',
-          bottom: '-50%',
-          right: '-20%',
-          width: '600px',
-          height: '600px',
-          background: 'radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%)',
-          borderRadius: '50%',
-          filter: 'blur(60px)'
+          inset: 0,
+          background: 'linear-gradient(135deg, rgba(108, 99, 255, 0.65) 0%, rgba(138, 132, 255, 0.55) 100%)',
         }} />
         
+        {/* 内容 */}
         <div style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 10 }}>
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            padding: '8px 16px',
-            background: 'rgba(108, 99, 255, 0.1)',
-            border: '1px solid rgba(108, 99, 255, 0.2)',
-            borderRadius: '24px',
-            marginBottom: '1.5rem',
-            animation: isVisible ? 'fadeInDown 0.8s ease-out' : 'none'
-          }}>
-            <Sparkles style={{ width: '16px', height: '16px', color: '#A5B4FC' }} />
-            <span style={{ color: '#A5B4FC', fontSize: '0.9rem', fontWeight: 500 }}>关于我们</span>
-          </div>
-          
           <h1 style={{ 
-            fontSize: '3.5rem', 
+            fontSize: '3rem', 
             fontWeight: 800, 
-            color: '#F1F5F9',
-            marginBottom: '1.5rem',
-            background: 'linear-gradient(135deg, #F1F5F9 0%, #A5B4FC 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            animation: isVisible ? 'fadeInUp 0.8s ease-out 0.2s both' : 'none'
+            color: '#FFFFFF',
+            marginBottom: '1rem',
+            letterSpacing: '2px',
+            textShadow: '0 2px 8px rgba(0, 0, 0, 0.4)'
           }}>
             云上 OPC 社区
           </h1>
           
           <p style={{ 
             fontSize: '1.25rem', 
-            color: '#94A3B8',
+            color: '#E2E8F0',
             maxWidth: '700px',
             margin: '0 auto',
             lineHeight: 1.8,
-            animation: isVisible ? 'fadeInUp 0.8s ease-out 0.4s both' : 'none'
+            textShadow: '0 1px 4px rgba(0, 0, 0, 0.3)'
           }}>
             一站式线上综合服务赋能平台
           </p>
         </div>
       </div>
 
-      {/* 统计数据 */}
+      {/* 愿景目标 */}
       <div style={{ 
         maxWidth: '1200px', 
         margin: '0 auto', 
         padding: '0 2rem',
-        marginTop: '-3rem',
+        marginTop: '-9rem',
         position: 'relative',
         zIndex: 20
       }}>
@@ -177,7 +150,7 @@ export function AboutPage() {
                 }}>
                   {stat.number}
                 </div>
-                <div style={{ color: '#64748B', fontSize: '0.9rem' }}>
+                <div style={{ color: '#94A3B8', fontSize: '0.9rem' }}>
                   {stat.label}
                 </div>
               </div>
@@ -374,7 +347,7 @@ export function AboutPage() {
         </div>
       </section>
 
-      {/* 合作伙伴 */}
+      {/* 即将上线的服务 */}
       <section style={{ padding: '6rem 2rem' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
@@ -383,13 +356,13 @@ export function AboutPage() {
               alignItems: 'center',
               gap: '8px',
               padding: '6px 12px',
-              background: 'rgba(245, 158, 11, 0.1)',
-              border: '1px solid rgba(245, 158, 11, 0.2)',
+              background: 'rgba(108, 99, 255, 0.1)',
+              border: '1px solid rgba(108, 99, 255, 0.2)',
               borderRadius: '20px',
               marginBottom: '1rem'
             }}>
-              <Globe style={{ width: '16px', height: '16px', color: '#FBBF24' }} />
-              <span style={{ color: '#FBBF24', fontSize: '0.85rem', fontWeight: 600 }}>合作伙伴</span>
+              <Rocket style={{ width: '16px', height: '16px', color: '#A5B4FC' }} />
+              <span style={{ color: '#A5B4FC', fontSize: '0.85rem', fontWeight: 600 }}>即将上线</span>
             </div>
             
             <h2 style={{ 
@@ -398,149 +371,314 @@ export function AboutPage() {
               color: '#F1F5F9',
               marginBottom: '1rem'
             }}>
-              我们的合作伙伴
+              即将上线的服务
             </h2>
             
             <p style={{ 
               color: '#94A3B8', 
               fontSize: '1.1rem'
             }}>
-              携手行业领军企业，共创 AI 未来
+              持续扩展服务生态，助力创业成长
             </p>
           </div>
           
           <div style={{ 
             display: 'grid', 
-            gridTemplateColumns: 'repeat(4, 1fr)', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
             gap: '2rem' 
           }}>
-            {partners.map((partner, index) => (
-              <div
-                key={index}
-                style={{
-                  background: 'rgba(30, 41, 59, 0.5)',
-                  border: '1px solid rgba(71, 85, 105, 0.5)',
-                  borderRadius: '20px',
-                  padding: '3rem 2rem',
-                  textAlign: 'center',
-                  transition: 'all 0.3s ease',
-                  cursor: 'default'
-                }}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(245, 158, 11, 0.3)'
-                  e.currentTarget.style.background = 'rgba(245, 158, 11, 0.05)'
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(71, 85, 105, 0.5)'
-                  e.currentTarget.style.background = 'rgba(30, 41, 59, 0.5)'
-                }}
-              >
-                <div style={{
-                  width: '80px',
-                  height: '80px',
-                  margin: '0 auto 1.5rem',
-                  borderRadius: '16px',
-                  background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.05))',
-                  border: '2px dashed rgba(245, 158, 11, 0.3)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <Sparkles style={{ width: '40px', height: '40px', color: '#FBBF24', opacity: 0.6 }} />
-                </div>
-                <h3 style={{ 
-                  fontSize: '1.5rem', 
-                  fontWeight: 700, 
-                  color: '#F1F5F9',
-                  marginBottom: '0.5rem',
-                  letterSpacing: '0.2em'
-                }}>
-                  敬请期待
-                </h3>
-                <p style={{ 
-                  color: '#64748B', 
-                  fontSize: '0.9rem'
-                }}>
-                  合作伙伴招募中
-                </p>
+            {/* 创业培训活动 */}
+            <div style={{
+              background: 'rgba(30, 41, 59, 0.8)',
+              border: '1px solid rgba(71, 85, 105, 0.5)',
+              borderRadius: '20px',
+              padding: '2.5rem 2rem',
+              textAlign: 'center',
+              transition: 'all 0.3s ease'
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(108, 99, 255, 0.5)'
+              e.currentTarget.style.transform = 'translateY(-8px)'
+              e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.3)'
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(71, 85, 105, 0.5)'
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = 'none'
+            }}>
+              <div style={{
+                width: '80px',
+                height: '80px',
+                margin: '0 auto 1.5rem',
+                borderRadius: '16px',
+                background: 'linear-gradient(135deg, rgba(108, 99, 255, 0.2), rgba(138, 132, 255, 0.1))',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <GraduationCap style={{ width: '40px', height: '40px', color: '#A5B4FC' }} />
               </div>
-            ))}
+              <h3 style={{ 
+                fontSize: '1.25rem', 
+                fontWeight: 700, 
+                color: '#F1F5F9',
+                marginBottom: '0.75rem'
+              }}>
+                创业培训
+              </h3>
+              <p style={{ 
+                color: '#94A3B8', 
+                fontSize: '0.95rem',
+                lineHeight: 1.6,
+                marginBottom: '1rem'
+              }}>
+                专业创业课程 + 导师陪跑
+              </p>
+              <div style={{
+                display: 'inline-block',
+                padding: '6px 16px',
+                background: 'rgba(108, 99, 255, 0.1)',
+                borderRadius: '20px',
+                border: '1px solid rgba(108, 99, 255, 0.2)'
+              }}>
+                <span style={{ color: '#A5B4FC', fontSize: '0.85rem', fontWeight: 500 }}>敬请期待</span>
+              </div>
+            </div>
+
+            {/* AI 模型调用服务 */}
+            <div style={{
+              background: 'rgba(30, 41, 59, 0.8)',
+              border: '1px solid rgba(71, 85, 105, 0.5)',
+              borderRadius: '20px',
+              padding: '2.5rem 2rem',
+              textAlign: 'center',
+              transition: 'all 0.3s ease'
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(108, 99, 255, 0.5)'
+              e.currentTarget.style.transform = 'translateY(-8px)'
+              e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.3)'
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(71, 85, 105, 0.5)'
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = 'none'
+            }}>
+              <div style={{
+                width: '80px',
+                height: '80px',
+                margin: '0 auto 1.5rem',
+                borderRadius: '16px',
+                background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(37, 99, 235, 0.1))',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <Cpu style={{ width: '40px', height: '40px', color: '#60A5FA' }} />
+              </div>
+              <h3 style={{ 
+                fontSize: '1.25rem', 
+                fontWeight: 700, 
+                color: '#F1F5F9',
+                marginBottom: '0.75rem'
+              }}>
+                AI 模型服务
+              </h3>
+              <p style={{ 
+                color: '#94A3B8', 
+                fontSize: '0.95rem',
+                lineHeight: 1.6,
+                marginBottom: '1rem'
+              }}>
+                主流 AI 模型一键调用
+              </p>
+              <div style={{
+                display: 'inline-block',
+                padding: '6px 16px',
+                background: 'rgba(59, 130, 246, 0.1)',
+                borderRadius: '20px',
+                border: '1px solid rgba(59, 130, 246, 0.2)'
+              }}>
+                <span style={{ color: '#60A5FA', fontSize: '0.85rem', fontWeight: 500 }}>敬请期待</span>
+              </div>
+            </div>
+
+            {/* 政策咨询服务 */}
+            <div style={{
+              background: 'rgba(30, 41, 59, 0.8)',
+              border: '1px solid rgba(71, 85, 105, 0.5)',
+              borderRadius: '20px',
+              padding: '2.5rem 2rem',
+              textAlign: 'center',
+              transition: 'all 0.3s ease'
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(108, 99, 255, 0.5)'
+              e.currentTarget.style.transform = 'translateY(-8px)'
+              e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.3)'
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(71, 85, 105, 0.5)'
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = 'none'
+            }}>
+              <div style={{
+                width: '80px',
+                height: '80px',
+                margin: '0 auto 1.5rem',
+                borderRadius: '16px',
+                background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.1))',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <FileText style={{ width: '40px', height: '40px', color: '#6EE7B7' }} />
+              </div>
+              <h3 style={{ 
+                fontSize: '1.25rem', 
+                fontWeight: 700, 
+                color: '#F1F5F9',
+                marginBottom: '0.75rem'
+              }}>
+                政策咨询
+              </h3>
+              <p style={{ 
+                color: '#94A3B8', 
+                fontSize: '0.95rem',
+                lineHeight: 1.6,
+                marginBottom: '1rem'
+              }}>
+                最新政策解读 + 申报指导
+              </p>
+              <div style={{
+                display: 'inline-block',
+                padding: '6px 16px',
+                background: 'rgba(16, 185, 129, 0.1)',
+                borderRadius: '20px',
+                border: '1px solid rgba(16, 185, 129, 0.2)'
+              }}>
+                <span style={{ color: '#6EE7B7', fontSize: '0.85rem', fontWeight: 500 }}>敬请期待</span>
+              </div>
+            </div>
+
+            {/* 更多服务 */}
+            <div style={{
+              background: 'rgba(30, 41, 59, 0.8)',
+              border: '1px solid rgba(71, 85, 105, 0.5)',
+              borderRadius: '20px',
+              padding: '2.5rem 2rem',
+              textAlign: 'center',
+              transition: 'all 0.3s ease'
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(108, 99, 255, 0.5)'
+              e.currentTarget.style.transform = 'translateY(-8px)'
+              e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.3)'
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(71, 85, 105, 0.5)'
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = 'none'
+            }}>
+              <div style={{
+                width: '80px',
+                height: '80px',
+                margin: '0 auto 1.5rem',
+                borderRadius: '16px',
+                background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(234, 88, 12, 0.1))',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <Sparkles style={{ width: '40px', height: '40px', color: '#FBBF24' }} />
+              </div>
+              <h3 style={{ 
+                fontSize: '1.25rem', 
+                fontWeight: 700, 
+                color: '#F1F5F9',
+                marginBottom: '0.75rem'
+              }}>
+                更多服务
+              </h3>
+              <p style={{ 
+                color: '#94A3B8', 
+                fontSize: '0.95rem',
+                lineHeight: 1.6,
+                marginBottom: '1rem'
+              }}>
+                持续更新中...
+              </p>
+              <div style={{
+                display: 'inline-block',
+                padding: '6px 16px',
+                background: 'rgba(245, 158, 11, 0.1)',
+                borderRadius: '20px',
+                border: '1px solid rgba(245, 158, 11, 0.2)'
+              }}>
+                <span style={{ color: '#FBBF24', fontSize: '0.85rem', fontWeight: 500 }}>敬请期待</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
+      {/* CTA - 内测申请 */}
       <section style={{ 
-        padding: '4rem 2rem',
-        background: 'linear-gradient(135deg, rgba(108, 99, 255, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%)',
-        borderRadius: '24px',
+        padding: '3rem 2rem',
+        background: 'linear-gradient(135deg, rgba(108, 99, 255, 0.1), rgba(78, 205, 196, 0.1))',
+        borderRadius: '16px',
         border: '1px solid rgba(108, 99, 255, 0.2)',
         margin: '4rem 2rem'
       }}>
-        <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
           <h2 style={{ 
-            fontSize: '2rem', 
+            fontSize: '1.8rem', 
             fontWeight: 700, 
             color: '#F1F5F9',
             marginBottom: '1rem'
           }}>
-            加入我们，共创 AI 未来
+            🔥 抢先锁定创始会员席位
           </h2>
           <p style={{ 
             color: '#94A3B8', 
-            fontSize: '1.1rem',
-            marginBottom: '2rem'
+            fontSize: '1rem',
+            marginBottom: '2.5rem'
           }}>
-            立即加入云上 OPC 社区，开启您的 AI 创业之旅
+            限时开放 1000 个内测名额，审核制加入
           </p>
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+          
+          <a 
+            href="https://ucn19uuu5wk8.feishu.cn/share/base/form/shrcniKkFNUVlQC7YpA5fyg103d"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: 'none' }}
+          >
             <button style={{
-              background: 'linear-gradient(135deg, #6C63FF 0%, #8A84FF 100%)',
+              background: 'linear-gradient(135deg, #FF6584, #6C63FF)',
               border: 'none',
               color: 'white',
-              padding: '14px 32px',
+              padding: '14px 48px',
               borderRadius: '12px',
               fontSize: '1rem',
               fontWeight: 600,
               cursor: 'pointer',
-              display: 'flex',
+              display: 'inline-flex',
               alignItems: 'center',
               gap: '8px',
               transition: 'all 0.3s ease',
-              boxShadow: '0 4px 15px rgba(108, 99, 255, 0.3)'
+              boxShadow: '0 4px 15px rgba(255, 101, 132, 0.3)'
             }}
             onMouseOver={(e) => {
               e.currentTarget.style.transform = 'translateY(-2px)'
-              e.currentTarget.style.boxShadow = '0 8px 25px rgba(108, 99, 255, 0.4)'
+              e.currentTarget.style.boxShadow = '0 8px 25px rgba(255, 101, 132, 0.4)'
             }}
             onMouseOut={(e) => {
               e.currentTarget.style.transform = 'translateY(0)'
-              e.currentTarget.style.boxShadow = '0 4px 15px rgba(108, 99, 255, 0.3)'
+              e.currentTarget.style.boxShadow = '0 4px 15px rgba(255, 101, 132, 0.3)'
             }}>
-              立即注册 <ArrowRight style={{ width: '18px', height: '18px' }} />
+              🚀 立即申请内测席位 <ArrowRight style={{ width: '16px', height: '16px' }} />
             </button>
-            <button style={{
-              background: 'transparent',
-              border: '2px solid rgba(108, 99, 255, 0.5)',
-              color: '#A5B4FC',
-              padding: '14px 32px',
-              borderRadius: '12px',
-              fontSize: '1rem',
-              fontWeight: 600,
-              cursor: 'pointer',
-              transition: 'all 0.3s ease'
-            }}
-            onMouseOver={(e) => {
-              e.currentTarget.style.background = 'rgba(108, 99, 255, 0.1)'
-              e.currentTarget.style.borderColor = '#6C63FF'
-            }}
-            onMouseOut={(e) => {
-              e.currentTarget.style.background = 'transparent'
-              e.currentTarget.style.borderColor = 'rgba(108, 99, 255, 0.5)'
-            }}>
-              了解更多
-            </button>
-          </div>
+          </a>
         </div>
       </section>
 

@@ -5,6 +5,7 @@ import path from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: './',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -17,6 +18,7 @@ export default defineConfig({
         backend: path.resolve(__dirname, 'backend.html'),
       },
     },
+    copyPublicDir: true,
   },
   server: {
     host: '0.0.0.0',

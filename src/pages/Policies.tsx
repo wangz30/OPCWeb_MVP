@@ -43,28 +43,28 @@ export function PoliciesPage() {
   const carouselItems = [
     {
       id: 1,
-      title: '关于申报2024年度中小企业技术创新专项资金的通知',
+      title: '《广东省支持人工智能OPC创新发展行动方案（2026—2028年）》',
       category: '热门政策',
       image: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
       type: 'policy'
     },
     {
       id: 2,
-      title: 'AI大模型赋能一人公司创业：低成本高效能解决方案',
+      title: '中国AI资产将全面爆发',
       category: '热门资讯',
       image: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
       type: 'news'
     },
     {
       id: 3,
-      title: '粤港澳大湾区高层次人才认定办法实施细则',
+      title: '《深圳市打造人工智能OPC创业生态引领地行动计划（2026—2027年）》',
       category: '热门政策',
       image: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
       type: 'policy'
     },
     {
       id: 4,
-      title: '2024年云计算市场规模突破5000亿',
+      title: '国内最大半导体IP龙头冲刺港交所，市值千亿，GPU IP出货量超20亿',
       category: '热门资讯',
       image: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
       type: 'news'
@@ -174,26 +174,26 @@ export function PoliciesPage() {
   const latestPolicies = [
     {
       id: 1,
-      title: '关于申报2024年度中小企业技术创新专项资金的通知',
+      title: '《广东省支持人工智能OPC创新发展行动方案（2026—2028年）》',
       category: '资金补贴',
-      date: '2024-01-18',
-      source: '深圳市科技创新委员会',
+      date: '2026-03-16',
+      source: '广东省人民政府',
       hot: true
     },
     {
       id: 2,
-      title: '粤港澳大湾区高层次人才认定办法实施细则',
+      title: '《深圳市打造人工智能OPC创业生态引领地行动计划（2026—2027年）》',
       category: '人才政策',
-      date: '2024-01-16',
-      source: '广东省人力资源和社会保障厅',
+      date: '2026-01-16',
+      source: '深圳市工信局',
       hot: true
     },
     {
       id: 3,
-      title: '2024年首批科技创新券发放公告',
+      title: '北京亦庄OPC算力/数据券政策',
       category: '科技创新',
-      date: '2024-01-15',
-      source: '广州市科技局',
+      date: '2026-01-31',
+      source: '北京经济技术开发区',
       hot: false
     },
     {
@@ -217,24 +217,24 @@ export function PoliciesPage() {
   const latestNews = [
     {
       id: 1,
-      title: 'AI大模型赋能一人公司创业：低成本高效能解决方案',
+      title: '中国AI资产将全面爆发',
       category: '行业趋势',
-      date: '2024-01-18',
-      summary: '随着AI技术快速发展，一人公司创业者可以利用大模型技术实现业务自动化，大幅降低运营成本。'
+      date: '2026-03-19',
+      summary: 'AI通胀重构估值，中国AI资产被低估。'
     },
     {
       id: 2,
-      title: '2024年云计算市场规模突破5000亿，创业新机遇在哪里？',
+      title: '国内最大半导体IP龙头冲刺港交所，市值千亿，GPU IP出货量超20亿',
       category: '市场动态',
-      date: '2024-01-16',
-      summary: '根据最新报告，云计算市场持续增长，为创业者提供了丰富的商业机会和技术基础设施。'
+      date: '2026-04-01',
+      summary: '芯东西4月2日报道，4月1日，国内最大半导体IP提供商芯原股份递表港交所。'
     },
     {
       id: 3,
-      title: '国家统计局：2024年新登记企业同比增长12.5%',
+      title: '中国餐饮AI应用研究报告2026：餐饮AI加速变革，驱动行业“智能”跃迁',
       category: '数据解读',
-      date: '2024-01-15',
-      summary: '新登记企业数量持续增长，创新创业活力强劲，显示出经济复苏的良好态势。'
+      date: '2026-03-30',
+      summary: '餐饮行业在经历了快速增长后，逐渐进入存量竞争阶段'
     },
     {
       id: 4,
@@ -248,10 +248,10 @@ export function PoliciesPage() {
   const subsidyGuides = [
     {
       id: 1,
-      title: '科技型中小企业技术创新资金申请指南',
+      title: '专精特新“小巨人”企业认定和复核工作',
       amount: '最高50万元',
-      deadline: '2024-02-28',
-      conditions: '注册不满5年，上年度营收不超过2000万'
+      deadline: '2026-03-28',
+      conditions: '工业和信息化部办公厅关于开展2026年度专精特新“小巨人”企业认定和复核工作'
     },
     {
       id: 2,

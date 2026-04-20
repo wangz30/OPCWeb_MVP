@@ -1,191 +1,293 @@
-import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Badge } from '@/components/ui/badge'
-import { mockDataAPIs } from '@/data/mockData'
-import { Search, Link as LinkIcon } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { ArrowRight } from 'lucide-react'
 import { Footer } from '@/components/Footer'
 
 export function DataAPIsPage() {
-  const [searchQuery, setSearchQuery] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState('全部')
-  const [selectedScenario, setSelectedScenario] = useState('全部')
-  const [selectedTag, setSelectedTag] = useState('全部')
-
-  // 垂直领域筛选
-  const categories = ['全部', '金融数据', '气象环境', '地理信息', 'AI智能服务', '电商零售', '内容资讯', '企业工商', '交通出行']
-  
-  // 应用场景筛选
-  const scenarios = ['全部', '智能办公', '移动应用', '电商平台', '智慧城市', '金融科技', '物流运输', '教育学习']
-  
-  // 热门标签筛选
-  const tags = ['全部', '实时数据', '历史数据', '免费试用', '企业级', '高并发', '全球覆盖', '中文优化']
-
-  const filteredAPIs = mockDataAPIs.filter(
-    (api) =>
-      (selectedCategory === '全部' || api.category === selectedCategory) &&
-      (api.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        api.description.toLowerCase().includes(searchQuery.toLowerCase()))
-  )
-
-  const cardStyle: React.CSSProperties = {
-    background: 'rgba(30, 41, 59, 0.8)',
-    border: '1px solid rgba(71, 85, 105, 0.5)',
-    borderRadius: '12px',
-    padding: '20px',
-    transition: 'all 0.3s ease'
-  }
-
-  const inputStyle: React.CSSProperties = {
-    background: 'rgba(15, 23, 42, 0.8)',
-    border: '1px solid #475569',
-    borderRadius: '8px',
-    color: '#F1F5F9',
-    padding: '10px 14px',
-    outline: 'none',
-    width: '100%'
-  }
-
-  const btnPrimary: React.CSSProperties = {
-    background: 'linear-gradient(135deg, #6C63FF, #8A84FF)',
-    border: 'none',
-    color: 'white',
-    padding: '8px 16px',
-    borderRadius: '8px',
-    fontWeight: 500,
-    cursor: 'pointer',
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: '6px',
-    transition: 'all 0.3s ease'
-  }
-
-  const btnOutline: React.CSSProperties = {
-    background: 'transparent',
-    border: '1px solid #475569',
-    color: '#CBD5E1',
-    padding: '8px 16px',
-    borderRadius: '8px',
-    fontWeight: 500,
-    cursor: 'pointer',
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: '6px',
-    transition: 'all 0.3s ease'
-  }
-
   return (
-    <div style={{ background: 'linear-gradient(135deg, #0F1729 0%, #1E293B 100%)', minHeight: '100vh', padding: '40px 0' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
-        {/* 页面标题 */}
-        <div style={{ marginBottom: '32px' }}>
-          <h1 style={{ fontSize: '2rem', fontWeight: 700, color: 'white', marginBottom: '8px' }}>数据资源API</h1>
-          <p style={{ color: '#94A3B8', fontSize: '1rem' }}>丰富的数据API接口，为您的应用提供数据支持</p>
-        </div>
-
-        {/* 筛选区 */}
-        <div style={{ 
-          background: 'rgba(30, 41, 59, 0.6)', 
-          border: '1px solid rgba(71, 85, 105, 0.5)', 
-          borderRadius: '12px', 
-          padding: '20px',
-          marginBottom: '32px'
-        }}>
-          {/* 搜索框 */}
-          <div style={{ position: 'relative', marginBottom: '20px' }}>
-            <Search style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', width: '18px', height: '18px', color: '#94A3B8' }} />
-            <input
-              type="text"
-              placeholder="搜索API..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              style={{ ...inputStyle, paddingLeft: '40px', width: '100%' }}
-            />
+    <div style={{ 
+      background: 'linear-gradient(135deg, #0F1729 0%, #1E293B 50%, #0F1729 100%)', 
+      minHeight: '100vh', 
+      paddingBottom: '4rem'
+    }}>
+      {/* 顶部 Banner */}
+      <div style={{
+        position: 'relative',
+        background: 'url(/Pic4DataAPI/1.png) center/cover no-repeat',
+        borderBottom: '1px solid rgba(108, 99, 255, 0.2)',
+        padding: '5rem 2rem',
+        textAlign: 'center'
+      }}>
+        {/* 蓝紫色渐变遮罩层 */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.5) 0%, rgba(108, 99, 255, 0.4) 100%)',
+        }} />
+        
+        {/* 内容 */}
+        <div style={{ position: 'relative', maxWidth: '1200px', margin: '0 auto' }}>
+          <h1 style={{ 
+            fontSize: '3rem', 
+            fontWeight: 800, 
+            color: '#FFFFFF',
+            marginBottom: '1rem',
+            letterSpacing: '2px',
+            textShadow: '0 2px 8px rgba(0, 0, 0, 0.4)'
+          }}>
+            数据 API 服务
+          </h1>
+          <p style={{ 
+            fontSize: '1.25rem', 
+            color: '#E2E8F0',
+            marginBottom: '2.5rem',
+            fontWeight: 300,
+            textShadow: '0 1px 4px rgba(0, 0, 0, 0.3)'
+          }}>
+            国家级数据接口，海量数据支撑，赋能 AI 应用开发
+          </p>
+          
+          {/* 介绍卡片 */}
+          <div style={{ 
+            maxWidth: '750px', 
+            margin: '0 auto',
+            padding: '2rem 2.5rem',
+            background: 'linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9))',
+            borderRadius: '16px',
+            border: '1px solid rgba(108, 99, 255, 0.3)',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
+          }}>
+            <p style={{ 
+              fontSize: '1.05rem', 
+              color: '#CBD5E1',
+              lineHeight: 1.9,
+              margin: 0,
+              letterSpacing: '0.5px'
+            }}>
+              平台为OPC创业者提供国家级产业数据接口，快速获取知识产权、政策融资等关键要素信息。
+              以精准数据洞察辅助决策，降低开发门槛，加速应用落地进程。
+            </p>
           </div>
-
-          {/* 按垂直领域筛选 */}
-          <div style={{ marginBottom: '16px' }}>
-            <div style={{ color: '#94A3B8', fontSize: '0.85rem', marginBottom: '10px', fontWeight: 500 }}>按垂直领域</div>
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  style={selectedCategory === category ? btnPrimary : btnOutline}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* 按应用场景筛选 */}
-          <div style={{ marginBottom: '16px' }}>
-            <div style={{ color: '#94A3B8', fontSize: '0.85rem', marginBottom: '10px', fontWeight: 500 }}>按应用场景</div>
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-              {scenarios.map((scenario) => (
-                <button
-                  key={scenario}
-                  onClick={() => setSelectedScenario(scenario)}
-                  style={selectedScenario === scenario ? btnPrimary : btnOutline}
-                >
-                  {scenario}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* 按热门标签筛选 */}
-          <div>
-            <div style={{ color: '#94A3B8', fontSize: '0.85rem', marginBottom: '10px', fontWeight: 500 }}>按热门标签</div>
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-              {tags.map((tag) => (
-                <button
-                  key={tag}
-                  onClick={() => setSelectedTag(tag)}
-                  style={selectedTag === tag ? btnPrimary : btnOutline}
-                >
-                  {tag}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* API列表 */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(400px, 1fr))', gap: '20px' }}>
-          {filteredAPIs.map((api) => (
-            <div key={api.id} style={cardStyle}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
-                <div>
-                  <h3 style={{ fontSize: '1.1rem', fontWeight: 600, color: 'white', marginBottom: '4px' }}>{api.name}</h3>
-                  <code style={{ color: '#6C63FF', fontSize: '0.75rem', background: 'rgba(108, 99, 255, 0.1)', padding: '2px 8px', borderRadius: '4px' }}>{api.endpoint}</code>
-                </div>
-                <span style={{ 
-                  background: 'rgba(108, 99, 255, 0.2)', 
-                  color: '#A5B4FC', 
-                  padding: '4px 10px', 
-                  borderRadius: '20px',
-                  fontSize: '0.75rem'
-                }}>
-                  {api.category}
-                </span>
-              </div>
-              <p style={{ color: '#CBD5E1', fontSize: '0.9rem', marginBottom: '16px', lineHeight: 1.5 }}>{api.description}</p>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ color: '#94A3B8', fontSize: '0.85rem' }}>调用限制: {api.rateLimit}</span>
-                <Link to="/login">
-                  <button style={btnPrimary}>
-                    <LinkIcon style={{ width: '14px', height: '14px' }} />
-                    查看文档
-                  </button>
-                </Link>
-              </div>
-            </div>
-          ))}
         </div>
       </div>
+
+      {/* 核心数据服务 */}
+      <section style={{ padding: '4rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>
+        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          <h2 style={{ 
+            fontSize: '2rem', 
+            fontWeight: 700, 
+            color: '#F1F5F9',
+            marginBottom: '0.5rem'
+          }}>
+            核心数据服务
+          </h2>
+          <div style={{ 
+            width: '80px', 
+            height: '3px', 
+            background: 'linear-gradient(90deg, #6C63FF, #8A84FF)',
+            margin: '0 auto'
+          }} />
+        </div>
+        
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
+          gap: '2rem'
+        }}>
+          {/* 要素数据 */}
+          <div style={{ 
+            background: 'rgba(30, 41, 59, 0.8)',
+            border: '1px solid rgba(71, 85, 105, 0.5)',
+            borderRadius: '16px',
+            padding: '2.5rem',
+            transition: 'all 0.3s ease',
+            cursor: 'pointer'
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.transform = 'translateY(-8px)'
+            e.currentTarget.style.borderColor = 'rgba(108, 99, 255, 0.5)'
+            e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.3)'
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)'
+            e.currentTarget.style.borderColor = 'rgba(71, 85, 105, 0.5)'
+            e.currentTarget.style.boxShadow = 'none'
+          }}>
+            <div style={{ 
+              width: '56px', 
+              height: '56px', 
+              background: 'linear-gradient(135deg, #6C63FF, #8A84FF)',
+              borderRadius: '12px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: '1.5rem'
+            }}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <h3 style={{ 
+              fontSize: '1.25rem', 
+              fontWeight: 700, 
+              color: '#F1F5F9',
+              marginBottom: '1rem'
+            }}>
+              要素数据
+            </h3>
+            <p style={{ 
+              color: '#94A3B8', 
+              fontSize: '0.95rem', 
+              lineHeight: 1.8,
+              margin: 0
+            }}>
+              涵盖产业发展所需的核心要素信息 API 服务，包括知识产权、市场主体、政策法规、投融资等关键领域，为产业分析、决策支持提供数据支撑。
+            </p>
+          </div>
+
+          {/* 场景数据 */}
+          <div style={{ 
+            background: 'rgba(30, 41, 59, 0.8)',
+            border: '1px solid rgba(71, 85, 105, 0.5)',
+            borderRadius: '16px',
+            padding: '2.5rem',
+            transition: 'all 0.3s ease',
+            cursor: 'pointer'
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.transform = 'translateY(-8px)'
+            e.currentTarget.style.borderColor = 'rgba(108, 99, 255, 0.5)'
+            e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.3)'
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)'
+            e.currentTarget.style.borderColor = 'rgba(71, 85, 105, 0.5)'
+            e.currentTarget.style.boxShadow = 'none'
+          }}>
+            <div style={{ 
+              width: '56px', 
+              height: '56px', 
+              background: 'linear-gradient(135deg, #3B82F6, #2563EB)',
+              borderRadius: '12px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: '1.5rem'
+            }}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                <rect x="3" y="3" width="7" height="7"/>
+                <rect x="14" y="3" width="7" height="7"/>
+                <rect x="14" y="14" width="7" height="7"/>
+                <rect x="3" y="14" width="7" height="7"/>
+              </svg>
+            </div>
+            <h3 style={{ 
+              fontSize: '1.25rem', 
+              fontWeight: 700, 
+              color: '#F1F5F9',
+              marginBottom: '1rem'
+            }}>
+              场景数据
+            </h3>
+            <p style={{ 
+              color: '#94A3B8', 
+              fontSize: '0.95rem', 
+              lineHeight: 1.8,
+              margin: 0
+            }}>
+              提供面向具体业务场景的综合数据服务 API，支持招商引资、企业服务、产业治理等各类应用场景的深度数据融合与智能分析。
+            </p>
+          </div>
+
+          {/* 主题数据 */}
+          <div style={{ 
+            background: 'rgba(30, 41, 59, 0.8)',
+            border: '1px solid rgba(71, 85, 105, 0.5)',
+            borderRadius: '16px',
+            padding: '2.5rem',
+            transition: 'all 0.3s ease',
+            cursor: 'pointer'
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.transform = 'translateY(-8px)'
+            e.currentTarget.style.borderColor = 'rgba(108, 99, 255, 0.5)'
+            e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.3)'
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)'
+            e.currentTarget.style.borderColor = 'rgba(71, 85, 105, 0.5)'
+            e.currentTarget.style.boxShadow = 'none'
+          }}>
+            <div style={{ 
+              width: '56px', 
+              height: '56px', 
+              background: 'linear-gradient(135deg, #10B981, #059669)',
+              borderRadius: '12px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: '1.5rem'
+            }}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1m15.5-6.5l-4.5 4.5m-4 4L7.5 16.5m9 0l-4.5-4.5m-4 4L3.5 7.5"/>
+              </svg>
+            </div>
+            <h3 style={{ 
+              fontSize: '1.25rem', 
+              fontWeight: 700, 
+              color: '#F1F5F9',
+              marginBottom: '1rem'
+            }}>
+              主题数据
+            </h3>
+            <p style={{ 
+              color: '#94A3B8', 
+              fontSize: '0.95rem', 
+              lineHeight: 1.8,
+              margin: 0
+            }}>
+              围绕战略性新兴产业集群和未来产业产业链与特定领域策划的深度专题包，如人工智能、半导体与集成电路、生物医药等。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 立即申请按钮 */}
+      <section style={{ textAlign: 'center', padding: '2rem' }}>
+        <a 
+          href="https://ucn19uuu5wk8.feishu.cn/share/base/form/shrcnxTEftyaGTXZmW8RXqnyv0f"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ textDecoration: 'none' }}
+        >
+          <button style={{
+            background: 'linear-gradient(135deg, #FF6584, #6C63FF)',
+            border: 'none',
+            color: 'white',
+            padding: '16px 64px',
+            borderRadius: '16px',
+            fontSize: '1.1rem',
+            fontWeight: 600,
+            cursor: 'pointer',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '10px',
+            transition: 'all 0.3s ease',
+            boxShadow: '0 8px 30px rgba(255, 101, 132, 0.4)'
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.transform = 'translateY(-4px)'
+            e.currentTarget.style.boxShadow = '0 12px 40px rgba(255, 101, 132, 0.5)'
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)'
+            e.currentTarget.style.boxShadow = '0 8px 30px rgba(255, 101, 132, 0.4)'
+          }}>
+            🚀 立即申请内测席位 <ArrowRight style={{ width: '20px', height: '20px' }} />
+          </button>
+        </a>
+      </section>
+
       <Footer />
     </div>
   )

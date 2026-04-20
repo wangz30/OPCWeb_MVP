@@ -204,7 +204,7 @@ export function TechResourcesPage() {
             maxWidth: '600px',
             margin: '0 auto'
           }}>
-            汇聚顶尖AI模型、弹性云资源和企业级数据API，助力您的AI创业之路
+            汇聚顶尖AI模型、弹性云资源和企业级数据API，打造AI创业“隐形团队
           </p>
         </div>
       </div>

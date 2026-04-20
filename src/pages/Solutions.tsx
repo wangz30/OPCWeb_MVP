@@ -106,7 +106,7 @@ export function SolutionsPage() {
             <div className="flex justify-center gap-4">
               <div className="flex items-center gap-2 text-slate-400">
                 <TrendingUp className="w-5 h-5 text-emerald-400" />
-                <span>产业升级</span>
+                <span>政策直达</span>
               </div>
               <div className="flex items-center gap-2 text-slate-400">
                 <Zap className="w-5 h-5 text-amber-400" />

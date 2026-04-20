@@ -120,18 +120,20 @@ export const mockDemands: Demand[] = [
     title: 'AI 客服系统开发',
     company: '某电商公司',
     budget: '¥50-100 万',
-    type: '软件开发',
     deadline: '2024-06-30',
-    description: '需要开发一套智能客服系统，支持自动回复和人工转接'
+    description: '需要开发一套智能客服系统，支持自动回复和人工转接',
+    skills: ['Python', 'NLP', 'API 开发'],
+    status: 'open'
   },
   {
     id: '2',
     title: '数据分析平台搭建',
     company: '某金融科技公司',
     budget: '¥100-200 万',
-    type: '数据分析',
     deadline: '2024-08-31',
-    description: '搭建企业级数据分析平台，支持实时数据可视化'
+    description: '搭建企业级数据分析平台，支持实时数据可视化',
+    skills: ['Python', 'SQL', '数据可视化'],
+    status: 'open'
   },
 ]
 

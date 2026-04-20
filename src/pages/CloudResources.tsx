@@ -15,25 +15,25 @@ export function CloudResourcesPage() {
     {
       category: '云计算',
       name: '弹性云服务器 ECS',
-      description: '灵活可调配的云端计算资源，助力业务快速上线',
+      description: '灵活可调配的云端计算资源，支持弹性伸缩，助力业务快速上线。提供 2 核 4G 等多种配置，按需付费，经济实惠',
       icon: Server,
-      specs: ['2 核 | 4G', '4 核 | 16G', '弹性伸缩'],
+      specs: ['2 核 | 4G 起', '弹性伸缩', '按需付费'],
       price: '按需选择',
       color: '#6C63FF'
     },
     {
       category: '云存储',
       name: '对象存储服务 OBS',
-      description: '海量安全的云端存储，支持图片视频等非结构化数据',
+      description: '海量安全的云端存储，超高数据可靠性，支持图片视频等非结构化数据存储，CDN 加速全球访问',
       icon: Cloud,
-      specs: ['无限容量', '99.99% 可靠性', 'CDN 加速'],
+      specs: ['海量存储', '高可靠性', 'CDN 加速'],
       price: '按量计费',
       color: '#3B82F6'
     },
     {
       category: '云存储',
       name: '弹性文件服务 SFS',
-      description: '高性能共享文件存储，满足企业级应用需求',
+      description: '高性能共享文件存储，百万级 IOPS，毫秒级低时延，支持多机共享访问，满足企业级应用需求',
       icon: Zap,
       specs: ['高 IOPS', '低延迟', '多机共享'],
       price: '经济实惠',
@@ -42,7 +42,7 @@ export function CloudResourcesPage() {
     {
       category: '云数据库',
       name: 'RDS for MySQL',
-      description: '稳定可靠的关系型数据库，开箱即用免运维',
+      description: '稳定可靠的关系型数据库，开箱即用免运维。支持自动备份、主从架构、读写分离，58 元起/月',
       icon: Database,
       specs: ['自动备份', '主从架构', '读写分离'],
       price: '58 元起/月',
@@ -58,31 +58,63 @@ export function CloudResourcesPage() {
     }}>
       {/* 顶部 Banner */}
       <div style={{
-        background: 'linear-gradient(135deg, rgba(108, 99, 255, 0.2) 0%, rgba(138, 132, 255, 0.1) 100%)',
+        position: 'relative',
+        background: 'url(/Pic4CloudResource/1.png) center/cover no-repeat',
         borderBottom: '1px solid rgba(108, 99, 255, 0.2)',
-        padding: '4rem 2rem',
+        padding: '5rem 2rem',
         textAlign: 'center'
       }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        {/* 青绿色渐变遮罩层 */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.45) 0%, rgba(59, 130, 246, 0.4) 100%)',
+        }} />
+        
+        {/* 内容 */}
+        <div style={{ position: 'relative', maxWidth: '1200px', margin: '0 auto' }}>
           <h1 style={{ 
-            fontSize: '2.5rem', 
-            fontWeight: 700, 
-            color: '#F1F5F9',
+            fontSize: '3rem', 
+            fontWeight: 800, 
+            color: '#FFFFFF',
             marginBottom: '1rem',
-            background: 'linear-gradient(135deg, #F1F5F9 0%, #A5B4FC 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent'
+            letterSpacing: '2px',
+            textShadow: '0 2px 8px rgba(0, 0, 0, 0.4)'
           }}>
             云资源
           </h1>
           <p style={{ 
-            fontSize: '1.1rem', 
-            color: '#94A3B8',
-            maxWidth: '600px',
-            margin: '0 auto'
+            fontSize: '1.25rem', 
+            color: '#E2E8F0',
+            marginBottom: '2.5rem',
+            fontWeight: 300,
+            textShadow: '0 1px 4px rgba(0, 0, 0, 0.3)'
           }}>
             汇聚顶尖硬件，一键云部署，助力您的 AI 创业之路
           </p>
+          
+          {/* 介绍卡片 */}
+          <div style={{ 
+            maxWidth: '750px', 
+            margin: '0 auto',
+            padding: '2rem 2.5rem',
+            background: 'linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9))',
+            borderRadius: '16px',
+            border: '1px solid rgba(108, 99, 255, 0.3)',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
+          }}>
+            <p style={{ 
+              fontSize: '1.05rem', 
+              color: '#CBD5E1',
+              lineHeight: 1.9,
+              margin: 0,
+              letterSpacing: '0.5px'
+            }}>
+              平台提供从云计算、云存储到云数据库的全方位服务，
+              无需自建机房，无需专业运维，按需选择，弹性付费。
+              让您专注于产品开发，基础设施交给我们。
+            </p>
+          </div>
         </div>
       </div>
 
@@ -186,20 +218,45 @@ export function CloudResourcesPage() {
                     </span>
                   ))}
                 </div>
-                <Link to="/cloud-resources" style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: '6px',
-                  marginTop: '1.5rem',
-                  color: '#6C63FF',
-                  textDecoration: 'none',
-                  fontSize: '0.9rem'
-                }}>
-                  立即选购 <ArrowRight style={{ width: '14px', height: '14px' }} />
-                </Link>
               </div>
             )
           })}
+        </div>
+        
+        {/* 立即咨询按钮 */}
+        <div style={{ textAlign: 'center', marginTop: '4rem' }}>
+          <a 
+            href="https://ucn19uuu5wk8.feishu.cn/share/base/form/shrcnSWvBN7ELrfauXERmg1kLMh"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: 'none' }}
+          >
+            <button style={{
+              padding: '16px 48px',
+              fontSize: '1.1rem',
+              fontWeight: 600,
+              color: 'white',
+              background: 'linear-gradient(135deg, #6C63FF, #8A84FF)',
+              border: 'none',
+              borderRadius: '12px',
+              cursor: 'pointer',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '10px',
+              transition: 'all 0.3s ease',
+              boxShadow: '0 4px 15px rgba(108, 99, 255, 0.3)'
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)'
+              e.currentTarget.style.boxShadow = '0 8px 25px rgba(108, 99, 255, 0.4)'
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = '0 4px 15px rgba(108, 99, 255, 0.3)'
+            }}>
+              立即咨询，获取支持 <ArrowRight style={{ width: '20px', height: '20px' }} />
+            </button>
+          </a>
         </div>
       </div>
       <Footer />
