@@ -41,11 +41,11 @@ export function CloudResourcesPage() {
     },
     {
       category: '云数据库',
-      name: 'RDS for MySQL',
-      description: '稳定可靠的关系型数据库，开箱即用免运维。支持自动备份、主从架构、读写分离，58 元起/月',
+      name: 'RDS 云数据库',
+      description: '稳定可靠的关系型数据库，开箱即用免运维。支持自动备份、主从架构、读写分离，助力业务快速发展',
       icon: Database,
       specs: ['自动备份', '主从架构', '读写分离'],
-      price: '58 元起/月',
+      price: '按需选择',
       color: '#F59E0B'
     }
   ]
