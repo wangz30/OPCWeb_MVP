@@ -676,8 +676,8 @@ export function AboutPage() {
               e.currentTarget.style.transform = 'translateY(0)'
               e.currentTarget.style.boxShadow = '0 4px 15px rgba(255, 101, 132, 0.3)'
             }}>
-              🚀 立即申请内测席位 <ArrowRight style={{ width: '16px', height: '16px' }} />
-            </button>
+            立即申请内测席位 <ArrowRight style={{ width: '16px', height: '16px' }} />
+          </button>
           </a>
         </div>
       </section>

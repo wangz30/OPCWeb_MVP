@@ -358,8 +358,8 @@ export function SpacePage() {
               e.currentTarget.style.transform = 'translateY(0)'
               e.currentTarget.style.boxShadow = '0 8px 30px rgba(108, 99, 255, 0.4)'
             }}>
-              🚀 立即申请内测席位 <ArrowRight style={{ width: '20px', height: '20px' }} />
-            </button>
+            立即咨询，获取支持 <ArrowRight style={{ width: '20px', height: '20px' }} />
+          </button>
           </a>
         </section>
       </div>

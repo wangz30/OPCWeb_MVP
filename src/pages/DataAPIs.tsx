@@ -283,7 +283,7 @@ export function DataAPIsPage() {
             e.currentTarget.style.transform = 'translateY(0)'
             e.currentTarget.style.boxShadow = '0 8px 30px rgba(255, 101, 132, 0.4)'
           }}>
-            🚀 立即申请内测席位 <ArrowRight style={{ width: '20px', height: '20px' }} />
+            立即咨询，获取支持 <ArrowRight style={{ width: '20px', height: '20px' }} />
           </button>
         </a>
       </section>
