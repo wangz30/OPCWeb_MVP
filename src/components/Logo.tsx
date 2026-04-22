@@ -28,15 +28,12 @@ export function Logo({ size = 'md', showText = true, variant = 'dark' }: LogoPro
 
       {/* 平台名称 */}
       {showText && (
-        <div className="flex items-center gap-2" style={{ whiteSpace: 'nowrap' }}>
+        <div className="flex items-center" style={{ whiteSpace: 'nowrap' }}>
           <span
             className={`${currentSize.text} font-bold tracking-tight ${variant === 'light' ? 'text-white' : 'text-gray-900'}`}
             style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}
           >
             云上 OPC 社区
-          </span>
-          <span className={`text-sm ${variant === 'light' ? 'text-gray-300' : 'text-gray-500'} tracking-wide`}>
-            ONE PERSON COMPANY
           </span>
         </div>
       )}

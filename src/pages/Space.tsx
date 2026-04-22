@@ -307,15 +307,15 @@ export function SpacePage() {
           <p style={{ 
             color: '#94A3B8', 
             fontSize: '0.9rem', 
-            marginBottom: '1.5rem'
+            marginBottom: '1.5rem',
+            textAlign: 'center'
           }}>
             <span style={{ 
               display: 'inline-flex', 
               alignItems: 'center', 
               gap: '6px',
               color: '#F59E0B',
-              fontWeight: 500,
-              marginRight: '8px'
+              fontWeight: 500
             }}>
               <span style={{ 
                 width: '6px', 
@@ -325,8 +325,6 @@ export function SpacePage() {
               }} />
               限量空间开放中
             </span>
-            <span style={{ color: '#64748B', margin: '0 8px' }}>|</span>
-            <span>申请预计耗时 2 分钟</span>
           </p>
           
           <a 

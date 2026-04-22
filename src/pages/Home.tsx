@@ -14,7 +14,8 @@ import {
   Database,
   Cloud,
   Building,
-  Info
+  Info,
+  FileText
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
@@ -36,7 +37,7 @@ const bannerData = [
     id: 3,
     title: '十万元创业礼包',
     subtitle: '核心资源',
-    description: '云资源、AI 算力、营销推广等资源加持，专属权益限量发放',
+    description: '云资源、主流模型、海量数据API等资源加持，专属权益限量发放',
     ctaText: '立即申请',
     ctaLink: 'https://jinshuju.net/f/需求申请表单 ID',
     gradient: 'from-[#4ECDC4] to-[#10B981]',
@@ -47,13 +48,26 @@ const bannerData = [
 
 export function HomePage() {
   const [currentBanner, setCurrentBanner] = useState(0)
+  const [loadedBanners, setLoadedBanners] = useState<number[]>([0])
 
   const nextBanner = () => {
-    setCurrentBanner((prev) => (prev + 1) % bannerData.length)
+    setCurrentBanner((prev) => {
+      const next = (prev + 1) % bannerData.length
+      if (!loadedBanners.includes(next)) {
+        setLoadedBanners(prevLoaded => [...prevLoaded, next])
+      }
+      return next
+    })
   }
 
   const prevBanner = () => {
-    setCurrentBanner((prev) => (prev - 1 + bannerData.length) % bannerData.length)
+    setCurrentBanner((prev) => {
+      const next = (prev - 1 + bannerData.length) % bannerData.length
+      if (!loadedBanners.includes(next)) {
+        setLoadedBanners(prevLoaded => [...prevLoaded, next])
+      }
+      return next
+    })
   }
 
   // 自动轮播
@@ -63,6 +77,16 @@ export function HomePage() {
     }, 5000)
     return () => clearInterval(interval)
   }, [])
+
+  // 预加载下一张 Banner 图片
+  useEffect(() => {
+    const nextIndex = (currentBanner + 1) % bannerData.length
+    const banner = bannerData[nextIndex]
+    if (banner.backgroundImage) {
+      const img = new Image()
+      img.src = banner.backgroundImage
+    }
+  }, [currentBanner])
 
   // 统一的按钮样式
   const btnPrimary = {
@@ -96,14 +120,15 @@ export function HomePage() {
         }}>
           {bannerData.map((banner, index) => {
             const Icon = banner.icon
+            const isLoaded = loadedBanners.includes(index)
             return (
               <div
                 key={banner.id}
                 style={{
                   position: 'absolute',
                   inset: 0,
-                  // 背景图片 + 渐变叠加
-                  backgroundImage: banner.backgroundImage ? `url(${banner.backgroundImage})` : 'none',
+                  // 背景图片 + 渐变叠加（懒加载）
+                  backgroundImage: isLoaded && banner.backgroundImage ? `url(${banner.backgroundImage})` : 'none',
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   opacity: index === currentBanner ? 1 : 0,
@@ -352,8 +377,8 @@ export function HomePage() {
               </div>
             </Link>
             
-            {/* 关于我们 */}
-            <Link to="/about" style={{ textDecoration: 'none' }}>
+            {/* 新闻资讯 */}
+            <Link to="/policy" style={{ textDecoration: 'none' }}>
               <div style={{ 
                 background: 'linear-gradient(145deg, #1E293B, rgba(255, 255, 255, 0.05))',
                 borderRadius: '12px',
@@ -376,10 +401,10 @@ export function HomePage() {
                 e.currentTarget.style.boxShadow = 'none'
               }}>
                 <h3 style={{ color: '#F1F5F9', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <Info style={{ color: '#6C63FF' }} />
-                  关于我们
+                  <FileText style={{ color: '#6C63FF' }} />
+                  新闻资讯
                 </h3>
-                <p style={{ color: '#CBD5E1', fontSize: '0.95rem', margin: 0 }}>了解 OPC 社区，携手共创 AI 未来</p>
+                <p style={{ color: '#CBD5E1', fontSize: '0.95rem', margin: 0 }}>整合官方动态与政府政策，把握 AI OPC 前沿资讯</p>
               </div>
             </Link>
           </div>
@@ -414,7 +439,9 @@ export function HomePage() {
                   免费云资源额度
                 </h3>
                 <p style={{ color: '#94A3B8', fontSize: '0.95rem', margin: 0, lineHeight: 1.6 }}>
-                  限量免费领取云服务器、存储、数据库资源
+                  限量免费领取
+                  <br />
+                  云服务器、存储、数据库资源
                 </p>
               </div>
               
@@ -428,7 +455,9 @@ export function HomePage() {
                   AI 技术支持
                 </h3>
                 <p style={{ color: '#94A3B8', fontSize: '0.95rem', margin: 0, lineHeight: 1.6 }}>
-                  免费 API 额度 + 专业团队全程支持
+                  免费 API 额度 
+                  <br />
+                  专业团队全程支持
                 </p>
               </div>
               
@@ -439,10 +468,12 @@ export function HomePage() {
                 border: '1px solid rgba(108, 99, 255, 0.2)'
               }}>
                 <h3 style={{ color: '#F1F5F9', fontSize: '1.15rem', fontWeight: 600, marginBottom: '0.75rem' }}>
-                  创业导师指导
+                  创新管家服务
                 </h3>
                 <p style={{ color: '#94A3B8', fontSize: '0.95rem', margin: 0, lineHeight: 1.6 }}>
-                  一对一陪跑，从 0 到 1 孵化您的项目
+                  一对一陪跑
+                  <br />
+                  从 0 到 1 孵化您的项目
                 </p>
               </div>
             </div>

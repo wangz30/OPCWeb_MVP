@@ -18,19 +18,6 @@ import {
 import { Footer } from '@/components/Footer'
 
 export function AboutPage() {
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    setIsVisible(true)
-  }, [])
-
-  const stats = [
-    { number: '1000+', label: '目标服务创业者', icon: Users },
-    { number: '50+', label: '目标合作伙伴', icon: Globe },
-    { number: '100+', label: '目标举办活动', icon: Sparkles },
-    { number: '200+', label: '目标孵化项目', icon: Target },
-  ]
-
   const partners = [
     { name: '合作伙伴 1', placeholder: true },
     { name: '合作伙伴 2', placeholder: true },
@@ -71,7 +58,7 @@ export function AboutPage() {
             letterSpacing: '2px',
             textShadow: '0 2px 8px rgba(0, 0, 0, 0.4)'
           }}>
-            云上 OPC 社区
+            云上 AI OPC 社区
           </h1>
           
           <p style={{ 
@@ -84,78 +71,30 @@ export function AboutPage() {
           }}>
             一站式线上综合服务赋能平台
           </p>
-        </div>
-      </div>
-
-      {/* 愿景目标 */}
-      <div style={{ 
-        maxWidth: '1200px', 
-        margin: '0 auto', 
-        padding: '0 2rem',
-        marginTop: '-9rem',
-        position: 'relative',
-        zIndex: 20
-      }}>
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(4, 1fr)', 
-          gap: '1.5rem' 
-        }}>
-          {stats.map((stat, index) => {
-            const Icon = stat.icon
-            return (
-              <div
-                key={index}
-                style={{
-                  background: 'rgba(30, 41, 59, 0.8)',
-                  border: '1px solid rgba(71, 85, 105, 0.5)',
-                  borderRadius: '16px',
-                  padding: '2rem',
-                  textAlign: 'center',
-                  backdropFilter: 'blur(10px)',
-                  transition: 'all 0.3s ease',
-                  transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-                  opacity: isVisible ? 1 : 0,
-                  animationDelay: `${0.6 + index * 0.1}s`,
-                  animation: isVisible ? 'fadeInUp 0.8s ease-out both' : 'none'
-                }}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-8px)'
-                  e.currentTarget.style.borderColor = 'rgba(108, 99, 255, 0.5)'
-                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.3)'
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)'
-                  e.currentTarget.style.borderColor = 'rgba(71, 85, 105, 0.5)'
-                  e.currentTarget.style.boxShadow = 'none'
-                }}
-              >
-                <div style={{
-                  width: '48px',
-                  height: '48px',
-                  margin: '0 auto 1rem',
-                  borderRadius: '12px',
-                  background: 'linear-gradient(135deg, rgba(108, 99, 255, 0.2), rgba(16, 185, 129, 0.2))',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <Icon style={{ width: '24px', height: '24px', color: '#A5B4FC' }} />
-                </div>
-                <div style={{ 
-                  fontSize: '2rem', 
-                  fontWeight: 700, 
-                  color: '#F1F5F9',
-                  marginBottom: '0.5rem'
-                }}>
-                  {stat.number}
-                </div>
-                <div style={{ color: '#94A3B8', fontSize: '0.9rem' }}>
-                  {stat.label}
-                </div>
-              </div>
-            )
-          })}
+          
+          {/* 介绍卡片 */}
+          <div style={{ 
+            maxWidth: '900px', 
+            margin: '1.5rem auto 0',
+            padding: '2rem 2.5rem',
+            background: 'linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9))',
+            borderRadius: '16px',
+            border: '1px solid rgba(108, 99, 255, 0.3)',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
+          }}>
+            <p style={{ 
+              fontSize: '1.05rem', 
+              color: '#CBD5E1',
+              lineHeight: 1.9,
+              margin: 0,
+              letterSpacing: '0.5px',
+              textAlign: 'center'
+            }}>
+              为头部企业解数据之锁，为产业园区开智慧之窗，为小微创客搭起步之桥。
+              <br/>
+              聚合资源、智能匹配、陪伴成长，让创新更简单。
+            </p>
+          </div>
         </div>
       </div>
 
@@ -200,7 +139,7 @@ export function AboutPage() {
                 lineHeight: 1.8,
                 marginBottom: '2rem'
               }}>
-                云上 AI OPC 社区由深圳国家高技术产业创新中心依托粤港澳大湾区大数据中心技术与资源优势发起设立的以 AI 协同、云服务、数据资源、创业孵化为核心能力的一站式线上综合服务赋能平台。
+                云上 AI OPC 社区是由深圳国家高技术产业创新中心依托粤港澳大湾区大数据中心技术与资源优势发起设立的，以 AI 协同、云服务、数据资源、创业孵化为核心能力的一站式线上综合服务赋能平台。
               </p>
               
               <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
@@ -272,7 +211,7 @@ export function AboutPage() {
               order: 1
             }}>
               <img 
-                src="/Pic4AboutUs/2.png" 
+                src="/Pic4AboutUs/2222.png" 
                 alt="粤港澳大湾区大数据中心"
                 style={{
                   width: '100%',
@@ -315,15 +254,15 @@ export function AboutPage() {
                 lineHeight: 1.8,
                 marginBottom: '2rem'
               }}>
-                粤港澳大湾区大数据中心基于全国一体化大数据中心协同创新体系，提出构建"数算用一体化"发展模式，通过打造数据要素创新综合服务体，为湾区企业提供算力资源、数据工具、可信数据流通支撑等公共技术服务。
+                粤港澳大湾区大数据中心按照“1+1+N”模式，建设1大算力调度平台，1大可信数据流通平台，打造N个数据应用场景示范工程，构建数据要素创新综合服务体，提供算力按需调度、数据可信流通、应用开箱即用的“数算用一体化”服务，成为湾区数字经济发展践行者，国家“东数西算”工程探索者，为全国一体化大数据中心协同创新体系建设提供“先行方案”和“深圳力量”。
               </p>
               
               <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                 {[
-                  { icon: Cpu, text: '算力资源' },
-                  { icon: Database, text: '数据工具' },
-                  { icon: Zap, text: '可信流通' },
-                  { icon: Award, text: '公共服务' }
+                  { icon: Cpu, text: 'AI 大模型服务' },
+                  { icon: Database, text: '数据要素赋能' },
+                  { icon: Zap, text: '算力基础设施' },
+                  { icon: Award, text: '创业孵化运营' }
                 ].map((item, index) => {
                   const Icon = item.icon
                   return (
@@ -424,7 +363,7 @@ export function AboutPage() {
                 color: '#F1F5F9',
                 marginBottom: '0.75rem'
               }}>
-                创业培训
+                创业交流
               </h3>
               <p style={{ 
                 color: '#94A3B8', 
@@ -432,7 +371,7 @@ export function AboutPage() {
                 lineHeight: 1.6,
                 marginBottom: '1rem'
               }}>
-                专业创业课程 + 导师陪跑
+                专业创业课程 + 活动沙龙
               </p>
               <div style={{
                 display: 'inline-block',
