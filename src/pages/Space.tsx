@@ -57,7 +57,7 @@ export function SpacePage() {
             fontWeight: 300,
             textShadow: '0 1px 4px rgba(0, 0, 0, 0.3)'
           }}>
-            为 OPC 创业者提供全周期孵化服务
+            为 AI OPC 创业者提供全周期孵化服务
           </p>
           
           {/* 介绍卡片 */}
@@ -278,7 +278,7 @@ export function SpacePage() {
               <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
                 <CheckCircle style={{ width: '24px', height: '24px', color: '#10B981', flexShrink: 0, marginTop: '2px' }} />
                 <div>
-                  <h3 style={{ color: '#F1F5F9', fontSize: '1rem', fontWeight: 600, marginBottom: '0.5rem' }}>OPC 项目</h3>
+                  <h3 style={{ color: '#F1F5F9', fontSize: '1rem', fontWeight: 600, marginBottom: '0.5rem' }}>AI OPC 项目</h3>
                   <p style={{ color: '#94A3B8', fontSize: '0.9rem', margin: 0 }}>一人公司或小型团队</p>
                 </div>
               </div>
@@ -356,7 +356,7 @@ export function SpacePage() {
               e.currentTarget.style.transform = 'translateY(0)'
               e.currentTarget.style.boxShadow = '0 8px 30px rgba(108, 99, 255, 0.4)'
             }}>
-            立即咨询，获取支持 <ArrowRight style={{ width: '20px', height: '20px' }} />
+            已入驻？申请创客空间 <ArrowRight style={{ width: '20px', height: '20px' }} />
           </button>
           </a>
         </section>

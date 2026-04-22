@@ -254,7 +254,7 @@ export function CloudResourcesPage() {
               e.currentTarget.style.transform = 'translateY(0)'
               e.currentTarget.style.boxShadow = '0 4px 15px rgba(108, 99, 255, 0.3)'
             }}>
-              立即咨询，获取支持 <ArrowRight style={{ width: '20px', height: '20px' }} />
+              已入驻？申请云资源服务 <ArrowRight style={{ width: '20px', height: '20px' }} />
             </button>
           </a>
         </div>

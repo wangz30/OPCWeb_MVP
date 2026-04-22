@@ -74,9 +74,6 @@ export function Footer() {
                 <li style={{ marginBottom: '0.5rem' }}>
                   <a href="/space" style={{ color: '#CBD5E1', fontSize: '0.9rem', textDecoration: 'none' }}>创客空间入驻</a>
                 </li>
-                <li style={{ marginBottom: '0.5rem' }}>
-                  <a href="/policy" style={{ color: '#CBD5E1', fontSize: '0.9rem', textDecoration: 'none' }}>新闻资讯</a>
-                </li>
               </ul>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                 <li style={{ marginBottom: '0.5rem' }}>
@@ -84,6 +81,9 @@ export function Footer() {
                 </li>
                 <li style={{ marginBottom: '0.5rem' }}>
                   <a href="/about" style={{ color: '#CBD5E1', fontSize: '0.9rem', textDecoration: 'none' }}>关于我们</a>
+                </li>
+                <li style={{ marginBottom: '0.5rem' }}>
+                  <a href="/policy" style={{ color: '#CBD5E1', fontSize: '0.9rem', textDecoration: 'none' }}>新闻资讯</a>
                 </li>
               </ul>
             </div>
