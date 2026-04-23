@@ -202,7 +202,6 @@ export function Footer() {
             <AccordionHeader title="快速链接" icon="🔗" section="links" />
             <AccordionContent section="links">
               {isMobile ? (
-                /* 移动端：单列显示 */
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                   <li style={{ marginBottom: '0.5rem' }}>
                     <a href="/cloud-resources" style={{ color: '#CBD5E1', fontSize: '1rem', textDecoration: 'none', display: 'block', padding: '10px 0', minHeight: '44px', lineHeight: '44px' }}>云资源服务</a>
@@ -221,7 +220,6 @@ export function Footer() {
                   </li>
                 </ul>
               ) : (
-                /* 桌面端：双列显示 */
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                     <li style={{ marginBottom: '0.5rem' }}>
@@ -253,49 +251,31 @@ export function Footer() {
             </AccordionContent>
           </div>
           
-          {/* 关注我们 - 移动端隐藏二维码 */}
-          {!isMobile ? (
-            <div style={{ textAlign: 'center' }}>
+          {/* 关注我们 - 桌面端和移动端都显示二维码 */}
+          <div style={{ 
+            textAlign: 'center',
+            borderTop: isMobile ? '1px solid rgba(71, 85, 105, 0.3)' : 'none',
+            paddingTop: isMobile ? '1rem' : '0'
+          }}>
+            <AccordionHeader title="关注我们" icon="💬" section="follow" defaultOpen={true} />
+            <AccordionContent section="follow" defaultOpen={true}>
               <img
                 src="/Pic4Wechet/1.jpg"
                 alt="微信公众号二维码"
                 style={{
-                  width: '150px',
-                  height: '150px',
+                  width: isMobile ? '120px' : '150px',
+                  height: isMobile ? '120px' : '150px',
                   borderRadius: '12px',
                   display: 'block',
                   margin: '0 auto 0.5rem',
                   border: '2px solid rgba(108, 99, 255, 0.3)'
                 }}
               />
-              <p style={{ color: '#A5B4FC', fontSize: '0.9rem', fontWeight: 600 }}>
+              <p style={{ color: '#A5B4FC', fontSize: isMobile ? '0.85rem' : '0.9rem', fontWeight: 600 }}>
                 GBAnexus 官方微信
               </p>
-            </div>
-          ) : (
-            <div style={{ 
-              textAlign: 'center',
-              borderTop: '1px solid rgba(71, 85, 105, 0.3)',
-              paddingTop: '1rem'
-            }}>
-              <h4 style={{ 
-                color: '#F1F5F9', 
-                marginBottom: '0.75rem', 
-                fontSize: '1.1rem', 
-                fontWeight: 600,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '8px'
-              }}>
-                <span>💬</span>
-                <span>关注我们</span>
-              </h4>
-              <p style={{ color: '#94A3B8', fontSize: '0.85rem', lineHeight: '1.6' }}>
-                搜索微信公众号 <span style={{ color: '#A5B4FC', fontWeight: 500 }}>GBAnexus</span>
-              </p>
-            </div>
-          )}
+            </AccordionContent>
+          </div>
         </div>
       </div>
 
@@ -329,7 +309,6 @@ export function Footer() {
         </button>
       )}
 
-      {/* 添加动画样式 */}
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(20px); }
