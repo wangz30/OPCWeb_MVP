@@ -97,6 +97,245 @@ export function Footer() {
     )
   }
 
+  // 桌面端渲染
+  const DesktopContent = () => (
+    <>
+      <div>
+        <h4 style={{ color: '#F1F5F9', marginBottom: '1rem', fontSize: '1rem', fontWeight: 600 }}>
+          云上 OPC 社区
+        </h4>
+        <p style={{ color: '#CBD5E1', fontSize: '0.9rem', marginBottom: '0.3rem', lineHeight: '1.6' }}>
+          AI 驱动的一人公司创业平台
+        </p>
+        <p style={{ color: '#CBD5E1', fontSize: '0.9rem', marginBottom: '0.3rem', lineHeight: '1.6' }}>
+          深圳国家高技术产业创新中心
+        </p>
+        <p style={{ color: '#CBD5E1', fontSize: '0.9rem', marginBottom: '0.5rem', lineHeight: '1.6' }}>
+          粤港澳大湾区大数据中心
+        </p>
+        <p style={{ color: '#94A3B8', fontSize: '0.9rem' }}>
+          © 2026 云上 OPC 社区 版权所有
+        </p>
+      </div>
+
+      <div>
+        <h4 style={{ color: '#F1F5F9', marginBottom: '1rem', fontSize: '1.1rem', fontWeight: 600 }}>
+          📞 服务支持
+        </h4>
+        <p style={{ color: '#CBD5E1', fontSize: '0.9rem', marginBottom: '0.5rem', lineHeight: 1.6 }}>
+          工作时间：<br />
+          周一至周五 9:00 - 18:00
+        </p>
+        <a 
+          href="mailto:gbanexus@hiic.com.cn" 
+          style={{ 
+            color: '#A5B4FC', 
+            fontSize: '1rem', 
+            textDecoration: 'none',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '8px',
+            fontWeight: 500,
+            padding: '10px 16px',
+            background: 'rgba(108, 99, 255, 0.1)',
+            borderRadius: '8px',
+            border: '1px solid rgba(108, 99, 255, 0.2)',
+            transition: 'all 0.3s ease',
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.background = 'rgba(108, 99, 255, 0.2)'
+            e.currentTarget.style.borderColor = 'rgba(108, 99, 255, 0.4)'
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.background = 'rgba(108, 99, 255, 0.1)'
+            e.currentTarget.style.borderColor = 'rgba(108, 99, 255, 0.2)'
+          }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+          gbanexus@hiic.com.cn
+        </a>
+      </div>
+
+      <div>
+        <h4 style={{ color: '#F1F5F9', marginBottom: '1rem', fontSize: '1.1rem', fontWeight: 600 }}>
+          🔗 快速链接
+        </h4>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+            <li style={{ marginBottom: '0.5rem' }}>
+              <a href="/cloud-resources" style={{ color: '#CBD5E1', fontSize: '0.9rem', textDecoration: 'none' }}>云资源服务</a>
+            </li>
+            <li style={{ marginBottom: '0.5rem' }}>
+              <a href="/ai-models" style={{ color: '#CBD5E1', fontSize: '0.9rem', textDecoration: 'none' }}>AI 模型服务</a>
+            </li>
+            <li style={{ marginBottom: '0.5rem' }}>
+              <a href="/data-apis" style={{ color: '#CBD5E1', fontSize: '0.9rem', textDecoration: 'none' }}>数据 API 服务</a>
+            </li>
+            <li style={{ marginBottom: '0.5rem' }}>
+              <a href="/space" style={{ color: '#CBD5E1', fontSize: '0.9rem', textDecoration: 'none' }}>创客空间入驻</a>
+            </li>
+          </ul>
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+            <li style={{ marginBottom: '0.5rem' }}>
+              <a href="/" style={{ color: '#CBD5E1', fontSize: '0.9rem', textDecoration: 'none' }}>首页</a>
+            </li>
+            <li style={{ marginBottom: '0.5rem' }}>
+              <a href="/about" style={{ color: '#CBD5E1', fontSize: '0.9rem', textDecoration: 'none' }}>关于我们</a>
+            </li>
+            <li style={{ marginBottom: '0.5rem' }}>
+              <a href="/policy" style={{ color: '#CBD5E1', fontSize: '0.9rem', textDecoration: 'none' }}>新闻资讯</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div style={{ textAlign: 'center' }}>
+        <img
+          src="/Pic4Wechet/1.jpg"
+          alt="微信公众号二维码"
+          style={{
+            width: '150px',
+            height: '150px',
+            borderRadius: '12px',
+            display: 'block',
+            margin: '0 auto 0.5rem',
+            border: '2px solid rgba(108, 99, 255, 0.3)'
+          }}
+        />
+        <p style={{ color: '#A5B4FC', fontSize: '0.9rem', fontWeight: 600 }}>
+          GBAnexus 官方微信
+        </p>
+      </div>
+    </>
+  )
+
+  // 移动端渲染 - 社区信息放到底部
+  const MobileContent = () => (
+    <>
+      {/* 服务支持 */}
+      <div style={{ 
+        paddingBottom: '1rem',
+        borderBottom: '1px solid rgba(71, 85, 105, 0.3)',
+        marginBottom: '0.5rem'
+      }}>
+        <AccordionHeader title="服务支持" icon="📞" section="support" />
+        <AccordionContent section="support">
+          <a 
+            href="mailto:gbanexus@hiic.com.cn" 
+            style={{ 
+              color: '#A5B4FC', 
+              fontSize: '0.95rem', 
+              textDecoration: 'none',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+              fontWeight: 500,
+              padding: '12px 16px',
+              background: 'rgba(108, 99, 255, 0.1)',
+              borderRadius: '8px',
+              border: '1px solid rgba(108, 99, 255, 0.2)',
+              transition: 'all 0.3s ease',
+              width: '100%',
+              minHeight: '48px',
+            }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+            gbanexus@hiic.com.cn
+          </a>
+        </AccordionContent>
+      </div>
+
+      {/* 快速链接 */}
+      <div style={{ 
+        paddingBottom: '1rem',
+        borderBottom: '1px solid rgba(71, 85, 105, 0.3)',
+        marginBottom: '0.5rem'
+      }}>
+        <AccordionHeader title="快速链接" icon="🔗" section="links" />
+        <AccordionContent section="links">
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+            <li style={{ marginBottom: '0.5rem' }}>
+              <a href="/cloud-resources" style={{ color: '#CBD5E1', fontSize: '1rem', textDecoration: 'none', display: 'block', padding: '10px 0', minHeight: '44px', lineHeight: '44px' }}>云资源服务</a>
+            </li>
+            <li style={{ marginBottom: '0.5rem' }}>
+              <a href="/ai-models" style={{ color: '#CBD5E1', fontSize: '1rem', textDecoration: 'none', display: 'block', padding: '10px 0', minHeight: '44px', lineHeight: '44px' }}>AI 模型服务</a>
+            </li>
+            <li style={{ marginBottom: '0.5rem' }}>
+              <a href="/data-apis" style={{ color: '#CBD5E1', fontSize: '1rem', textDecoration: 'none', display: 'block', padding: '10px 0', minHeight: '44px', lineHeight: '44px' }}>数据 API 服务</a>
+            </li>
+            <li style={{ marginBottom: '0.5rem' }}>
+              <a href="/space" style={{ color: '#CBD5E1', fontSize: '1rem', textDecoration: 'none', display: 'block', padding: '10px 0', minHeight: '44px', lineHeight: '44px' }}>创客空间入驻</a>
+            </li>
+            <li style={{ marginBottom: '0.5rem' }}>
+              <a href="/" style={{ color: '#CBD5E1', fontSize: '1rem', textDecoration: 'none', display: 'block', padding: '10px 0', minHeight: '44px', lineHeight: '44px' }}>首页</a>
+            </li>
+            <li style={{ marginBottom: '0.5rem' }}>
+              <a href="/about" style={{ color: '#CBD5E1', fontSize: '1rem', textDecoration: 'none', display: 'block', padding: '10px 0', minHeight: '44px', lineHeight: '44px' }}>关于我们</a>
+            </li>
+            <li style={{ marginBottom: '0.5rem' }}>
+              <a href="/policy" style={{ color: '#CBD5E1', fontSize: '1rem', textDecoration: 'none', display: 'block', padding: '10px 0', minHeight: '44px', lineHeight: '44px' }}>新闻资讯</a>
+            </li>
+          </ul>
+        </AccordionContent>
+      </div>
+
+      {/* 关注我们 */}
+      <div style={{ 
+        paddingBottom: '1rem',
+        borderBottom: '1px solid rgba(71, 85, 105, 0.3)',
+        marginBottom: '0.5rem'
+      }}>
+        <AccordionHeader title="关注我们" icon="💬" section="follow" defaultOpen={true} />
+        <AccordionContent section="follow" defaultOpen={true}>
+          <img
+            src="/Pic4Wechet/1.jpg"
+            alt="微信公众号二维码"
+            style={{
+              width: '120px',
+              height: '120px',
+              borderRadius: '12px',
+              display: 'block',
+              margin: '0 auto 0.5rem',
+              border: '2px solid rgba(108, 99, 255, 0.3)'
+            }}
+          />
+          <p style={{ color: '#A5B4FC', fontSize: '0.85rem', fontWeight: 600 }}>
+            GBAnexus 官方微信
+          </p>
+        </AccordionContent>
+      </div>
+
+      {/* 社区信息 - 放到底部 */}
+      <div style={{ 
+        borderTop: '1px solid rgba(71, 85, 105, 0.3)',
+        paddingTop: '1rem',
+        marginTop: '0.5rem'
+      }}>
+        <AccordionHeader title="云上 OPC 社区" icon="🏢" section="brand" defaultOpen={true} />
+        <AccordionContent section="brand" defaultOpen={true}>
+          <p style={{ color: '#CBD5E1', fontSize: '0.85rem', marginBottom: '0.3rem', lineHeight: '1.6' }}>
+            AI 驱动的一人公司创业平台
+          </p>
+          <p style={{ color: '#CBD5E1', fontSize: '0.85rem', marginBottom: '0.3rem', lineHeight: '1.6' }}>
+            深圳国家高技术产业创新中心
+          </p>
+          <p style={{ color: '#CBD5E1', fontSize: '0.85rem', marginBottom: '0.5rem', lineHeight: '1.6' }}>
+            粤港澳大湾区大数据中心
+          </p>
+          <p style={{ color: '#94A3B8', fontSize: '0.8rem' }}>
+            © 2026 云上 OPC 社区 版权所有
+          </p>
+        </AccordionContent>
+      </div>
+    </>
+  )
+
   return (
     <footer style={{ 
       background: 'rgba(15, 23, 41, 0.95)', 
@@ -106,183 +345,15 @@ export function Footer() {
       position: 'relative'
     }}>
       <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: isMobile ? '1fr' : 'repeat(4, 1fr)', 
-          gap: isMobile ? '0' : '1.5rem' 
-        }}>
-          
-          {/* 社区信息 - 移动端始终展开 */}
-          <div style={{ 
-            paddingBottom: isMobile ? '1rem' : '0',
-            borderBottom: isMobile ? '1px solid rgba(71, 85, 105, 0.3)' : 'none',
-            marginBottom: isMobile ? '0.5rem' : '0'
-          }}>
-            <AccordionHeader title="云上 OPC 社区" icon="🏢" section="brand" defaultOpen={true} />
-            <AccordionContent section="brand" defaultOpen={true}>
-              <p style={{ color: '#CBD5E1', fontSize: isMobile ? '0.85rem' : '0.9rem', marginBottom: '0.3rem', lineHeight: '1.6' }}>
-                AI 驱动的一人公司创业平台
-              </p>
-              <p style={{ color: '#CBD5E1', fontSize: isMobile ? '0.85rem' : '0.9rem', marginBottom: '0.3rem', lineHeight: '1.6' }}>
-                深圳国家高技术产业创新中心
-              </p>
-              <p style={{ color: '#CBD5E1', fontSize: isMobile ? '0.85rem' : '0.9rem', marginBottom: isMobile ? '0.5rem' : '0.5rem', lineHeight: '1.6' }}>
-                粤港澳大湾区大数据中心
-              </p>
-              <p style={{ color: '#94A3B8', fontSize: isMobile ? '0.8rem' : '0.9rem' }}>
-                © 2026 云上 OPC 社区 版权所有
-              </p>
-            </AccordionContent>
+        {isMobile ? (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+            <MobileContent />
           </div>
-          
-          {/* 服务支持 - 移动端可折叠 */}
-          <div style={{ 
-            borderTop: isMobile ? '1px solid rgba(71, 85, 105, 0.3)' : 'none', 
-            paddingTop: isMobile ? '1rem' : '0',
-            paddingBottom: isMobile ? '1rem' : '0',
-            borderBottom: isMobile ? '1px solid rgba(71, 85, 105, 0.3)' : 'none',
-            marginBottom: isMobile ? '0.5rem' : '0'
-          }}>
-            <AccordionHeader title="服务支持" icon="📞" section="support" />
-            <AccordionContent section="support">
-              {!isMobile && (
-                <p style={{ color: '#CBD5E1', fontSize: '0.9rem', marginBottom: '0.5rem', lineHeight: 1.6 }}>
-                  工作时间：<br />
-                  周一至周五 9:00 - 18:00
-                </p>
-              )}
-              <a 
-                href="mailto:gbanexus@hiic.com.cn" 
-                style={{ 
-                  color: '#A5B4FC', 
-                  fontSize: isMobile ? '0.95rem' : '1rem', 
-                  textDecoration: 'none',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '8px',
-                  fontWeight: 500,
-                  padding: isMobile ? '12px 16px' : '10px 16px',
-                  background: 'rgba(108, 99, 255, 0.1)',
-                  borderRadius: '8px',
-                  border: '1px solid rgba(108, 99, 255, 0.2)',
-                  transition: 'all 0.3s ease',
-                  minWidth: isMobile ? '100%' : 'auto',
-                  minHeight: isMobile ? '48px' : 'auto',
-                }}
-                onMouseOver={(e) => {
-                  if (!isMobile) {
-                    e.currentTarget.style.background = 'rgba(108, 99, 255, 0.2)'
-                    e.currentTarget.style.borderColor = 'rgba(108, 99, 255, 0.4)'
-                  }
-                }}
-                onMouseOut={(e) => {
-                  if (!isMobile) {
-                    e.currentTarget.style.background = 'rgba(108, 99, 255, 0.1)'
-                    e.currentTarget.style.borderColor = 'rgba(108, 99, 255, 0.2)'
-                  }
-                }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <rect x="2" y="4" width="20" height="16" rx="2"/>
-                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-                </svg>
-                gbanexus@hiic.com.cn
-              </a>
-            </AccordionContent>
+        ) : (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }}>
+            <DesktopContent />
           </div>
-          
-          {/* 快速链接 */}
-          <div style={{ 
-            borderTop: isMobile ? '1px solid rgba(71, 85, 105, 0.3)' : 'none', 
-            paddingTop: isMobile ? '1rem' : '0',
-            paddingBottom: isMobile ? '1rem' : '0',
-            borderBottom: isMobile ? '1px solid rgba(71, 85, 105, 0.3)' : 'none',
-            marginBottom: isMobile ? '0.5rem' : '0'
-          }}>
-            <AccordionHeader title="快速链接" icon="🔗" section="links" />
-            <AccordionContent section="links">
-              {isMobile ? (
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                  <li style={{ marginBottom: '0.5rem' }}>
-                    <a href="/cloud-resources" style={{ color: '#CBD5E1', fontSize: '1rem', textDecoration: 'none', display: 'block', padding: '10px 0', minHeight: '44px', lineHeight: '44px' }}>云资源服务</a>
-                  </li>
-                  <li style={{ marginBottom: '0.5rem' }}>
-                    <a href="/ai-models" style={{ color: '#CBD5E1', fontSize: '1rem', textDecoration: 'none', display: 'block', padding: '10px 0', minHeight: '44px', lineHeight: '44px' }}>AI 模型服务</a>
-                  </li>
-                  <li style={{ marginBottom: '0.5rem' }}>
-                    <a href="/data-apis" style={{ color: '#CBD5E1', fontSize: '1rem', textDecoration: 'none', display: 'block', padding: '10px 0', minHeight: '44px', lineHeight: '44px' }}>数据 API 服务</a>
-                  </li>
-                  <li style={{ marginBottom: '0.5rem' }}>
-                    <a href="/space" style={{ color: '#CBD5E1', fontSize: '1rem', textDecoration: 'none', display: 'block', padding: '10px 0', minHeight: '44px', lineHeight: '44px' }}>创客空间入驻</a>
-                  </li>
-                  <li style={{ marginBottom: '0.5rem' }}>
-                    <a href="/" style={{ color: '#CBD5E1', fontSize: '1rem', textDecoration: 'none', display: 'block', padding: '10px 0', minHeight: '44px', lineHeight: '44px' }}>首页</a>
-                  </li>
-                  <li style={{ marginBottom: '0.5rem' }}>
-                    <a href="/about" style={{ color: '#CBD5E1', fontSize: '1rem', textDecoration: 'none', display: 'block', padding: '10px 0', minHeight: '44px', lineHeight: '44px' }}>关于我们</a>
-                  </li>
-                  <li style={{ marginBottom: '0.5rem' }}>
-                    <a href="/policy" style={{ color: '#CBD5E1', fontSize: '1rem', textDecoration: 'none', display: 'block', padding: '10px 0', minHeight: '44px', lineHeight: '44px' }}>新闻资讯</a>
-                  </li>
-                </ul>
-              ) : (
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    <li style={{ marginBottom: '0.5rem' }}>
-                      <a href="/cloud-resources" style={{ color: '#CBD5E1', fontSize: '0.9rem', textDecoration: 'none' }}>云资源服务</a>
-                    </li>
-                    <li style={{ marginBottom: '0.5rem' }}>
-                      <a href="/ai-models" style={{ color: '#CBD5E1', fontSize: '0.9rem', textDecoration: 'none' }}>AI 模型服务</a>
-                    </li>
-                    <li style={{ marginBottom: '0.5rem' }}>
-                      <a href="/data-apis" style={{ color: '#CBD5E1', fontSize: '0.9rem', textDecoration: 'none' }}>数据 API 服务</a>
-                    </li>
-                    <li style={{ marginBottom: '0.5rem' }}>
-                      <a href="/space" style={{ color: '#CBD5E1', fontSize: '0.9rem', textDecoration: 'none' }}>创客空间入驻</a>
-                    </li>
-                  </ul>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    <li style={{ marginBottom: '0.5rem' }}>
-                      <a href="/" style={{ color: '#CBD5E1', fontSize: '0.9rem', textDecoration: 'none' }}>首页</a>
-                    </li>
-                    <li style={{ marginBottom: '0.5rem' }}>
-                      <a href="/about" style={{ color: '#CBD5E1', fontSize: '0.9rem', textDecoration: 'none' }}>关于我们</a>
-                    </li>
-                    <li style={{ marginBottom: '0.5rem' }}>
-                      <a href="/policy" style={{ color: '#CBD5E1', fontSize: '0.9rem', textDecoration: 'none' }}>新闻资讯</a>
-                    </li>
-                  </ul>
-                </div>
-              )}
-            </AccordionContent>
-          </div>
-          
-          {/* 关注我们 - 桌面端和移动端都显示二维码 */}
-          <div style={{ 
-            textAlign: 'center',
-            borderTop: isMobile ? '1px solid rgba(71, 85, 105, 0.3)' : 'none',
-            paddingTop: isMobile ? '1rem' : '0'
-          }}>
-            <AccordionHeader title="关注我们" icon="💬" section="follow" defaultOpen={true} />
-            <AccordionContent section="follow" defaultOpen={true}>
-              <img
-                src="/Pic4Wechet/1.jpg"
-                alt="微信公众号二维码"
-                style={{
-                  width: isMobile ? '120px' : '150px',
-                  height: isMobile ? '120px' : '150px',
-                  borderRadius: '12px',
-                  display: 'block',
-                  margin: '0 auto 0.5rem',
-                  border: '2px solid rgba(108, 99, 255, 0.3)'
-                }}
-              />
-              <p style={{ color: '#A5B4FC', fontSize: isMobile ? '0.85rem' : '0.9rem', fontWeight: 600 }}>
-                GBAnexus 官方微信
-              </p>
-            </AccordionContent>
-          </div>
-        </div>
+        )}
       </div>
 
       {/* 回到顶部按钮 - 仅移动端显示 */}
