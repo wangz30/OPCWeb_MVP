@@ -6,6 +6,7 @@ const officialContent = {
   activities: [
     {
       id: 1,
+      tag: '创享会',
       title: '云上OPC·创享会第二期圆满举办',
       summary: '2026年4月15日，第二期创享会以《AI公司老板模拟器》为主题，吸引上千人在线参与。围绕AI工作流搭建、OPC自媒体创业案例拆解、一人公司法务合规等核心话题展开分享。',
       source: 'GBAnexus',
@@ -14,6 +15,7 @@ const officialContent = {
     },
     {
       id: 2,
+      tag: '创享会',
       title: '云上OPC·创享会首期圆满举办',
       summary: '2026年4月3日，首期创享会以"门槛消失：为什么现在人人都在开AI公司？"为主题，五位实战嘉宾围绕AI工具赋能、大模型工程化落地、AI安全合规等话题深度分享。',
       source: 'GBAnexus',
@@ -24,6 +26,7 @@ const officialContent = {
   articles: [
     {
       id: 3,
+      tag: 'AI 创业',
       title: 'MemPalace爆火的真相：AI创业的下半场，拼的不是智商，是记性',
       summary: '好莱坞影星米拉·乔沃维奇与工程师联合开源的AI记忆系统MemPalace，在长期记忆评测中斩获全球首个满分500题全对，运行成本仅年均0.7美元，累计收获27.5k Star。',
       source: 'GBAnexus',
@@ -32,6 +35,7 @@ const officialContent = {
     },
     {
       id: 4,
+      tag: '商业洞察',
       title: 'OPC背后的新趋势：三个案例看"AI+个体创业"如何重塑商业形态',
       summary: '从跨境电商4个月突破500万销售额，到招聘平台月均服务50万人次，再到AI动画创作工具全球注册用户超6000个，三个真实案例展示AI如何赋能个体创业者。',
       source: 'GBAnexus',
@@ -40,6 +44,7 @@ const officialContent = {
     },
     {
       id: 5,
+      tag: 'AI 趋势',
       title: '当AI开始"收税"：词元，这个新单位正在悄悄掏空你的钱包？',
       summary: '2026年3月，国家数据局正式公布Token的中文官方译名为"词元"。我国日均词元调用量已突破140万亿，一个全新的"词元经济"正在加速形成，AI服务正从"买软件"转向"缴电费"模式。',
       source: 'GBAnexus',
@@ -50,7 +55,6 @@ const officialContent = {
 }
 
 const policyNews = [
-  // 广东省政策
   {
     id: 1,
     type: 'opc',
@@ -60,7 +64,6 @@ const policyNews = [
     date: '2026-03-12',
     link: 'https://amr.sz.gov.cn/xxgk/qt/ztlm/opcfwzq/zcwj/content/post_12694570.html'
   },
-  // 深圳市政策
   {
     id: 2,
     type: 'opc',
@@ -79,7 +82,6 @@ const policyNews = [
     date: '2025-12-20',
     link: 'https://www.sz.gov.cn/zfgb/zcjd/content/post_11932960.html'
   },
-  // 广州市政策
   {
     id: 4,
     type: 'general',
@@ -107,7 +109,6 @@ const policyNews = [
     date: '2026-03-31',
     link: 'https://www.gz.gov.cn/gzzcwjk/gzdata/content/post_10751591.html'
   },
-  // 其他城市政策
   {
     id: 7,
     type: 'general',
@@ -141,7 +142,6 @@ export function PolicyPage() {
       background: 'linear-gradient(135deg, #0F1729 0%, #1E293B 50%, #0F1729 100%)',
       paddingBottom: '4rem'
     }}>
-      {/* Hero Banner */}
       <div style={{
         position: 'relative',
         background: 'url(/Pic4Policy/2.png) center/cover no-repeat',
@@ -178,7 +178,6 @@ export function PolicyPage() {
             紧跟 AI OPC 前沿创业资讯，抓住时代机遇，把握最新政策动向
           </p>
           
-          {/* 介绍卡片 */}
           <div style={{ 
             maxWidth: '750px', 
             margin: '0 auto',
@@ -195,13 +194,12 @@ export function PolicyPage() {
               margin: 0,
               letterSpacing: '0.5px'
             }}>
-              整合官方动态与政策红利，汇聚“云上OPC创享会”与创业实战经验，以有温度、有深度的解读，为您呈现最新行业资讯与政策分析，助您看清趋势，抢占先机。
+              整合官方动态与政策红利，汇聚"云上OPC创享会"与创业实战经验，以有温度、有深度的解读，为您呈现最新行业资讯与政策分析，助您看清趋势，抢占先机。
             </p>
           </div>
         </div>
       </div>
 
-      {/* 快速入口 */}
       <section style={{ 
         padding: '2rem 0',
         maxWidth: '1200px',
@@ -311,13 +309,11 @@ export function PolicyPage() {
         </div>
       </section>
 
-      {/* 新闻资讯内容区 */}
       <section style={{ 
         padding: '3rem 2rem 2rem',
         maxWidth: '1200px',
         margin: '0 auto'
       }}>
-          {/* 政策速递 */}
           <div id="policy" style={{ marginBottom: '3rem' }}>
             <h3 style={{ 
               fontSize: '1.5rem', 
@@ -429,7 +425,6 @@ export function PolicyPage() {
               </div>
             ))}
             
-            {/* 政策持续更新卡片 */}
             <div
               style={{
                 background: 'rgba(30, 41, 59, 0.4)',
@@ -505,13 +500,11 @@ export function PolicyPage() {
           </div>
       </section>
 
-      {/* 官方公众号 */}
       <section style={{ 
         padding: '2rem',
         maxWidth: '1200px',
         margin: '0 auto'
       }}>
-        {/* 科普好文 */}
         <div id="articles" style={{ marginBottom: '3rem' }}>
           <h3 style={{ 
             fontSize: '1.5rem', 
@@ -553,6 +546,21 @@ export function PolicyPage() {
                   e.currentTarget.style.boxShadow = 'none'
                 }}
               >
+                <div style={{ marginBottom: '0.75rem' }}>
+                  <span style={{
+                    display: 'inline-block',
+                    padding: '3px 10px',
+                    background: 'rgba(52, 211, 153, 0.15)',
+                    border: '1px solid rgba(52, 211, 153, 0.3)',
+                    borderRadius: '12px',
+                    fontSize: '0.75rem',
+                    fontWeight: 600,
+                    color: '#34D399'
+                  }}>
+                    {item.tag}
+                  </span>
+                </div>
+                
                 <h3 style={{ 
                   fontSize: '1.1rem', 
                   fontWeight: 600, 
@@ -605,7 +613,6 @@ export function PolicyPage() {
 
       </section>
 
-      {/* 活动动态 */}
       <section style={{ 
         padding: '2rem',
         maxWidth: '1200px',
@@ -652,6 +659,21 @@ export function PolicyPage() {
                   e.currentTarget.style.boxShadow = 'none'
                 }}
               >
+                <div style={{ marginBottom: '0.75rem' }}>
+                  <span style={{
+                    display: 'inline-block',
+                    padding: '3px 10px',
+                    background: 'rgba(251, 191, 36, 0.15)',
+                    border: '1px solid rgba(251, 191, 36, 0.3)',
+                    borderRadius: '12px',
+                    fontSize: '0.75rem',
+                    fontWeight: 600,
+                    color: '#FBBF24'
+                  }}>
+                    {item.tag}
+                  </span>
+                </div>
+                
                 <h3 style={{ 
                   fontSize: '1.1rem', 
                   fontWeight: 600, 
