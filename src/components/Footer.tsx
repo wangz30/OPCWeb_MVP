@@ -97,7 +97,6 @@ export function Footer() {
     )
   }
 
-  // 桌面端渲染
   const DesktopContent = () => (
     <>
       <div>
@@ -212,10 +211,8 @@ export function Footer() {
     </>
   )
 
-  // 移动端渲染 - 社区信息放到底部
   const MobileContent = () => (
     <>
-      {/* 服务支持 */}
       <div style={{ 
         paddingBottom: '1rem',
         borderBottom: '1px solid rgba(71, 85, 105, 0.3)',
@@ -251,7 +248,6 @@ export function Footer() {
         </AccordionContent>
       </div>
 
-      {/* 快速链接 */}
       <div style={{ 
         paddingBottom: '1rem',
         borderBottom: '1px solid rgba(71, 85, 105, 0.3)',
@@ -285,14 +281,14 @@ export function Footer() {
         </AccordionContent>
       </div>
 
-      {/* 关注我们 */}
+      {/* 关注我们 - 默认折叠，点击展开 */}
       <div style={{ 
         paddingBottom: '1rem',
         borderBottom: '1px solid rgba(71, 85, 105, 0.3)',
         marginBottom: '0.5rem'
       }}>
-        <AccordionHeader title="关注我们" icon="💬" section="follow" defaultOpen={true} />
-        <AccordionContent section="follow" defaultOpen={true}>
+        <AccordionHeader title="关注我们" icon="💬" section="follow" />
+        <AccordionContent section="follow">
           <img
             src="/Pic4Wechet/1.jpg"
             alt="微信公众号二维码"
@@ -311,14 +307,14 @@ export function Footer() {
         </AccordionContent>
       </div>
 
-      {/* 社区信息 - 放到底部 */}
+      {/* 社区信息 - 默认折叠，点击展开 */}
       <div style={{ 
         borderTop: '1px solid rgba(71, 85, 105, 0.3)',
         paddingTop: '1rem',
         marginTop: '0.5rem'
       }}>
-        <AccordionHeader title="云上 OPC 社区" icon="🏢" section="brand" defaultOpen={true} />
-        <AccordionContent section="brand" defaultOpen={true}>
+        <AccordionHeader title="云上 OPC 社区" icon="🏢" section="brand" />
+        <AccordionContent section="brand">
           <p style={{ color: '#CBD5E1', fontSize: '0.85rem', marginBottom: '0.3rem', lineHeight: '1.6' }}>
             AI 驱动的一人公司创业平台
           </p>
@@ -356,7 +352,6 @@ export function Footer() {
         )}
       </div>
 
-      {/* 回到顶部按钮 - 仅移动端显示 */}
       {isMobile && showBackToTop && (
         <button
           onClick={scrollToTop}
