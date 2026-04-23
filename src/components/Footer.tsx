@@ -191,7 +191,7 @@ export function Footer() {
             </AccordionContent>
           </div>
           
-          {/* 快速链接 - 移动端可折叠 */}
+          {/* 快速链接 */}
           <div style={{ 
             borderTop: isMobile ? '1px solid rgba(71, 85, 105, 0.3)' : 'none', 
             paddingTop: isMobile ? '1rem' : '0',
@@ -201,86 +201,55 @@ export function Footer() {
           }}>
             <AccordionHeader title="快速链接" icon="🔗" section="links" />
             <AccordionContent section="links">
-              <div style={{ 
-                display: 'grid', 
-                gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)', 
-                gap: isMobile ? '0' : '1rem' 
-              }}>
+              {isMobile ? (
+                /* 移动端：单列显示 */
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                   <li style={{ marginBottom: '0.5rem' }}>
-                    <a href="/cloud-resources" style={{ 
-                      color: '#CBD5E1', 
-                      fontSize: isMobile ? '1rem' : '0.9rem', 
-                      textDecoration: 'none',
-                      display: 'block',
-                      padding: isMobile ? '10px 0' : '0',
-                      minHeight: isMobile ? '44px' : 'auto',
-                      lineHeight: isMobile ? '44px' : 'normal',
-                    }}>云资源服务</a>
+                    <a href="/cloud-resources" style={{ color: '#CBD5E1', fontSize: '1rem', textDecoration: 'none', display: 'block', padding: '10px 0', minHeight: '44px', lineHeight: '44px' }}>云资源服务</a>
                   </li>
                   <li style={{ marginBottom: '0.5rem' }}>
-                    <a href="/ai-models" style={{ 
-                      color: '#CBD5E1', 
-                      fontSize: isMobile ? '1rem' : '0.9rem', 
-                      textDecoration: 'none',
-                      display: 'block',
-                      padding: isMobile ? '10px 0' : '0',
-                      minHeight: isMobile ? '44px' : 'auto',
-                      lineHeight: isMobile ? '44px' : 'normal',
-                    }}>AI 模型服务</a>
+                    <a href="/ai-models" style={{ color: '#CBD5E1', fontSize: '1rem', textDecoration: 'none', display: 'block', padding: '10px 0', minHeight: '44px', lineHeight: '44px' }}>AI 模型服务</a>
                   </li>
-                  <li style={{ marginBottom: isMobile ? '0.5rem' : '0' }}>
-                    <a href="/data-apis" style={{ 
-                      color: '#CBD5E1', 
-                      fontSize: isMobile ? '1rem' : '0.9rem', 
-                      textDecoration: 'none',
-                      display: 'block',
-                      padding: isMobile ? '10px 0' : '0',
-                      minHeight: isMobile ? '44px' : 'auto',
-                      lineHeight: isMobile ? '44px' : 'normal',
-                    }}>数据 API 服务</a>
+                  <li style={{ marginBottom: '0.5rem' }}>
+                    <a href="/data-apis" style={{ color: '#CBD5E1', fontSize: '1rem', textDecoration: 'none', display: 'block', padding: '10px 0', minHeight: '44px', lineHeight: '44px' }}>数据 API 服务</a>
                   </li>
-                  {!isMobile && (
+                  <li style={{ marginBottom: '0.5rem' }}>
+                    <a href="/" style={{ color: '#CBD5E1', fontSize: '1rem', textDecoration: 'none', display: 'block', padding: '10px 0', minHeight: '44px', lineHeight: '44px' }}>首页</a>
+                  </li>
+                  <li style={{ marginBottom: '0.5rem' }}>
+                    <a href="/about" style={{ color: '#CBD5E1', fontSize: '1rem', textDecoration: 'none', display: 'block', padding: '10px 0', minHeight: '44px', lineHeight: '44px' }}>关于我们</a>
+                  </li>
+                </ul>
+              ) : (
+                /* 桌面端：双列显示 */
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                    <li style={{ marginBottom: '0.5rem' }}>
+                      <a href="/cloud-resources" style={{ color: '#CBD5E1', fontSize: '0.9rem', textDecoration: 'none' }}>云资源服务</a>
+                    </li>
+                    <li style={{ marginBottom: '0.5rem' }}>
+                      <a href="/ai-models" style={{ color: '#CBD5E1', fontSize: '0.9rem', textDecoration: 'none' }}>AI 模型服务</a>
+                    </li>
+                    <li style={{ marginBottom: '0.5rem' }}>
+                      <a href="/data-apis" style={{ color: '#CBD5E1', fontSize: '0.9rem', textDecoration: 'none' }}>数据 API 服务</a>
+                    </li>
                     <li style={{ marginBottom: '0.5rem' }}>
                       <a href="/space" style={{ color: '#CBD5E1', fontSize: '0.9rem', textDecoration: 'none' }}>创客空间入驻</a>
                     </li>
-                  )}
-                </ul>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                  <li style={{ marginBottom: '0.5rem' }}>
-                    <a href="/" style={{ 
-                      color: '#CBD5E1', 
-                      fontSize: isMobile ? '1rem' : '0.9rem', 
-                      textDecoration: 'none',
-                      display: 'block',
-                      padding: isMobile ? '10px 0' : '0',
-                      minHeight: isMobile ? '44px' : 'auto',
-                      lineHeight: isMobile ? '44px' : 'normal',
-                    }}>首页</a>
-                  </li>
-                  <li style={{ marginBottom: '0.5rem' }}>
-                    <a href="/about" style={{ 
-                      color: '#CBD5E1', 
-                      fontSize: isMobile ? '1rem' : '0.9rem', 
-                      textDecoration: 'none',
-                      display: 'block',
-                      padding: isMobile ? '10px 0' : '0',
-                      minHeight: isMobile ? '44px' : 'auto',
-                      lineHeight: isMobile ? '44px' : 'normal',
-                    }}>关于我们</a>
-                  </li>
-                  {!isMobile && (
+                  </ul>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                    <li style={{ marginBottom: '0.5rem' }}>
+                      <a href="/" style={{ color: '#CBD5E1', fontSize: '0.9rem', textDecoration: 'none' }}>首页</a>
+                    </li>
+                    <li style={{ marginBottom: '0.5rem' }}>
+                      <a href="/about" style={{ color: '#CBD5E1', fontSize: '0.9rem', textDecoration: 'none' }}>关于我们</a>
+                    </li>
                     <li style={{ marginBottom: '0.5rem' }}>
                       <a href="/policy" style={{ color: '#CBD5E1', fontSize: '0.9rem', textDecoration: 'none' }}>新闻资讯</a>
                     </li>
-                  )}
-                  {!isMobile && (
-                    <li style={{ marginBottom: '0.5rem' }}>
-                      <a href="/space" style={{ color: '#CBD5E1', fontSize: '0.9rem', textDecoration: 'none' }}>创客空间入驻</a>
-                    </li>
-                  )}
-                </ul>
-              </div>
+                  </ul>
+                </div>
+              )}
             </AccordionContent>
           </div>
           
