@@ -213,10 +213,16 @@ export function Footer() {
                     <a href="/data-apis" style={{ color: '#CBD5E1', fontSize: '1rem', textDecoration: 'none', display: 'block', padding: '10px 0', minHeight: '44px', lineHeight: '44px' }}>数据 API 服务</a>
                   </li>
                   <li style={{ marginBottom: '0.5rem' }}>
+                    <a href="/space" style={{ color: '#CBD5E1', fontSize: '1rem', textDecoration: 'none', display: 'block', padding: '10px 0', minHeight: '44px', lineHeight: '44px' }}>创客空间入驻</a>
+                  </li>
+                  <li style={{ marginBottom: '0.5rem' }}>
                     <a href="/" style={{ color: '#CBD5E1', fontSize: '1rem', textDecoration: 'none', display: 'block', padding: '10px 0', minHeight: '44px', lineHeight: '44px' }}>首页</a>
                   </li>
                   <li style={{ marginBottom: '0.5rem' }}>
                     <a href="/about" style={{ color: '#CBD5E1', fontSize: '1rem', textDecoration: 'none', display: 'block', padding: '10px 0', minHeight: '44px', lineHeight: '44px' }}>关于我们</a>
+                  </li>
+                  <li style={{ marginBottom: '0.5rem' }}>
+                    <a href="/policy" style={{ color: '#CBD5E1', fontSize: '1rem', textDecoration: 'none', display: 'block', padding: '10px 0', minHeight: '44px', lineHeight: '44px' }}>新闻资讯</a>
                   </li>
                 </ul>
               ) : (
