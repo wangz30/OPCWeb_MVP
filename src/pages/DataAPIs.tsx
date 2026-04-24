@@ -192,19 +192,19 @@ const sceneDataCategories = [
     description: '提供招商引资全流程数据支撑 API，支持产业匹配分析、目标企业筛选、招商可行性评估、政策匹配等招商决策服务',
     datasets: [
       {
-        id: 'industry-match',
-        name: '产业匹配分析',
-        description: '基于区域产业基础与产业链图谱，智能匹配适合引进的目标产业方向'
+        id: 'capital-investment',
+        name: '资本招商',
+        description: '资本招商，根据企业/统一社会信用代码获得企业投资方规模、注册资本、投资方机构类型等字段信息'
       },
       {
-        id: 'enterprise-filter',
-        name: '目标企业筛选',
-        description: '多维度筛选潜在招商目标企业，支持按规模、行业、创新能力等条件筛选'
+        id: 'enterprise-verify',
+        name: '企业信息核查',
+        description: '根据企业名称/统一社会信用代码获得该企业详情，企业详情包含企业基本信息、工商信息、产业属性、融资上市、招商可行性评分、企业综合评分等信息'
       },
       {
-        id: 'policy-match',
-        name: '政策匹配推荐',
-        description: '智能匹配适合目标企业的招商优惠政策包，提升招商吸引力'
+        id: 'industry-chain-investment',
+        name: '产业链招商',
+        description: '根据所需产业链及地区进行企业招商获得企业清单和企业相关信息，企业相关信息包括企业基本信息、企业地址信息、工商信息、产业属性、股权信息等信息'
       }
     ]
   },
@@ -215,24 +215,14 @@ const sceneDataCategories = [
     description: '提供企业服务与风险监控 API，支持企业经营状况跟踪、经营风险预警、需求精准匹配、企业迁出风险预测等安商稳商服务',
     datasets: [
       {
-        id: 'business-monitor',
-        name: '经营状况监控',
-        description: '实时跟踪企业经营指标变化，包括营收、用工、投资等核心维度'
+        id: 'enterprise-risk-monitor',
+        name: '企业风险监测',
+        description: '企业风险监测，根据企业名称/统一社会信用代码获得基本信息、风险监测、企业地址等信息'
       },
       {
-        id: 'risk-warning',
-        name: '经营风险预警',
-        description: '基于多维度数据构建风险预警模型，提前识别企业经营风险信号'
-      },
-      {
-        id: 'relocation-predict',
-        name: '迁出风险预测',
-        description: '通过经营数据变化趋势预测企业迁出可能性，辅助精准服务'
-      },
-      {
-        id: 'demand-match',
-        name: '企业需求匹配',
-        description: '精准识别企业融资、用工、技术等需求，智能匹配合适资源'
+        id: 'enterprise-relocation-predict',
+        name: '企业迁出风险预测',
+        description: '企业迁出风险预测，根据企业名称/统一社会信用代码获得企业基本信息、是否异地购地、是否异地建厂等信息'
       }
     ]
   },
@@ -243,19 +233,9 @@ const sceneDataCategories = [
     description: '提供区域产业发展动态监测与评估 API，支持产业集群竞争力指数分析等产业治理服务',
     datasets: [
       {
-        id: 'cluster-index',
+        id: 'industry-cluster-index',
         name: '产业集群竞争力指数',
-        description: '构建产业集群多维度竞争力评价体系，量化集群发展水平'
-      },
-      {
-        id: 'dynamic-monitor',
-        name: '产业发展动态监测',
-        description: '实时监测区域产业规模、结构、效益等关键指标变化趋势'
-      },
-      {
-        id: 'chain-analysis',
-        name: '产业链完整性分析',
-        description: '分析区域产业链各环节完备程度，识别薄弱环节和优势环节'
+        description: '产业集群竞争力指数，根据产业集群名称获得产业集群的各项指标信息'
       }
     ]
   },
@@ -266,24 +246,24 @@ const sceneDataCategories = [
     description: '提供多维度企业精准画像 API，支持企业实力评估、信用评级、技术创新能力分析、企业综合评分、发展潜力预测等综合评估服务',
     datasets: [
       {
-        id: 'strength-eval',
-        name: '企业实力评估',
-        description: '综合企业规模、营收、资产等指标，量化评估企业综合实力'
+        id: 'enterprise-score-detail',
+        name: '企业综合评分详情',
+        description: '企业综合评分，根据企业名称/统一社会信用代码获得企业多维度分析计算评分详情，包括成长能力评分、科创能力评分等信息'
       },
       {
-        id: 'credit-rating',
-        name: '信用评级',
-        description: '基于多维度数据构建企业信用评级模型，辅助信贷决策'
+        id: 'listed-enterprise-finance',
+        name: '上市企业财务信息',
+        description: '上市企业财务信息，根据企业名称/统一社会信用代码获取上市企业财务情况的相关信息，包括上市企业基础信息、报表基础信息、财务核心指标、产业属性、资本结构、盈利能力、利润表、现金流量表、资产负债表等信息'
       },
       {
-        id: 'innovation-analysis',
-        name: '技术创新能力分析',
-        description: '从专利、研发、人才等维度评估企业技术创新能力和潜力'
+        id: 'enterprise-investment',
+        name: '企业投资布局',
+        description: '企业投资布局，根据投资或获投方名称获取企业在投资的投资方及被投资方的相关信息'
       },
       {
-        id: 'potential-predict',
-        name: '发展潜力预测',
-        description: '基于历史数据和行业趋势，预测企业未来发展潜力和成长空间'
+        id: 'enterprise-innovation',
+        name: '企业创新能力',
+        description: '企业创新能力，根据企业名称/统一社会信用代码查询企业相关专利、著作权、标准、商标的信息'
       }
     ]
   }
@@ -542,6 +522,7 @@ type ExpandedSection = 'element' | 'scene' | 'theme' | null
 
 export function DataAPIsPage() {
   const [selectedElementCategory, setSelectedElementCategory] = useState<string>('enterprise')
+  const [selectedSceneCategory, setSelectedSceneCategory] = useState<string>('investment-promotion')
   const [expandedSection, setExpandedSection] = useState<ExpandedSection>(null)
 
   const currentElementCategory = elementDataCategories.find(cat => cat.id === selectedElementCategory)
@@ -1086,54 +1067,146 @@ export function DataAPIsPage() {
             </div>
 
             <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2, 1fr)',
-              gap: '1.5rem'
+              background: 'rgba(15, 23, 42, 0.5)',
+              borderRadius: '16px',
+              padding: '2rem',
+              border: '1px solid #3B82F633'
             }}>
-              {sceneDataCategories.map((category) => (
-                <div
-                  key={category.id}
-                  style={{
-                    background: 'rgba(30, 41, 59, 0.8)',
-                    border: '1px solid rgba(59, 130, 246, 0.2)',
-                    borderRadius: '12px',
-                    padding: '1.5rem',
-                    transition: 'all 0.3s ease',
-                    cursor: 'pointer'
-                  }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.5)'
-                    e.currentTarget.style.transform = 'translateY(-4px)'
-                    e.currentTarget.style.boxShadow = '0 8px 24px rgba(59, 130, 246, 0.15)'
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.2)'
-                    e.currentTarget.style.transform = 'translateY(0)'
-                    e.currentTarget.style.boxShadow = 'none'
-                  }}
-                >
-                  <h4 style={{
-                    fontSize: '1.05rem',
-                    fontWeight: 600,
-                    color: '#3B82F6',
-                    marginBottom: '0.75rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px'
-                  }}>
-                    <span>{category.icon}</span>
-                    {category.name}
-                  </h4>
-                  <p style={{
-                    color: '#94A3B8',
-                    fontSize: '0.85rem',
-                    lineHeight: 1.7,
-                    margin: 0
-                  }}>
-                    {category.description}
-                  </p>
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: '220px 1fr',
+                gap: '2rem'
+              }}>
+                {/* 左侧边栏 */}
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0.5rem',
+                  borderRight: '1px solid rgba(71, 85, 105, 0.3)',
+                  paddingRight: '1.5rem'
+                }}>
+                  {sceneDataCategories.map((category) => (
+                    <button
+                      key={category.id}
+                      onClick={() => setSelectedSceneCategory(category.id)}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '10px',
+                        padding: '12px 16px',
+                        background: selectedSceneCategory === category.id
+                          ? '#3B82F618'
+                          : 'transparent',
+                        border: selectedSceneCategory === category.id
+                          ? '2px solid #3B82F6'
+                          : '1px solid transparent',
+                        borderRadius: '8px',
+                        color: selectedSceneCategory === category.id
+                          ? '#3B82F6'
+                          : '#CBD5E1',
+                        fontSize: '0.9rem',
+                        fontWeight: selectedSceneCategory === category.id ? 600 : 400,
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                        textAlign: 'left'
+                      }}
+                      onMouseOver={(e) => {
+                        if (selectedSceneCategory !== category.id) {
+                          e.currentTarget.style.background = '#3B82F615'
+                          e.currentTarget.style.borderColor = '#3B82F650'
+                        }
+                      }}
+                      onMouseOut={(e) => {
+                        if (selectedSceneCategory !== category.id) {
+                          e.currentTarget.style.background = 'transparent'
+                          e.currentTarget.style.borderColor = 'transparent'
+                        }
+                      }}
+                    >
+                      <span style={{ fontSize: '1.1rem' }}>{category.icon}</span>
+                      <span>{category.name}</span>
+                    </button>
+                  ))}
                 </div>
-              ))}
+
+                {/* 右侧内容区 */}
+                <div>
+                  {sceneDataCategories.map((category) => (
+                    selectedSceneCategory === category.id && (
+                      <div key={category.id}>
+                        <h4 style={{
+                          fontSize: '1.25rem',
+                          fontWeight: 700,
+                          color: '#F1F5F9',
+                          marginBottom: '0.5rem',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '8px'
+                        }}>
+                          <span style={{ fontSize: '1.3rem' }}>{category.icon}</span>
+                          {category.name}
+                        </h4>
+                        <p style={{
+                          color: '#94A3B8',
+                          fontSize: '0.9rem',
+                          lineHeight: 1.7,
+                          marginBottom: '1.5rem',
+                          paddingBottom: '1.5rem',
+                          borderBottom: '1px solid rgba(71, 85, 105, 0.3)'
+                        }}>
+                          {category.description}
+                        </p>
+
+                        <div style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          gap: '1rem'
+                        }}>
+                          {category.datasets.map((dataset) => (
+                            <div
+                              key={dataset.id}
+                              style={{
+                                background: 'rgba(30, 41, 59, 0.6)',
+                                borderRadius: '10px',
+                                padding: '1.25rem 1.5rem',
+                                borderLeft: '3px solid #3B82F6',
+                                transition: 'all 0.3s ease'
+                              }}
+                              onMouseOver={(e) => {
+                                e.currentTarget.style.background = 'rgba(30, 41, 59, 0.8)'
+                                e.currentTarget.style.transform = 'translateX(4px)'
+                                e.currentTarget.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.15)'
+                              }}
+                              onMouseOut={(e) => {
+                                e.currentTarget.style.background = 'rgba(30, 41, 59, 0.6)'
+                                e.currentTarget.style.transform = 'translateX(0)'
+                                e.currentTarget.style.boxShadow = 'none'
+                              }}
+                            >
+                              <h5 style={{
+                                fontSize: '1rem',
+                                fontWeight: 600,
+                                color: '#F1F5F9',
+                                marginBottom: '0.5rem'
+                              }}>
+                                {dataset.name}
+                              </h5>
+                              <p style={{
+                                color: '#94A3B8',
+                                fontSize: '0.9rem',
+                                lineHeight: 1.6,
+                                margin: 0
+                              }}>
+                                {dataset.description}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         )}
