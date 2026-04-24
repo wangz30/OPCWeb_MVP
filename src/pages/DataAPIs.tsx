@@ -183,19 +183,575 @@ const elementDataCategories = [
   }
 ]
 
-export function DataAPIsPage() {
-  const [selectedCategory, setSelectedCategory] = useState<string>('enterprise')
-  const [expandedElement, setExpandedElement] = useState<boolean>(false)
-
-  const currentCategory = elementDataCategories.find(cat => cat.id === selectedCategory)
-
-  const toggleElementData = () => {
-    setExpandedElement(!expandedElement)
+// 场景数据分类
+const sceneDataCategories = [
+  {
+    id: 'investment-promotion',
+    name: '招商引资',
+    icon: '🎯',
+    description: '提供招商引资全流程数据支撑 API，支持产业匹配分析、目标企业筛选、招商可行性评估、政策匹配等招商决策服务',
+    datasets: [
+      {
+        id: 'industry-match',
+        name: '产业匹配分析',
+        description: '基于区域产业基础与产业链图谱，智能匹配适合引进的目标产业方向'
+      },
+      {
+        id: 'enterprise-filter',
+        name: '目标企业筛选',
+        description: '多维度筛选潜在招商目标企业，支持按规模、行业、创新能力等条件筛选'
+      },
+      {
+        id: 'policy-match',
+        name: '政策匹配推荐',
+        description: '智能匹配适合目标企业的招商优惠政策包，提升招商吸引力'
+      }
+    ]
+  },
+  {
+    id: 'enterprise-stabilization',
+    name: '安商稳商',
+    icon: '🛡️',
+    description: '提供企业服务与风险监控 API，支持企业经营状况跟踪、经营风险预警、需求精准匹配、企业迁出风险预测等安商稳商服务',
+    datasets: [
+      {
+        id: 'business-monitor',
+        name: '经营状况监控',
+        description: '实时跟踪企业经营指标变化，包括营收、用工、投资等核心维度'
+      },
+      {
+        id: 'risk-warning',
+        name: '经营风险预警',
+        description: '基于多维度数据构建风险预警模型，提前识别企业经营风险信号'
+      },
+      {
+        id: 'relocation-predict',
+        name: '迁出风险预测',
+        description: '通过经营数据变化趋势预测企业迁出可能性，辅助精准服务'
+      },
+      {
+        id: 'demand-match',
+        name: '企业需求匹配',
+        description: '精准识别企业融资、用工、技术等需求，智能匹配合适资源'
+      }
+    ]
+  },
+  {
+    id: 'industry-monitoring',
+    name: '产业监测',
+    icon: '📊',
+    description: '提供区域产业发展动态监测与评估 API，支持产业集群竞争力指数分析等产业治理服务',
+    datasets: [
+      {
+        id: 'cluster-index',
+        name: '产业集群竞争力指数',
+        description: '构建产业集群多维度竞争力评价体系，量化集群发展水平'
+      },
+      {
+        id: 'dynamic-monitor',
+        name: '产业发展动态监测',
+        description: '实时监测区域产业规模、结构、效益等关键指标变化趋势'
+      },
+      {
+        id: 'chain-analysis',
+        name: '产业链完整性分析',
+        description: '分析区域产业链各环节完备程度，识别薄弱环节和优势环节'
+      }
+    ]
+  },
+  {
+    id: 'enterprise-portrait',
+    name: '企业画像',
+    icon: '👤',
+    description: '提供多维度企业精准画像 API，支持企业实力评估、信用评级、技术创新能力分析、企业综合评分、发展潜力预测等综合评估服务',
+    datasets: [
+      {
+        id: 'strength-eval',
+        name: '企业实力评估',
+        description: '综合企业规模、营收、资产等指标，量化评估企业综合实力'
+      },
+      {
+        id: 'credit-rating',
+        name: '信用评级',
+        description: '基于多维度数据构建企业信用评级模型，辅助信贷决策'
+      },
+      {
+        id: 'innovation-analysis',
+        name: '技术创新能力分析',
+        description: '从专利、研发、人才等维度评估企业技术创新能力和潜力'
+      },
+      {
+        id: 'potential-predict',
+        name: '发展潜力预测',
+        description: '基于历史数据和行业趋势，预测企业未来发展潜力和成长空间'
+      }
+    ]
   }
+]
+
+// 主题数据分类
+const themeDataCustom = [
+  {
+    id: 'innovative-drugs',
+    name: '创新药',
+    icon: '💊',
+    description: '创新药主题数据集是创新药研发领域打造的深度定制化数据集，深度融合生物医药领域的海量数据与行业分析模型，内容全面覆盖全球及中国的药物研发管线、靶点布局、临床试验进展、审批上市动态等关键信息，为创新药企业研发决策、投资机构项目筛选、产业园区招商定位提供精准的数据支撑和深度洞察',
+    datasets: [
+      {
+        id: 'drug-pipeline',
+        name: '药物研发管线',
+        description: '全球创新药研发管线全景数据，涵盖靶点、适应症、研发阶段等'
+      },
+      {
+        id: 'clinical-trials',
+        name: '临床试验数据',
+        description: '临床试验登记数据、试验结果、不良反应等全维度信息'
+      },
+      {
+        id: 'approval-tracking',
+        name: '审批上市追踪',
+        description: 'NMPA/FDA/EMA 等监管机构审批进度及上市药物信息'
+      }
+    ]
+  },
+  {
+    id: 'industrial-machines',
+    name: '工业母机',
+    icon: '⚙️',
+    description: '工业母机主题数据集是平台面向特定产业深度分析需求提供的定制化高质量数据集，聚焦工业母机及其上下游产业领域，内容涵盖工业母机核心专利技术、企业分布、产业链图谱、市场格局、技术演进路线等关键维度，为工业母机产业规划、技术攻关方向选择、产业链补链强链决策提供数据支撑',
+    datasets: [
+      {
+        id: 'core-patents',
+        name: '核心专利技术',
+        description: '工业母机领域核心专利技术分析，包括数控机床、加工中心等'
+      },
+      {
+        id: 'enterprise-distribution',
+        name: '企业分布图谱',
+        description: '工业母机产业链上下游企业分布及关联关系可视化'
+      },
+      {
+        id: 'market-landscape',
+        name: '市场格局分析',
+        description: '全球及中国工业母机市场规模、竞争格局、技术路线对比'
+      }
+    ]
+  }
+]
+
+const themeDataStrategic = [
+  {
+    id: 'semiconductor',
+    name: '半导体与集成电路',
+    icon: '🔬',
+    description: '涵盖半导体材料、芯片设计、晶圆制造、封装测试等全产业链数据，支持产业分析和投资决策',
+    datasets: []
+  },
+  {
+    id: 'ai',
+    name: '人工智能',
+    icon: '🤖',
+    description: '覆盖 AI 算法、算力、数据要素、应用场景等核心领域，追踪技术演进与产业落地动态',
+    datasets: []
+  },
+  {
+    id: 'energy-environment',
+    name: '安全节能环保',
+    icon: '🌱',
+    description: '聚焦安全生产、环境保护、节能减排等领域，提供产业数据支撑和政策分析服务',
+    datasets: []
+  },
+  {
+    id: 'low-altitude',
+    name: '低空经济与空天',
+    icon: '🚁',
+    description: '覆盖无人机、eVTOL、卫星通信、商业航天等低空与空天产业全链条数据',
+    datasets: []
+  },
+  {
+    id: 'smart-vehicles',
+    name: '智能网联汽车',
+    icon: '🚗',
+    description: '涵盖智能驾驶、车路协同、新能源汽车、智能座舱等智能网联汽车产业数据',
+    datasets: []
+  },
+  {
+    id: 'new-energy',
+    name: '新能源',
+    icon: '⚡',
+    description: '覆盖光伏、风电、储能、氢能等新能源全产业链数据，支持产业趋势分析',
+    datasets: []
+  },
+  {
+    id: 'software-info',
+    name: '软件与信息服务',
+    icon: '💻',
+    description: '聚焦基础软件、工业软件、云计算、大数据等软件与信息技术服务业数据',
+    datasets: []
+  },
+  {
+    id: 'modern-fashion',
+    name: '现代时尚',
+    icon: '👔',
+    description: '涵盖服装、珠宝、钟表、家具等时尚产业的设计、制造、品牌数据',
+    datasets: []
+  },
+  {
+    id: 'robotics',
+    name: '机器人',
+    icon: '🦾',
+    description: '覆盖工业机器人、服务机器人、特种机器人等机器人产业全链条数据',
+    datasets: []
+  },
+  {
+    id: 'network-communication',
+    name: '网络与通信',
+    icon: '📡',
+    description: '覆盖 5G/6G 通信、光通信、卫星互联网等网络与通信产业数据',
+    datasets: []
+  },
+  {
+    id: 'uhd-video',
+    name: '超高清视频显示',
+    icon: '📺',
+    description: '涵盖 4K/8K 超高清视频采集、制作、传输、显示全产业链数据',
+    datasets: []
+  },
+  {
+    id: 'smart-terminal',
+    name: '智能终端',
+    icon: '📱',
+    description: '覆盖智能手机、可穿戴设备、智能家居等智能终端产业数据',
+    datasets: []
+  },
+  {
+    id: 'smart-sensor',
+    name: '智能传感器',
+    icon: '📶',
+    description: '涵盖 MEMS 传感器、光学传感器、生物传感器等智能传感器产业数据',
+    datasets: []
+  },
+  {
+    id: 'high-end-equipment',
+    name: '高端装备与仪器',
+    icon: '🔧',
+    description: '覆盖高端数控机床、科学仪器、检测设备等高端装备与仪器产业数据',
+    datasets: []
+  },
+  {
+    id: 'digital-creative',
+    name: '数字创意',
+    icon: '🎨',
+    description: '涵盖数字内容、数字娱乐、数字艺术等数字创意产业数据',
+    datasets: []
+  },
+  {
+    id: 'high-performance-materials',
+    name: '高性能材料',
+    icon: '🧪',
+    description: '覆盖先进半导体材料、新能源材料、生物医用材料等高性能材料产业数据',
+    datasets: []
+  },
+  {
+    id: 'marine-industry',
+    name: '海洋产业',
+    icon: '🌊',
+    description: '涵盖海洋工程、海洋生物、海洋新能源等海洋产业数据',
+    datasets: []
+  },
+  {
+    id: 'synthetic-biology',
+    name: '合成生物',
+    icon: '🧬',
+    description: '覆盖合成生物学、基因编辑、生物制造等合成生物产业数据',
+    datasets: []
+  },
+  {
+    id: 'optoelectronic-info',
+    name: '光载信息',
+    icon: '💡',
+    description: '涵盖光通信、光存储、光传感、光计算等光载信息产业数据',
+    datasets: []
+  },
+  {
+    id: 'intelligent-robot',
+    name: '智能机器人',
+    icon: '🦿',
+    description: '覆盖人形机器人、协作机器人、特种机器人等智能机器人产业数据',
+    datasets: []
+  },
+  {
+    id: 'cell-gene',
+    name: '细胞与基因',
+    icon: '🧫',
+    description: '涵盖细胞治疗、基因治疗、干细胞等细胞与基因产业数据',
+    datasets: []
+  },
+  {
+    id: 'brain-science',
+    name: '脑科学与脑机工程',
+    icon: '🧠',
+    description: '覆盖脑机接口、脑科学、神经工程等脑科学与脑机工程产业数据',
+    datasets: []
+  },
+  {
+    id: 'deep-sea',
+    name: '深地深海',
+    icon: '⚓',
+    description: '涵盖深海探测、深地资源开发等深地深海产业数据',
+    datasets: []
+  },
+  {
+    id: 'quantum-info',
+    name: '量子信息',
+    icon: '⚛️',
+    description: '覆盖量子计算、量子通信、量子测量等量子信息产业数据',
+    datasets: []
+  },
+  {
+    id: 'advanced-new-materials',
+    name: '前沿新材料',
+    icon: '✨',
+    description: '涵盖石墨烯、超材料、智能材料等前沿新材料产业数据',
+    datasets: []
+  },
+  {
+    id: 'biomedicine',
+    name: '生物医药',
+    icon: '💊',
+    description: '覆盖创新药、生物制药、中药等生物医药产业数据',
+    datasets: []
+  },
+  {
+    id: 'big-health',
+    name: '大健康',
+    icon: '❤️',
+    description: '涵盖健康管理、健康养老、健康保险等大健康产业数据',
+    datasets: []
+  },
+  {
+    id: 'high-end-medical',
+    name: '高端医疗器械',
+    icon: '🏥',
+    description: '覆盖高端影像设备、体外诊断、手术机器人等高端医疗器械产业数据',
+    datasets: []
+  }
+]
+
+type ExpandedSection = 'element' | 'scene' | 'theme' | null
+
+export function DataAPIsPage() {
+  const [selectedElementCategory, setSelectedElementCategory] = useState<string>('enterprise')
+  const [expandedSection, setExpandedSection] = useState<ExpandedSection>(null)
+
+  const currentElementCategory = elementDataCategories.find(cat => cat.id === selectedElementCategory)
+
+  const toggleSection = (section: ExpandedSection) => {
+    setExpandedSection(prev => prev === section ? null : section)
+  }
+
+  const DetailSection = ({ title, icon, color, gradient, categories, selectedCategory, setSelectedCategory }: {
+    title: string
+    icon: string
+    color: string
+    gradient: string
+    categories: typeof elementDataCategories
+    selectedCategory: string
+    setSelectedCategory: (id: string) => void
+  }) => {
+    const currentCat = categories.find(cat => cat.id === selectedCategory)
+
+    return (
+      <div style={{
+        marginTop: '3rem',
+        paddingTop: '3rem',
+        borderTop: `1px solid ${color}`,
+        animation: 'fadeIn 0.3s ease'
+      }}>
+        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <h2 style={{
+            fontSize: '2rem',
+            fontWeight: 700,
+            color: color,
+            marginBottom: '0.5rem'
+          }}>
+            <span style={{ marginRight: '8px' }}>{icon}</span>
+            {title}
+          </h2>
+        </div>
+
+        <div style={{
+          background: 'rgba(15, 23, 42, 0.5)',
+          borderRadius: '16px',
+          padding: '2rem',
+          border: `1px solid ${color}33`
+        }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '220px 1fr',
+            gap: '2rem'
+          }}>
+            {/* 左侧边栏 */}
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.5rem',
+              borderRight: '1px solid rgba(71, 85, 105, 0.3)',
+              paddingRight: '1.5rem'
+            }}>
+              {categories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => setSelectedCategory(category.id)}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    padding: '12px 16px',
+                    background: selectedCategory === category.id
+                      ? `${color}18`
+                      : 'transparent',
+                    border: selectedCategory === category.id
+                      ? `2px solid ${color}`
+                      : '1px solid transparent',
+                    borderRadius: '8px',
+                    color: selectedCategory === category.id
+                      ? color
+                      : '#CBD5E1',
+                    fontSize: '0.9rem',
+                    fontWeight: selectedCategory === category.id ? 600 : 400,
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                    textAlign: 'left'
+                  }}
+                  onMouseOver={(e) => {
+                    if (selectedCategory !== category.id) {
+                      e.currentTarget.style.background = `${color}15`
+                      e.currentTarget.style.borderColor = `${color}50`
+                    }
+                  }}
+                  onMouseOut={(e) => {
+                    if (selectedCategory !== category.id) {
+                      e.currentTarget.style.background = 'transparent'
+                      e.currentTarget.style.borderColor = 'transparent'
+                    }
+                  }}
+                >
+                  <span style={{ fontSize: '1.1rem' }}>{category.icon}</span>
+                  <span>{category.name}</span>
+                </button>
+              ))}
+            </div>
+
+            {/* 右侧内容区 */}
+            <div>
+              {currentCat && (
+                <>
+                  <h4 style={{
+                    fontSize: '1.25rem',
+                    fontWeight: 700,
+                    color: '#F1F5F9',
+                    marginBottom: '0.5rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px'
+                  }}>
+                    <span style={{ fontSize: '1.3rem' }}>{currentCat.icon}</span>
+                    {currentCat.name}
+                  </h4>
+                  <p style={{
+                    color: '#94A3B8',
+                    fontSize: '0.9rem',
+                    lineHeight: 1.7,
+                    marginBottom: '1.5rem',
+                    paddingBottom: '1.5rem',
+                    borderBottom: '1px solid rgba(71, 85, 105, 0.3)'
+                  }}>
+                    {currentCat.description}
+                  </p>
+
+                  {currentCat.datasets.length > 0 ? (
+                    <>
+                      <h5 style={{
+                        fontSize: '1rem',
+                        fontWeight: 600,
+                        color: '#F1F5F9',
+                        marginBottom: '1rem'
+                      }}>
+                        数据集清单
+                      </h5>
+                      <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                        gap: '1rem'
+                      }}>
+                        {currentCat.datasets.map((dataset) => (
+                          <div
+                            key={dataset.id}
+                            style={{
+                              background: 'rgba(30, 41, 59, 0.6)',
+                              border: '1px solid rgba(71, 85, 105, 0.4)',
+                              borderRadius: '10px',
+                              padding: '1.25rem',
+                              cursor: 'pointer',
+                              transition: 'all 0.2s ease'
+                            }}
+                            onMouseOver={(e) => {
+                              e.currentTarget.style.borderColor = `${color}80`
+                              e.currentTarget.style.background = 'rgba(30, 41, 59, 0.8)'
+                              e.currentTarget.style.transform = 'translateY(-2px)'
+                            }}
+                            onMouseOut={(e) => {
+                              e.currentTarget.style.borderColor = 'rgba(71, 85, 105, 0.4)'
+                              e.currentTarget.style.background = 'rgba(30, 41, 59, 0.6)'
+                              e.currentTarget.style.transform = 'translateY(0)'
+                            }}
+                          >
+                            <h6 style={{
+                              fontSize: '0.95rem',
+                              fontWeight: 600,
+                              color: '#F1F5F9',
+                              marginBottom: '0.5rem'
+                            }}>
+                              {dataset.name}
+                            </h6>
+                            <p style={{
+                              color: '#64748B',
+                              fontSize: '0.8rem',
+                              lineHeight: 1.5
+                            }}>
+                              {dataset.description}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </>
+                  ) : (
+                    <div style={{
+                      background: `${color}15`,
+                      border: `1px dashed ${color}50`,
+                      borderRadius: '10px',
+                      padding: '2rem',
+                      textAlign: 'center'
+                    }}>
+                      <p style={{ color: '#94A3B8', fontSize: '0.9rem' }}>
+                        数据集清单即将推出，敬请期待...
+                      </p>
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <div style={{ 
-      background: 'linear-gradient(135deg, #0F1729 0%, #1E293B 50%, #0F1729 100%)', 
-      minHeight: '100vh', 
+    <div style={{
+      background: 'linear-gradient(135deg, #0F1729 0%, #1E293B 50%, #0F1729 100%)',
+      minHeight: '100vh',
       paddingBottom: '4rem'
     }}>
       {/* 顶部 Banner */}
@@ -206,18 +762,16 @@ export function DataAPIsPage() {
         padding: '5rem 2rem',
         textAlign: 'center'
       }}>
-        {/* 蓝紫色渐变遮罩层 */}
         <div style={{
           position: 'absolute',
           inset: 0,
           background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.5) 0%, rgba(108, 99, 255, 0.4) 100%)',
         }} />
-        
-        {/* 内容 */}
+
         <div style={{ position: 'relative', maxWidth: '1200px', margin: '0 auto' }}>
-          <h1 style={{ 
-            fontSize: '3rem', 
-            fontWeight: 800, 
+          <h1 style={{
+            fontSize: '3rem',
+            fontWeight: 800,
             color: '#FFFFFF',
             marginBottom: '1rem',
             letterSpacing: '2px',
@@ -225,8 +779,8 @@ export function DataAPIsPage() {
           }}>
             数据 API 服务
           </h1>
-          <p style={{ 
-            fontSize: '1.25rem', 
+          <p style={{
+            fontSize: '1.25rem',
             color: '#E2E8F0',
             marginBottom: '2.5rem',
             fontWeight: 300,
@@ -234,10 +788,9 @@ export function DataAPIsPage() {
           }}>
             国家级数据接口，海量数据支撑，赋能 AI 应用开发
           </p>
-          
-          {/* 介绍卡片 */}
-          <div style={{ 
-            maxWidth: '750px', 
+
+          <div style={{
+            maxWidth: '750px',
             margin: '0 auto',
             padding: '2rem 2.5rem',
             background: 'linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9))',
@@ -245,14 +798,14 @@ export function DataAPIsPage() {
             border: '1px solid rgba(108, 99, 255, 0.3)',
             boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
           }}>
-            <p style={{ 
-              fontSize: '1.05rem', 
+            <p style={{
+              fontSize: '1.05rem',
               color: '#CBD5E1',
               lineHeight: 1.9,
               margin: 0,
               letterSpacing: '0.5px'
             }}>
-              为AI OPC创业者提供国家级产业数据接口，快速获取知识产权、政策融资等关键要素信息,
+              为 AI OPC 创业者提供国家级产业数据接口，快速获取知识产权、政策融资等关键要素信息，
               以精准数据洞察辅助决策，降低开发门槛，加速应用落地进程。
             </p>
           </div>
@@ -262,34 +815,34 @@ export function DataAPIsPage() {
       {/* 核心数据服务 */}
       <section style={{ padding: '4rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <h2 style={{ 
-            fontSize: '2rem', 
-            fontWeight: 700, 
+          <h2 style={{
+            fontSize: '2rem',
+            fontWeight: 700,
             color: '#F1F5F9',
             marginBottom: '0.5rem'
           }}>
             核心数据服务
           </h2>
-          <div style={{ 
-            width: '80px', 
-            height: '3px', 
+          <div style={{
+            width: '80px',
+            height: '3px',
             background: 'linear-gradient(90deg, #6C63FF, #8A84FF)',
             margin: '0 auto'
           }} />
         </div>
-        
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
           gap: '2rem',
-          marginBottom: expandedElement ? '0' : '2rem'
+          marginBottom: expandedSection ? '0' : '2rem'
         }}>
           {/* 要素数据 */}
-          <div 
-            onClick={toggleElementData}
-            style={{ 
+          <div
+            onClick={() => toggleSection('element')}
+            style={{
               background: 'rgba(30, 41, 59, 0.8)',
-              border: expandedElement ? '2px solid #6C63FF' : '1px solid rgba(71, 85, 105, 0.5)',
+              border: expandedSection === 'element' ? '2px solid #6C63FF' : '1px solid rgba(71, 85, 105, 0.5)',
               borderRadius: '16px',
               padding: '2.5rem',
               transition: 'all 0.3s ease',
@@ -298,23 +851,23 @@ export function DataAPIsPage() {
               overflow: 'hidden'
             }}
             onMouseOver={(e) => {
-              if (!expandedElement) {
+              if (expandedSection !== 'element') {
                 e.currentTarget.style.transform = 'translateY(-8px)'
                 e.currentTarget.style.borderColor = 'rgba(108, 99, 255, 0.5)'
                 e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.3)'
               }
             }}
             onMouseOut={(e) => {
-              if (!expandedElement) {
+              if (expandedSection !== 'element') {
                 e.currentTarget.style.transform = 'translateY(0)'
                 e.currentTarget.style.borderColor = 'rgba(71, 85, 105, 0.5)'
                 e.currentTarget.style.boxShadow = 'none'
               }
             }}
           >
-            <div style={{ 
-              width: '56px', 
-              height: '56px', 
+            <div style={{
+              width: '56px',
+              height: '56px',
               background: 'linear-gradient(135deg, #6C63FF, #8A84FF)',
               borderRadius: '12px',
               display: 'flex',
@@ -323,26 +876,25 @@ export function DataAPIsPage() {
               marginBottom: '1.5rem'
             }}>
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
               </svg>
             </div>
-            <h3 style={{ 
-              fontSize: '1.25rem', 
-              fontWeight: 700, 
+            <h3 style={{
+              fontSize: '1.25rem',
+              fontWeight: 700,
               color: '#F1F5F9',
               marginBottom: '1rem'
             }}>
               要素数据
             </h3>
-            <p style={{ 
-              color: '#94A3B8', 
-              fontSize: '0.95rem', 
+            <p style={{
+              color: '#94A3B8',
+              fontSize: '0.95rem',
               lineHeight: 1.8,
               margin: 0
             }}>
               涵盖产业发展所需的核心要素信息 API 服务，包括知识产权、市场主体、政策法规、投融资等关键领域，为产业分析、决策支持提供数据支撑。
             </p>
-            {/* 底部横杠 */}
             <div style={{
               position: 'absolute',
               bottom: 0,
@@ -350,33 +902,42 @@ export function DataAPIsPage() {
               right: 0,
               height: '4px',
               background: 'linear-gradient(90deg, #6C63FF, #8A84FF)',
-              transform: expandedElement ? 'scaleX(1)' : 'scaleX(0)',
+              transform: expandedSection === 'element' ? 'scaleX(1)' : 'scaleX(0)',
               transition: 'transform 0.3s ease'
             }} />
           </div>
 
           {/* 场景数据 */}
-          <div style={{ 
-            background: 'rgba(30, 41, 59, 0.8)',
-            border: '1px solid rgba(71, 85, 105, 0.5)',
-            borderRadius: '16px',
-            padding: '2.5rem',
-            transition: 'all 0.3s ease',
-            cursor: 'pointer'
-          }}
-          onMouseOver={(e) => {
-            e.currentTarget.style.transform = 'translateY(-8px)'
-            e.currentTarget.style.borderColor = 'rgba(108, 99, 255, 0.5)'
-            e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.3)'
-          }}
-          onMouseOut={(e) => {
-            e.currentTarget.style.transform = 'translateY(0)'
-            e.currentTarget.style.borderColor = 'rgba(71, 85, 105, 0.5)'
-            e.currentTarget.style.boxShadow = 'none'
-          }}>
-            <div style={{ 
-              width: '56px', 
-              height: '56px', 
+          <div
+            onClick={() => toggleSection('scene')}
+            style={{
+              background: 'rgba(30, 41, 59, 0.8)',
+              border: expandedSection === 'scene' ? '2px solid #3B82F6' : '1px solid rgba(71, 85, 105, 0.5)',
+              borderRadius: '16px',
+              padding: '2.5rem',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer',
+              position: 'relative',
+              overflow: 'hidden'
+            }}
+            onMouseOver={(e) => {
+              if (expandedSection !== 'scene') {
+                e.currentTarget.style.transform = 'translateY(-8px)'
+                e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.5)'
+                e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.3)'
+              }
+            }}
+            onMouseOut={(e) => {
+              if (expandedSection !== 'scene') {
+                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.borderColor = 'rgba(71, 85, 105, 0.5)'
+                e.currentTarget.style.boxShadow = 'none'
+              }
+            }}
+          >
+            <div style={{
+              width: '56px',
+              height: '56px',
               background: 'linear-gradient(135deg, #3B82F6, #2563EB)',
               borderRadius: '12px',
               display: 'flex',
@@ -385,52 +946,71 @@ export function DataAPIsPage() {
               marginBottom: '1.5rem'
             }}>
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                <rect x="3" y="3" width="7" height="7"/>
-                <rect x="14" y="3" width="7" height="7"/>
-                <rect x="14" y="14" width="7" height="7"/>
-                <rect x="3" y="14" width="7" height="7"/>
+                <rect x="3" y="3" width="7" height="7" />
+                <rect x="14" y="3" width="7" height="7" />
+                <rect x="14" y="14" width="7" height="7" />
+                <rect x="3" y="14" width="7" height="7" />
               </svg>
             </div>
-            <h3 style={{ 
-              fontSize: '1.25rem', 
-              fontWeight: 700, 
+            <h3 style={{
+              fontSize: '1.25rem',
+              fontWeight: 700,
               color: '#F1F5F9',
               marginBottom: '1rem'
             }}>
-              场景数据（敬请期待）
+              场景数据
             </h3>
-            <p style={{ 
-              color: '#94A3B8', 
-              fontSize: '0.95rem', 
+            <p style={{
+              color: '#94A3B8',
+              fontSize: '0.95rem',
               lineHeight: 1.8,
               margin: 0
             }}>
               提供面向具体业务场景的综合数据服务 API，支持招商引资、企业服务、产业治理等各类应用场景的深度数据融合与智能分析。
             </p>
+            <div style={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: '4px',
+              background: 'linear-gradient(90deg, #3B82F6, #2563EB)',
+              transform: expandedSection === 'scene' ? 'scaleX(1)' : 'scaleX(0)',
+              transition: 'transform 0.3s ease'
+            }} />
           </div>
 
           {/* 主题数据 */}
-          <div style={{ 
-            background: 'rgba(30, 41, 59, 0.8)',
-            border: '1px solid rgba(71, 85, 105, 0.5)',
-            borderRadius: '16px',
-            padding: '2.5rem',
-            transition: 'all 0.3s ease',
-            cursor: 'pointer'
-          }}
-          onMouseOver={(e) => {
-            e.currentTarget.style.transform = 'translateY(-8px)'
-            e.currentTarget.style.borderColor = 'rgba(108, 99, 255, 0.5)'
-            e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.3)'
-          }}
-          onMouseOut={(e) => {
-            e.currentTarget.style.transform = 'translateY(0)'
-            e.currentTarget.style.borderColor = 'rgba(71, 85, 105, 0.5)'
-            e.currentTarget.style.boxShadow = 'none'
-          }}>
-            <div style={{ 
-              width: '56px', 
-              height: '56px', 
+          <div
+            onClick={() => toggleSection('theme')}
+            style={{
+              background: 'rgba(30, 41, 59, 0.8)',
+              border: expandedSection === 'theme' ? '2px solid #10B981' : '1px solid rgba(71, 85, 105, 0.5)',
+              borderRadius: '16px',
+              padding: '2.5rem',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer',
+              position: 'relative',
+              overflow: 'hidden'
+            }}
+            onMouseOver={(e) => {
+              if (expandedSection !== 'theme') {
+                e.currentTarget.style.transform = 'translateY(-8px)'
+                e.currentTarget.style.borderColor = 'rgba(16, 185, 129, 0.5)'
+                e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.3)'
+              }
+            }}
+            onMouseOut={(e) => {
+              if (expandedSection !== 'theme') {
+                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.borderColor = 'rgba(71, 85, 105, 0.5)'
+                e.currentTarget.style.boxShadow = 'none'
+              }
+            }}
+          >
+            <div style={{
+              width: '56px',
+              height: '56px',
               background: 'linear-gradient(135deg, #10B981, #059669)',
               borderRadius: '12px',
               display: 'flex',
@@ -439,214 +1019,259 @@ export function DataAPIsPage() {
               marginBottom: '1.5rem'
             }}>
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                <circle cx="12" cy="12" r="3"/>
-                <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1m15.5-6.5l-4.5 4.5m-4 4L7.5 16.5m9 0l-4.5-4.5m-4 4L3.5 7.5"/>
+                <circle cx="12" cy="12" r="3" />
+                <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1m15.5-6.5l-4.5 4.5m-4 4L7.5 16.5m9 0l-4.5-4.5m-4 4L3.5 7.5" />
               </svg>
             </div>
-            <h3 style={{ 
-              fontSize: '1.25rem', 
-              fontWeight: 700, 
+            <h3 style={{
+              fontSize: '1.25rem',
+              fontWeight: 700,
               color: '#F1F5F9',
               marginBottom: '1rem'
             }}>
-              主题数据（敬请期待）
+              主题数据
             </h3>
-            <p style={{ 
-              color: '#94A3B8', 
-              fontSize: '0.95rem', 
+            <p style={{
+              color: '#94A3B8',
+              fontSize: '0.95rem',
               lineHeight: 1.8,
               margin: 0
             }}>
               围绕战略性新兴产业集群和未来产业产业链与特定领域策划的深度专题包，如人工智能、半导体与集成电路、生物医药等。
             </p>
+            <div style={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: '4px',
+              background: 'linear-gradient(90deg, #10B981, #059669)',
+              transform: expandedSection === 'theme' ? 'scaleX(1)' : 'scaleX(0)',
+              transition: 'transform 0.3s ease'
+            }} />
           </div>
         </div>
 
         {/* 要素数据详细内容区 */}
-        {expandedElement && (
+        {expandedSection === 'element' && (
+          <DetailSection
+            title="要素数据"
+            icon="📊"
+            color="#6C63FF"
+            gradient="linear-gradient(135deg, #6C63FF, #8A84FF)"
+            categories={elementDataCategories}
+            selectedCategory={selectedElementCategory}
+            setSelectedCategory={setSelectedElementCategory}
+          />
+        )}
+
+        {/* 场景数据详细内容区 */}
+        {expandedSection === 'scene' && (
           <div style={{
             marginTop: '3rem',
             paddingTop: '3rem',
-            borderTop: '1px solid rgba(108, 99, 255, 0.3)',
+            borderTop: '1px solid #3B82F6',
             animation: 'fadeIn 0.3s ease'
           }}>
-            <div style={{ 
-              textAlign: 'center', 
-              marginBottom: '2rem'
-            }}>
-              <h2 style={{ 
-                fontSize: '2rem', 
-                fontWeight: 700, 
-                color: '#6C63FF',
+            <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+              <h2 style={{
+                fontSize: '2rem',
+                fontWeight: 700,
+                color: '#3B82F6',
                 marginBottom: '0.5rem'
               }}>
-                要素数据
+                <span style={{ marginRight: '8px' }}>🎯</span>
+                场景数据
               </h2>
             </div>
 
-            {/* 交互式界面 */}
-            <div style={{ 
-              background: 'rgba(15, 23, 42, 0.5)',
-              borderRadius: '16px',
-              padding: '2rem',
-              border: '1px solid rgba(108, 99, 255, 0.2)'
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, 1fr)',
+              gap: '1.5rem'
             }}>
-              <div style={{ 
-                display: 'grid', 
-                gridTemplateColumns: '220px 1fr', 
-                gap: '2rem'
+              {sceneDataCategories.map((category) => (
+                <div
+                  key={category.id}
+                  style={{
+                    background: 'rgba(30, 41, 59, 0.8)',
+                    border: '1px solid rgba(59, 130, 246, 0.2)',
+                    borderRadius: '12px',
+                    padding: '1.5rem',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.5)'
+                    e.currentTarget.style.transform = 'translateY(-4px)'
+                    e.currentTarget.style.boxShadow = '0 8px 24px rgba(59, 130, 246, 0.15)'
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.2)'
+                    e.currentTarget.style.transform = 'translateY(0)'
+                    e.currentTarget.style.boxShadow = 'none'
+                  }}
+                >
+                  <h4 style={{
+                    fontSize: '1.05rem',
+                    fontWeight: 600,
+                    color: '#3B82F6',
+                    marginBottom: '0.75rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px'
+                  }}>
+                    <span>{category.icon}</span>
+                    {category.name}
+                  </h4>
+                  <p style={{
+                    color: '#94A3B8',
+                    fontSize: '0.85rem',
+                    lineHeight: 1.7,
+                    margin: 0
+                  }}>
+                    {category.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* 主题数据详细内容区 */}
+        {expandedSection === 'theme' && (
+          <div style={{
+            marginTop: '3rem',
+            paddingTop: '3rem',
+            borderTop: '1px solid #10B981',
+            animation: 'fadeIn 0.3s ease'
+          }}>
+            <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+              <h2 style={{
+                fontSize: '2rem',
+                fontWeight: 700,
+                color: '#10B981',
+                marginBottom: '0.5rem'
               }}>
-                {/* 左侧边栏 */}
-                <div style={{ 
-                  display: 'flex', 
-                  flexDirection: 'column', 
-                  gap: '0.5rem',
-                  borderRight: '1px solid rgba(71, 85, 105, 0.3)',
-                  paddingRight: '1.5rem'
-                }}>
-                  {elementDataCategories.map((category) => (
-                    <button
-                      key={category.id}
-                      onClick={() => setSelectedCategory(category.id)}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '10px',
-                        padding: '12px 16px',
-                        background: selectedCategory === category.id 
-                          ? 'rgba(108, 99, 255, 0.15)' 
-                          : 'transparent',
-                        border: selectedCategory === category.id 
-                          ? '2px solid #6C63FF' 
-                          : '1px solid transparent',
-                        borderRadius: '8px',
-                        color: selectedCategory === category.id 
-                          ? '#A5B4FC' 
-                          : '#CBD5E1',
-                        fontSize: '0.9rem',
-                        fontWeight: selectedCategory === category.id ? 600 : 400,
-                        cursor: 'pointer',
-                        transition: 'all 0.2s ease',
-                        textAlign: 'left'
-                      }}
-                      onMouseOver={(e) => {
-                        if (selectedCategory !== category.id) {
-                          e.currentTarget.style.background = 'rgba(108, 99, 255, 0.1)'
-                          e.currentTarget.style.borderColor = 'rgba(108, 99, 255, 0.3)'
-                        }
-                      }}
-                      onMouseOut={(e) => {
-                        if (selectedCategory !== category.id) {
-                          e.currentTarget.style.background = 'transparent'
-                          e.currentTarget.style.borderColor = 'transparent'
-                        }
-                      }}
-                    >
-                      <span style={{ fontSize: '1.1rem' }}>{category.icon}</span>
-                      <span>{category.name}</span>
-                    </button>
-                  ))}
-                </div>
+                <span style={{ marginRight: '8px' }}>🌐</span>
+                主题数据
+              </h2>
+            </div>
 
-                {/* 右侧内容区 */}
-                <div>
-                  {currentCategory && (
-                    <>
-                      <h4 style={{ 
-                        fontSize: '1.25rem', 
-                        fontWeight: 700, 
-                        color: '#F1F5F9',
-                        marginBottom: '0.5rem',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '8px'
-                      }}>
-                        <span style={{ fontSize: '1.3rem' }}>{currentCategory.icon}</span>
-                        {currentCategory.name}
-                      </h4>
-                      <p style={{ 
-                        color: '#94A3B8', 
-                        fontSize: '0.9rem', 
-                        lineHeight: 1.7,
-                        marginBottom: '1.5rem',
-                        paddingBottom: '1.5rem',
-                        borderBottom: '1px solid rgba(71, 85, 105, 0.3)'
-                      }}>
-                        {currentCategory.description}
-                      </p>
+            {/* 定制化高质量数据集 */}
+            <div style={{ marginBottom: '2.5rem' }}>
+              <h3 style={{
+                fontSize: '1.3rem',
+                fontWeight: 600,
+                color: '#A78BFA',
+                marginBottom: '1.5rem',
+                paddingLeft: '1rem',
+                borderLeft: '4px solid #A78BFA'
+              }}>
+                定制化高质量数据集
+              </h3>
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                gap: '1.5rem'
+              }}>
+                {themeDataCustom.map((item) => (
+                  <div
+                    key={item.id}
+                    style={{
+                      background: 'rgba(30, 41, 59, 0.8)',
+                      border: '1px solid rgba(167, 139, 250, 0.3)',
+                      borderRadius: '12px',
+                      padding: '1.5rem',
+                      transition: 'all 0.3s ease',
+                      cursor: 'pointer'
+                    }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.borderColor = 'rgba(167, 139, 250, 0.6)'
+                      e.currentTarget.style.transform = 'translateY(-4px)'
+                      e.currentTarget.style.boxShadow = '0 8px 24px rgba(167, 139, 250, 0.2)'
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.borderColor = 'rgba(167, 139, 250, 0.3)'
+                      e.currentTarget.style.transform = 'translateY(0)'
+                      e.currentTarget.style.boxShadow = 'none'
+                    }}
+                  >
+                    <h4 style={{
+                      fontSize: '1.05rem',
+                      fontWeight: 600,
+                      color: '#F1F5F9',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px'
+                    }}>
+                      <span>{item.icon}</span>
+                      {item.name}
+                    </h4>
+                    <p style={{
+                      color: '#94A3B8',
+                      fontSize: '0.85rem',
+                      lineHeight: 1.7
+                    }}>
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
 
-                      {currentCategory.datasets.length > 0 ? (
-                        <>
-                          <h5 style={{ 
-                            fontSize: '1rem', 
-                            fontWeight: 600, 
-                            color: '#F1F5F9',
-                            marginBottom: '1rem'
-                          }}>
-                            数据集清单
-                          </h5>
-                          <div style={{ 
-                            display: 'grid', 
-                            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
-                            gap: '1rem'
-                          }}>
-                            {currentCategory.datasets.map((dataset) => (
-                              <div
-                                key={dataset.id}
-                                style={{
-                                  background: 'rgba(30, 41, 59, 0.6)',
-                                  border: '1px solid rgba(71, 85, 105, 0.4)',
-                                  borderRadius: '10px',
-                                  padding: '1.25rem',
-                                  cursor: 'pointer',
-                                  transition: 'all 0.2s ease'
-                                }}
-                                onMouseOver={(e) => {
-                                  e.currentTarget.style.borderColor = 'rgba(108, 99, 255, 0.5)'
-                                  e.currentTarget.style.background = 'rgba(30, 41, 59, 0.8)'
-                                  e.currentTarget.style.transform = 'translateY(-2px)'
-                                }}
-                                onMouseOut={(e) => {
-                                  e.currentTarget.style.borderColor = 'rgba(71, 85, 105, 0.4)'
-                                  e.currentTarget.style.background = 'rgba(30, 41, 59, 0.6)'
-                                  e.currentTarget.style.transform = 'translateY(0)'
-                                }}
-                              >
-                                <h6 style={{ 
-                                  fontSize: '0.95rem', 
-                                  fontWeight: 600, 
-                                  color: '#F1F5F9',
-                                  marginBottom: '0.5rem'
-                                }}>
-                                  {dataset.name}
-                                </h6>
-                                <p style={{ 
-                                  color: '#64748B', 
-                                  fontSize: '0.8rem', 
-                                  lineHeight: 1.5
-                                }}>
-                                  {dataset.description}
-                                </p>
-                              </div>
-                            ))}
-                          </div>
-                        </>
-                      ) : (
-                        <div style={{
-                          background: 'rgba(108, 99, 255, 0.1)',
-                          border: '1px dashed rgba(108, 99, 255, 0.3)',
-                          borderRadius: '10px',
-                          padding: '2rem',
-                          textAlign: 'center'
-                        }}>
-                          <p style={{ color: '#94A3B8', fontSize: '0.9rem' }}>
-                            数据集清单即将推出，敬请期待...
-                          </p>
-                        </div>
-                      )}
-                    </>
-                  )}
-                </div>
+            {/* 战略性新兴产业集群和未来产业高质量数据集 */}
+            <div>
+              <h3 style={{
+                fontSize: '1.3rem',
+                fontWeight: 600,
+                color: '#10B981',
+                marginBottom: '1.5rem',
+                paddingLeft: '1rem',
+                borderLeft: '4px solid #10B981'
+              }}>
+                战略性新兴产业集群和未来产业高质量数据集
+              </h3>
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(5, 1fr)',
+                gap: '1rem'
+              }}>
+                {themeDataStrategic.map((item) => (
+                  <div
+                    key={item.id}
+                    style={{
+                      background: 'rgba(30, 41, 59, 0.6)',
+                      border: '1px solid rgba(71, 85, 105, 0.4)',
+                      borderRadius: '10px',
+                      padding: '0.8rem 1rem',
+                      transition: 'all 0.3s ease',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px'
+                    }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.borderColor = 'rgba(108, 99, 255, 0.5)'
+                      e.currentTarget.style.background = 'rgba(30, 41, 59, 0.8)'
+                      e.currentTarget.style.transform = 'translateY(-2px)'
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.borderColor = 'rgba(71, 85, 105, 0.4)'
+                      e.currentTarget.style.background = 'rgba(30, 41, 59, 0.6)'
+                      e.currentTarget.style.transform = 'translateY(0)'
+                    }}
+                  >
+                    <span style={{ fontSize: '1rem' }}>{item.icon}</span>
+                    <span style={{
+                      color: '#CBD5E1',
+                      fontSize: '0.85rem',
+                      fontWeight: 500
+                    }}>
+                      {item.name}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -655,7 +1280,7 @@ export function DataAPIsPage() {
 
       {/* 立即申请按钮 */}
       <section style={{ textAlign: 'center', padding: '2rem' }}>
-        <a 
+        <a
           href="https://ucn19uuu5wk8.feishu.cn/share/base/form/shrcnxTEftyaGTXZmW8RXqnyv0f"
           target="_blank"
           rel="noopener noreferrer"
@@ -676,20 +1301,33 @@ export function DataAPIsPage() {
             transition: 'all 0.3s ease',
             boxShadow: '0 8px 30px rgba(255, 101, 132, 0.4)'
           }}
-          onMouseOver={(e) => {
-            e.currentTarget.style.transform = 'translateY(-4px)'
-            e.currentTarget.style.boxShadow = '0 12px 40px rgba(255, 101, 132, 0.5)'
-          }}
-          onMouseOut={(e) => {
-            e.currentTarget.style.transform = 'translateY(0)'
-            e.currentTarget.style.boxShadow = '0 8px 30px rgba(255, 101, 132, 0.4)'
-          }}>
-            已入驻？申请数据API支持 <ArrowRight style={{ width: '20px', height: '20px' }} />
+            onMouseOver={(e) => {
+              e.currentTarget.style.transform = 'translateY(-4px)'
+              e.currentTarget.style.boxShadow = '0 12px 40px rgba(255, 101, 132, 0.5)'
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = '0 8px 30px rgba(255, 101, 132, 0.4)'
+            }}>
+            已入驻？申请数据 API 支持 <ArrowRight style={{ width: '20px', height: '20px' }} />
           </button>
         </a>
       </section>
 
       <Footer />
+
+      <style>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </div>
   )
 }

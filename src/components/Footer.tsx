@@ -121,7 +121,7 @@ export function Footer() {
         <h4 style={{ color: '#F1F5F9', marginBottom: '1rem', fontSize: '1.1rem', fontWeight: 600 }}>
           📞 服务支持
         </h4>
-        <p style={{ color: '#CBD5E1', fontSize: '0.9rem', marginBottom: '0.5rem', lineHeight: 1.6 }}>
+        <p style={{ color: '#CBD5E1', fontSize: '0.9rem', marginBottom: '1.2rem', lineHeight: 1.6 }}>
           工作时间：<br />
           周一至周五 9:00 - 18:00
         </p>
