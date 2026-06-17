@@ -33,7 +33,7 @@ export function Logo({ size = 'md', showText = true, variant = 'dark' }: LogoPro
             className={`${currentSize.text} font-bold tracking-tight ${variant === 'light' ? 'text-white' : 'text-gray-900'}`}
             style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}
           >
-            云上 OPC 社区
+            云上AI OPC 社区
           </span>
         </div>
       )}

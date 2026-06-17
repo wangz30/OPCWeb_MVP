@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { Navigation } from './components/Navigation'
 import { FloatingFeedback } from './components/FloatingFeedback'
 import { HomePage } from './pages/Home'
@@ -11,9 +11,9 @@ import { PolicyPage } from './pages/Policy'
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <AppContent />
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 

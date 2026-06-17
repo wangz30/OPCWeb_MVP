@@ -101,7 +101,7 @@ export function Footer() {
     <>
       <div>
         <h4 style={{ color: '#F1F5F9', marginBottom: '1rem', fontSize: '1rem', fontWeight: 600 }}>
-          云上 OPC 社区
+          云上AI OPC 社区
         </h4>
         <p style={{ color: '#CBD5E1', fontSize: '0.9rem', marginBottom: '0.3rem', lineHeight: '1.6' }}>
           AI 驱动的一人公司创业平台
@@ -113,7 +113,7 @@ export function Footer() {
           粤港澳大湾区大数据中心
         </p>
         <p style={{ color: '#94A3B8', fontSize: '0.9rem' }}>
-          © 2026 云上 OPC 社区 版权所有
+          © 深圳国家高技术产业创新中心（粤港澳大湾区大数据中心项目组）版权所有
         </p>
       </div>
 
@@ -313,7 +313,7 @@ export function Footer() {
         paddingTop: '1rem',
         marginTop: '0.5rem'
       }}>
-        <AccordionHeader title="云上 OPC 社区" icon="🏢" section="brand" />
+        <AccordionHeader title="云上AI OPC 社区" icon="🏢" section="brand" />
         <AccordionContent section="brand">
           <p style={{ color: '#CBD5E1', fontSize: '0.85rem', marginBottom: '0.3rem', lineHeight: '1.6' }}>
             AI 驱动的一人公司创业平台
@@ -325,7 +325,7 @@ export function Footer() {
             粤港澳大湾区大数据中心
           </p>
           <p style={{ color: '#94A3B8', fontSize: '0.8rem' }}>
-            © 2026 云上 OPC 社区 版权所有
+            © 深圳国家高技术产业创新中心（粤港澳大湾区大数据中心项目组）版权所有
           </p>
         </AccordionContent>
       </div>

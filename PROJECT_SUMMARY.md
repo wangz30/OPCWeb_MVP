@@ -8,7 +8,7 @@
 ## 📋 **一、项目概况**
 
 ### **1.1 项目信息**
-- **项目名称**：opc-cloud-community（云上 OPC 社区）
+- **项目名称**：opc-cloud-community（云上AI OPC 社区）
 - **技术栈**：React 19 + TypeScript + Vite 8 + Tailwind CSS
 - **项目类型**：静态单页应用（SPA）
 - **部署方式**：静态网站托管

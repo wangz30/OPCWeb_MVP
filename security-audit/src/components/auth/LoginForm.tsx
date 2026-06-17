@@ -179,7 +179,7 @@ export function LoginForm({ onLogin, onRegister }: LoginFormProps) {
           </div>
 
           <div className="mt-6 text-center text-sm text-gray-500">
-            <p>© 2024 云上 OPC 社区 · 一人成军 · AI 赋能</p>
+            <p>© 2024 云上AI OPC 社区 · 一人成军 · AI 赋能</p>
           </div>
         </div>
       </div>
