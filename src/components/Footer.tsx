@@ -115,6 +115,18 @@ export function Footer() {
         <p style={{ color: '#94A3B8', fontSize: '0.9rem' }}>
           © 深圳国家高技术产业创新中心（粤港澳大湾区大数据中心项目组）版权所有
         </p>
+        <p style={{ color: '#94A3B8', fontSize: '0.85rem', marginTop: '0.5rem' }}>
+          <a 
+            href="https://beian.miit.gov.cn/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            style={{ color: '#94A3B8', textDecoration: 'none' }}
+            onMouseOver={(e) => e.currentTarget.style.color = '#CBD5E1'}
+            onMouseOut={(e) => e.currentTarget.style.color = '#94A3B8'}
+          >
+            粤ICP备14065535号-18
+          </a>
+        </p>
       </div>
 
       <div>
@@ -326,6 +338,18 @@ export function Footer() {
           </p>
           <p style={{ color: '#94A3B8', fontSize: '0.8rem' }}>
             © 深圳国家高技术产业创新中心（粤港澳大湾区大数据中心项目组）版权所有
+          </p>
+          <p style={{ color: '#94A3B8', fontSize: '0.8rem', marginTop: '0.5rem' }}>
+            <a 
+              href="https://beian.miit.gov.cn/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{ color: '#94A3B8', textDecoration: 'none' }}
+              onMouseOver={(e) => e.currentTarget.style.color = '#CBD5E1'}
+              onMouseOut={(e) => e.currentTarget.style.color = '#94A3B8'}
+            >
+              粤ICP备14065535号-18
+            </a>
           </p>
         </AccordionContent>
       </div>
