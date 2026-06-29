@@ -205,7 +205,7 @@ export function Footer() {
 
       <div style={{ textAlign: 'center' }}>
         <img
-          src="/Pic4Wechet/1.jpg"
+          src={`${import.meta.env.BASE_URL}Pic4Wechet/1.jpg`}
           alt="微信公众号二维码"
           style={{
             width: '150px',
@@ -302,7 +302,7 @@ export function Footer() {
         <AccordionHeader title="关注我们" icon="💬" section="follow" />
         <AccordionContent section="follow">
           <img
-            src="/Pic4Wechet/1.jpg"
+            src={`${import.meta.env.BASE_URL}Pic4Wechet/1.jpg`}
             alt="微信公众号二维码"
             style={{
               width: '120px',

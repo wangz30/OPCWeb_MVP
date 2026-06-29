@@ -19,7 +19,7 @@ export function Logo({ size = 'md', showText = true, variant = 'dark' }: LogoPro
       {/* Logo 图片 */}
       <div className="flex items-center">
         <img
-          src="/logo.png"
+          src={`${import.meta.env.BASE_URL}logo.png`}
           alt="大数据中心"
           className={`${currentSize.container} object-contain transition-all duration-300 hover:scale-105`}
           style={{ filter: variant === 'light' ? 'invert(1) brightness(2)' : 'none' }}

@@ -34,7 +34,7 @@ export function AboutPage() {
       {/* Hero Banner */}
       <div style={{
         position: 'relative',
-        background: 'url(/Pic4AboutUs/4.png) center/cover no-repeat',
+        background: `url(${import.meta.env.BASE_URL}Pic4AboutUs/4.png) center/cover no-repeat`,
         borderBottom: '1px solid rgba(108, 99, 255, 0.2)',
         padding: '5rem 2rem',
         textAlign: 'center',
@@ -176,7 +176,7 @@ export function AboutPage() {
               boxShadow: '0 20px 60px rgba(0, 0, 0, 0.4)'
             }}>
               <img 
-                src="/Pic4AboutUs/1.png" 
+                src={`${import.meta.env.BASE_URL}Pic4AboutUs/1.png`} 
                 alt="云上 AI OPC 社区"
                 style={{
                   width: '100%',
@@ -211,7 +211,7 @@ export function AboutPage() {
               order: 1
             }}>
               <img 
-                src="/Pic4AboutUs/2222.png" 
+                src={`${import.meta.env.BASE_URL}Pic4AboutUs/2222.png`} 
                 alt="粤港澳大湾区大数据中心"
                 style={{
                   width: '100%',

@@ -128,7 +128,7 @@ function ContactPanel({ onClose }: { onClose: () => void }) {
             </div>
           </div>
           <img
-            src="/Pic4Wechet/1.jpg"
+            src={`${import.meta.env.BASE_URL}Pic4Wechet/1.jpg`}
             alt="微信公众号二维码"
             style={{
               width: '120px',

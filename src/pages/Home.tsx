@@ -31,7 +31,7 @@ const bannerData = [
     ctaLink: 'https://jinshuju.net/f/需求申请表单 ID',
     gradient: 'from-[#6C63FF] to-[#4ECDC4]',
     icon: Zap,
-    backgroundImage: '/Pic4Banner/1.png'
+    backgroundImage: `url(${import.meta.env.BASE_URL}Pic4Banner/1.png)`
   },
   {
     id: 3,
@@ -42,7 +42,7 @@ const bannerData = [
     ctaLink: 'https://jinshuju.net/f/需求申请表单 ID',
     gradient: 'from-[#4ECDC4] to-[#10B981]',
     icon: Gift,
-    backgroundImage: '/Pic4Banner/2.png'
+    backgroundImage: `url(${import.meta.env.BASE_URL}Pic4Banner/2.png)`
   }
 ]
 
