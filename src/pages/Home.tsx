@@ -128,7 +128,7 @@ export function HomePage() {
                   position: 'absolute',
                   inset: 0,
                   // 背景图片 + 渐变叠加（懒加载）
-                  backgroundImage: isLoaded && banner.backgroundImage ? `url(${banner.backgroundImage})` : 'none',
+                  backgroundImage: isLoaded ? banner.backgroundImage : 'none',
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   opacity: index === currentBanner ? 1 : 0,
