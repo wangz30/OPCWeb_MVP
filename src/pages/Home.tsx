@@ -42,7 +42,7 @@ const bannerData = [
     ctaLink: 'https://jinshuju.net/f/需求申请表单 ID',
     gradient: 'from-[#4ECDC4] to-[#10B981]',
     icon: Gift,
-    backgroundImage: `url(${import.meta.env.BASE_URL}Pic4Banner/2.png)`
+    backgroundImage: `url("${import.meta.env.BASE_URL}Pic4Banner/2.png")`
   }
 ]
 

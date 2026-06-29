@@ -34,7 +34,7 @@ export function AboutPage() {
       {/* Hero Banner */}
       <div style={{
         position: 'relative',
-        background: `url(${import.meta.env.BASE_URL}Pic4AboutUs/4.png) center/cover no-repeat`,
+        background: `url("${import.meta.env.BASE_URL}Pic4AboutUs/4.png") center/cover no-repeat`,
         borderBottom: '1px solid rgba(108, 99, 255, 0.2)',
         padding: '5rem 2rem',
         textAlign: 'center',
